@@ -1,0 +1,120 @@
+% settings.tex
+% 储存配置信息
+
+% 修改表格字号，注意tabular要放在table环境里
+\BeforeBeginEnvironment{tabular}{\wuhao}
+% 修改表格与后文间距，缩短1cm
+\AfterEndEnvironment{table}{\vspace{-1cm}}
+
+% 新计数器，编排表格编号用
+\newcounter{rowno}
+
+% 使公式图表的编号随章节编号更新
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
+
+% 设置图表公式编号格式为1-1
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+
+% 使用tikz配置流程图基本图形
+\usetikzlibrary{shapes.geometric, arrows}
+% 开始
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width = 2cm, minimum height=1cm,text centered, draw = black]
+% 输入输出
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=1cm, text centered, draw=black]
+% 过程
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black]
+% 判断
+\tikzstyle{decision} = [diamond, aspect = 3, text centered, draw=black]
+% 箭头形式
+\tikzstyle{arrow} = [->,>=stealth]
+
+% 参考文献标号为上标
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+% 设置脚注编号格式
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%%=====新数学命令================================
+\newcommand\dif{\text{d}}
+\newcommand\no{\noindent}
+\newcommand\dis{\displaystyle}
+\newcommand\ls{\leqslant}
+\newcommand\gs{\geqslant}
+
+\newcommand\limit{\dis\lim\limits}
+\newcommand\limn{\dis\lim\limits_{n\to\infty}}
+\newcommand\limxz{\dis\lim\limits_{x\to0}}
+\newcommand\limxi{\dis\lim\limits_{x\to\infty}}
+\newcommand\limxpi{\dis\lim\limits_{x\to+\infty}}
+\newcommand\limxni{\dis\lim\limits_{x\to-\infty}}
+\newcommand\limtpi{\dis\lim\limits_{t\to+\infty}}
+\newcommand\limtni{\dis\lim\limits_{t\to-\infty}}
+
+\newcommand\sumn{\dis\sum\limits_{n=1}^{\infty}}
+\newcommand\sumnz{\dis\sum\limits_{n=0}^{\infty}}
+
+\newcommand\sumi{\dis\sum\limits_{i=1}^{\infty}}
+\newcommand\sumiz{\dis\sum\limits_{i=0}^{\infty}}
+\newcommand\sumin{\dis\sum\limits_{i=1}^{n}}
+\newcommand\sumizn{\dis\sum\limits_{i=0}^{n}}
+
+\newcommand\sumk{\dis\sum\limits_{k=1}^{\infty}}
+\newcommand\sumkz{\dis\sum\limits_{k=0}^{\infty}}
+\newcommand\sumkn{\dis\sum\limits_{k=0}^n}
+\newcommand\sumkfn{\dis\sum\limits_{k=1}^n}
+
+\newcommand\pzx{\dis\frac{\partial z}{\partial x}}
+\newcommand\pzy{\dis\frac{\partial z}{\partial y}}
+
+\newcommand\pfx{\dis\frac{\partial f}{\partial x}}
+\newcommand\pfy{\dis\frac{\partial f}{\partial y}}
+
+\newcommand\pzxx{\dis\frac{\partial^2 z}{\partial x^2}}
+\newcommand\pzxy{\dis\frac{\partial^2 z}{\partial x\partial y}}
+\newcommand\pzyx{\dis\frac{\partial^2 z}{\partial y\partial x}}
+\newcommand\pzyy{\dis\frac{\partial^2 z}{\partial y^2}}
+
+\newcommand\pfxx{\dis\frac{\partial^2 f}{\partial x^2}}
+\newcommand\pfxy{\dis\frac{\partial^2 f}{\partial x\partial y}}
+\newcommand\pfyx{\dis\frac{\partial^2 f}{\partial y\partial x}}
+\newcommand\pfyy{\dis\frac{\partial^2 f}{\partial y^2}}
+
+\newcommand\intzi{\dis\int_{0}^{+\infty}}
+\newcommand\intd{\dis\int}
+\newcommand\intab{\dis\int_a^b}
+
+\newcommand{\degree}{^\circ}
+
+\newcommand\ma{\mathcal{A}}
+\newcommand\mb{\mathcal{B}}
+\newcommand\mc{\mathcal{C}}
+\newcommand\me{\mathcal{E}}
+\newcommand\mg{\mathcal{g}}
+
+\newcommand\mcc{\mathbb{C}}
+\newcommand\mrr{\mathbb{R}}
+\newcommand\mzz{\mathbb{Z}}
+
+\newcommand\mx{\bf{x}}
+\newcommand\mX{\bf{X}}
+\newcommand\my{\bf{y}}
+\newcommand\mY{\bf{Y}}
+%%=============================================
+
+%%=====定义新数学符号===============================
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arccoth}{arccoth}
+\DeclareMathOperator{\grad}{\bf{grad}}
+\DeclareMathOperator{\argmax}{argmax}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\csign}{csign}
+%===============================================
