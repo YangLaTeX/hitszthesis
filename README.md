@@ -1,7 +1,7 @@
 <!-- Author : Jingxuan Yang-->
 <!-- Program Email: yanglatex2e@gmail.com -->
 
-[Github](https://github.com/YangLaTeX/YangThesis) | [Download](https://github.com/YangLaTeX/YangThesis/releases) | [Wiki](https://github.com/YangLaTeX/YangThesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
+[Github](https://github.com/YangLaTeX/hitszthesis) | [Download](https://github.com/YangLaTeX/hitszthesis/releases) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
 
 # Introduction to hitszthesis
 
