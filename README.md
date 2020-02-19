@@ -1,7 +1,11 @@
 <!-- Author : Jingxuan Yang-->
 <!-- Program Email: yanglatex2e@gmail.com -->
 
-![License](https://img.shields.io/ctan/l/hitszthesis.svg) ![CTAN Version](https://img.shields.io/ctan/v/hitszthesis.svg) ![Github Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg) ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
+[![Actions Status](https://github.com/xueruini/thuthesis/workflows/build/badge.svg)](https://github.com/xueruini/thuthesis/actions)
+ ![CTAN Version](https://img.shields.io/ctan/v/hitszthesis.svg) 
+ ![Github Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg) 
+ ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
+ ![License](https://img.shields.io/ctan/l/hitszthesis.svg)
 
 [Github](https://github.com/YangLaTeX/hitszthesis) | [Download](https://github.com/YangLaTeX/hitszthesis/releases) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
 
