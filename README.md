@@ -1,7 +1,6 @@
 <!-- Author : Jingxuan Yang-->
 <!-- Program Email: yanglatex2e@gmail.com -->
 
-[![Actions Status](https://github.com/YangLaTeX/hitszthesis/workflows/build/badge.svg)](https://github.com/YangLaTeX/hitszthesis/actions)
  ![CTAN Version](https://img.shields.io/ctan/v/hitszthesis.svg) 
  ![Github Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg) 
  ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
