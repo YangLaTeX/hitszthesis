@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/02/18 v2.0 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
+\ProvidesFile{hitszthesis.dtx}[2020/02/23 v2.1 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -160,8 +160,10 @@
 % spine.tex & 书脊示例文档\\
 % figure/ & 示例文档插图路径\\
 % front/ & 示例文档封面插图路径\\
+% tex/ & 示例文档正文各部分路径\\
 % hitszthesis.sty & 为示例文档加载其它宏包\\\midrule
-% Makefile & Makefile\\
+% Makefile & GNU make 使用 Makefile\\
+% Compile.bat & Windows 编译用脚本文件\\
 % latexmkrc & latexmk 配置文件 \\
 % README.md & Readme\\
 % \textbf{hitszthesis.pdf} & 用户手册（本文档）\\\bottomrule
@@ -246,11 +248,14 @@
 % 则使用 \texttt{make} 生成文件是最方便的办法。
 %
 % \begin{shell}
-% $ make clean   # 清理辅助文件
 % $ make cls       # 生成 hitszthesis.cls
 % $ make doc       # 生成说明文档 hitszthesis.pdf
 % $ make thesis    # 生成示例文档 main.pdf
 % $ make spine     # 生成书脊 spine.pdf
+% $ make all     # 生成示例文档 main.pdf 以及书脊 spine.pdf
+% $ make wordcount # 统计论文字数
+% $ make clean   # 清理辅助文件
+% $ make cleanall   # 删除所有 pdf 文件和所有辅助文件
 % \end{shell}
 %
 % \hitszthesis\ 的 \file{Makefile} 默认用 \texttt{latexmk} 调用\texttt{xelatex} 编
@@ -258,6 +263,21 @@
 % 改 \file{Makefile} 开头的参数或通过命令行传递参数（请参看 \file{README.md}），
 % 进一步还可以修改 \file{latexmkrc} 进行定制。
 %
+% \changes{v2.1}{2020/02/23}{Add \file{Compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
+% \subsubsection{Compile.bat}
+% \label{sec:bat}
+% 针对windows系统，本模板提供了 \file{Compile.bat} 脚本文件，
+% 可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
+% \begin{shell}
+% $ Compile.bat cls            # 生成 hitszthesis.cls
+% $ Compile.bat doc            # 生成说明文档 hitszthesis.pdf
+% $ Compile.bat thesis          # 生成示例文档 main.pdf
+% $ Compile.bat spine            # 生成书脊 spine.pdf
+% $ Compile.bat all            # 生成示例文档 main.pdf 以及书脊 spine.pdf
+% $ Compile.bat wordcount       # 统计论文字数
+% $ Compile.bat clean           # 删除编译所产生的辅助文件
+% $ Compile.bat cleanall        # 删除所有 pdf 文件和所有辅助文件
+% \end{shell}
 % \subsection{升级}
 % \label{sec:updgrade}
 % \hitszthesis\ 升级非常简单，可以通过 \TeX\ 发行版的包管理工具自动更新发行版，
@@ -318,6 +338,13 @@
 % \begin{latex}
 % % 封面第二页信息居左对齐
 % \documentclass[infoalign=infoleft]{hitszthesis}
+% \end{latex}
+%
+% \DescribeOption{mathfont}
+% 论文使用的数学字体。可选：\option{newtxmath}，\option{mtpro2}，其中\option{newtxmath}为默认选项。推荐使用\option{mtpro2}字体，但是此字体需要额外下载安装。
+% \begin{latex}
+% % 论文采用mtpro2数学字体
+% \documentclass[mathfont=mtpro2]{hitszthesis}
 % \end{latex}
 %
 % \subsection{引用方式}
@@ -554,7 +581,7 @@
 %
 % \section{致谢}
 % \label{sec:thanks}
-% 感谢|thuthesis|、|hithesis|、|elegantbook|模板的作者，本模板基于他们改编而来！
+% 感谢|thuthesis|、|hithesis|、|sjtuthesis|、|elegantbook|模板的作者，本模板基于他们改编而来！
 %
 % 欢迎各位到 \href{http://github.com/YangLaTeX/hitszthesis/}{\hitszthesis\ Github 主页}贡献！
 %
@@ -568,7 +595,7 @@
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
-%<cls>[2020/02/18 v2.0 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
+%<cls>[2020/02/23 v2.1 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
 %<cls> (HITSZ)]
 %    \end{macrocode}
 %
@@ -2251,10 +2278,10 @@ text centered, draw=black]
 }
 \def\hitsz@spine{%
   \newpage\thispagestyle{empty}%
-  \fangsong\addCJKfontfeatures*{RawFeature={vertical:}}
+  \heiti\addCJKfontfeatures*{RawFeature={vertical:}}
   \xiaosan\ziju{0.4}%
   \noindent\hfill\rotatebox[origin=lt]{-90}{%
-  	\makebox[\textheight]{\hitsztitle \hfill \hitszauthor}
+  	\makebox[\textheight]{本科毕业设计（论文）\hfill  \hitsztitle \hfill \hitszauthor}
   }
 }
 %    \end{macrocode}

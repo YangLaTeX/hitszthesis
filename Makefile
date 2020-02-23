@@ -16,7 +16,7 @@ else
 	RM = rm -f
 endif
 
-.PHONY: all all-dev clean distclean dist thesis viewthesis spine viewspine doc viewdoc cls check save savepdf test FORCE_MAKE
+.PHONY: all all-dev wordcount clean distclean dist thesis viewthesis spine viewspine doc viewdoc cls check save savepdf test FORCE_MAKE
 
 thesis: $(THESIS).pdf
 
@@ -60,6 +60,9 @@ savepdf:
 test:
 	l3build check
 
+wordcount : $(THESIS).tex
+	@texcount $< -inc -chinese
+	
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS) $(SPINE)
 	-@$(RM) *~ main-survey.*
