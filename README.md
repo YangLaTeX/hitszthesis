@@ -58,17 +58,17 @@ make [{all|thesis|spine|doc|clean|cleanall|distclean}]
 * `make cleanall`  delete all examples' files and all pdf file;
 * `make distclean` delete all examples' and templates' files and PDFs.
 
-# Compile.bat Usage
+# compile.bat Usage
 
 ```bash
-Compile.bat cls             # generate class hitszthesis.cls
-Compile.bat doc             # generate template documentation hitszthesis.pdf
-Compile.bat thesis          # generate thesis main.pdf
-Compile.bat spine           # generate book spine for printing spine.pdf
-Compile.bat all             # generate thesis and spine, same as `make thesis && make spine`
-Compile.bat wordcount       # count word in thesis main.pdf
-Compile.bat clean           # delete all examples' files (excluding main.pdf)
-Compile.bat cleanall        # delete all examples' files and all pdf file
+compile.bat cls             # generate class hitszthesis.cls
+compile.bat doc             # generate template documentation hitszthesis.pdf
+compile.bat thesis          # generate thesis main.pdf
+compile.bat spine           # generate book spine for printing spine.pdf
+compile.bat all             # generate thesis and spine, same as `make thesis && make spine`
+compile.bat wordcount       # count word in thesis main.pdf
+compile.bat clean           # delete all examples' files (excluding main.pdf)
+compile.bat cleanall        # delete all examples' files and all pdf file
 ```
 
 # License

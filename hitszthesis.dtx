@@ -3,14 +3,14 @@
 % Copyright (C) 2019-2020 by Jingxuan Yang <yanglatex2e@gmail.com>
 %
 % This work may be distributed and/or modified under the
-% conditions of the LaTeX Project Public License, either version 1.3
+% conditions of the LaTeX Project Public License, either version 1.3c
 % of this license or (at your option) any later version.
 % The latest version of this license is in
 %      http://www.latex-project.org/lppl.txt
-% and version 1.3 or later is part of all distributions of LaTeX
+% and version 1.3c or later is part of all distributions of LaTeX
 % version 2005/12/01 or later.
 %
-% This work has the LPPL maintenance status `maintained'.
+% This work has the LPPL1.3c maintenance status `maintained'.
 %
 % \fi
 %
@@ -78,7 +78,7 @@
 %
 % \def\abstractname{\Large 摘要}
 % \begin{abstract}\normalsize\vskip0.5cm
-%   \hitszthesis 宏包旨在建立一个规格严格、功夫到家的哈尔滨工业大学（深圳）学位论文模板，目前只包含本科毕业设计（论文）模板。模板的构建基于 \pkg{hitszthesis.dtx} 与 \pkg{hitszthesis.ins}，在使用本模板之前，请仔细阅读\file{hitszthesis.pdf}（本文件）、\file{main.tex}（撰写示例）及\file{main.pdf}（撰写效果）。
+%   \hitszthesis 宏包旨在建立一个{\bfseries 规格严格、功夫到家}的哈尔滨工业大学（深圳）学位论文模板，目前只包含本科毕业设计（论文）模板。模板的构建基于 \pkg{hitszthesis.dtx} 与 \pkg{hitszthesis.ins}，在使用本模板之前，请仔细阅读\file{hitszthesis.pdf}（本文件）、\file{main.tex}（撰写示例）及\file{main.pdf}（撰写效果）。
 % \end{abstract}
 %
 % \vskip1.5cm
@@ -86,7 +86,7 @@
 % \begin{abstract}
 % \normalsize\noindent
 % \begin{enumerate}
-% \item 本模板的发布遵守 \href{http://www.latex-project.org/lppl.txt}{\LaTeX\ Project Public License}，使用前请认真阅读协议内
+% \item 本模板的发布遵守 \href{http://www.latex-project.org/lppl.txt}{\LaTeX\ Project Public License 1.3c}以及其后的最新版本，使用前请认真阅读协议内
 %   容。
 % \item 本模板为作者根据哈尔滨工业大学（深圳）教务处颁发的《本科毕业设计（论文）撰写规范》、《书写范例》
 %   编写而成，旨在供哈尔滨工业大学（深圳）本科毕业生撰写学位论文使用。
@@ -94,7 +94,7 @@
 %   权第三方模板为官方模板，所以此模板仅为写作指南的参考实现，不保证格式审查老师
 %   不提意见。任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关。
 % \item 任何个人或组织以本模板为基础进行修改、扩展而生成的新的专用模板，请严格遵
-%   守 \href{http://www.latex-project.org/lppl.txt}{\LaTeX\ Project Public License} 协议。由于违犯协议而引起的任何纠纷争端均与
+%   守 \href{http://www.latex-project.org/lppl.txt}{\LaTeX\ Project Public License 1.3c} 协议以及其后的最新版本。由于违犯协议而引起的任何纠纷争端均与
 %   本模板作者无关。
 % \end{enumerate}
 % \end{abstract}
@@ -126,7 +126,8 @@
 % \section{安装}
 % \label{sec:installation}
 %
-% \hitszthesis\ 已经上传CTAN，将包含在2020年主要的 \TeX\ 发行版中。% 安装方法：打开命令行，输入以下命令即可
+% \hitszthesis\ 已经上传CTAN，已包含在TeXLive与MiKTeX发行版中。
+% 安装方法：打开命令行，输入以下命令即可
 % \begin{shell}
 % $ tlmgr install hitszthesis
 % \end{shell}
@@ -163,7 +164,7 @@
 % tex/ & 示例文档正文各部分路径\\
 % hitszthesis.sty & 为示例文档加载其它宏包\\\midrule
 % Makefile & GNU make 使用 Makefile\\
-% Compile.bat & Windows 编译用脚本文件\\
+% compile.bat & Windows 编译用脚本文件\\
 % latexmkrc & latexmk 配置文件 \\
 % README.md & Readme\\
 % \textbf{hitszthesis.pdf} & 用户手册（本文档）\\\bottomrule
@@ -232,10 +233,10 @@
 % 链来进行生成，它会自动运行多次工具直到交叉引用都被解决。下面给出了一个用
 % \texttt{latexmk} 调用 \texttt{xelatex} 生成最终文档的示例：
 % \begin{shell}
-%   $ latexmk main.tex       # 生成论文 main.pdf
-%   $ latexmk spine.tex      # 生成书脊 spine.pdf
+%   $ latexmk main.tex         # 生成论文 main.pdf
+%   $ latexmk spine.tex        # 生成书脊 spine.pdf
 %   $ latexmk hitszthesis.dtx  # 生成说明文档 hitszthesis.pdf
-%   $ latexmk -c             # 清理编译生成的辅助文件
+%   $ latexmk -c               # 清理编译生成的辅助文件
 % \end{shell}
 %
 % \subsubsection{GNU make}
@@ -252,10 +253,10 @@
 % $ make doc       # 生成说明文档 hitszthesis.pdf
 % $ make thesis    # 生成示例文档 main.pdf
 % $ make spine     # 生成书脊 spine.pdf
-% $ make all     # 生成示例文档 main.pdf 以及书脊 spine.pdf
+% $ make all       # 生成示例文档 main.pdf 以及书脊 spine.pdf
 % $ make wordcount # 统计论文字数
-% $ make clean   # 清理辅助文件
-% $ make cleanall   # 删除所有 pdf 文件和所有辅助文件
+% $ make clean     # 清理辅助文件
+% $ make cleanall  # 删除所有 pdf 文件和所有辅助文件
 % \end{shell}
 %
 % \hitszthesis\ 的 \file{Makefile} 默认用 \texttt{latexmk} 调用\texttt{xelatex} 编
@@ -263,20 +264,20 @@
 % 改 \file{Makefile} 开头的参数或通过命令行传递参数（请参看 \file{README.md}），
 % 进一步还可以修改 \file{latexmkrc} 进行定制。
 %
-% \changes{v2.1}{2020/02/23}{Add \file{Compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
-% \subsubsection{Compile.bat}
+% \changes{v2.1}{2020/02/23}{Add \file{compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
+% \subsubsection{compile.bat}
 % \label{sec:bat}
-% 针对windows系统，本模板提供了 \file{Compile.bat} 脚本文件，
+% 针对windows系统，本模板提供了 \file{compile.bat} 脚本文件，
 % 可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
 % \begin{shell}
-% $ Compile.bat cls            # 生成 hitszthesis.cls
-% $ Compile.bat doc            # 生成说明文档 hitszthesis.pdf
-% $ Compile.bat thesis          # 生成示例文档 main.pdf
-% $ Compile.bat spine            # 生成书脊 spine.pdf
-% $ Compile.bat all            # 生成示例文档 main.pdf 以及书脊 spine.pdf
-% $ Compile.bat wordcount       # 统计论文字数
-% $ Compile.bat clean           # 删除编译所产生的辅助文件
-% $ Compile.bat cleanall        # 删除所有 pdf 文件和所有辅助文件
+% $ compile.bat cls             # 生成 hitszthesis.cls
+% $ compile.bat doc             # 生成说明文档 hitszthesis.pdf
+% $ compile.bat thesis          # 生成示例文档 main.pdf
+% $ compile.bat spine           # 生成书脊 spine.pdf
+% $ compile.bat all             # 生成示例文档 main.pdf 以及书脊 spine.pdf
+% $ compile.bat wordcount       # 统计论文字数
+% $ compile.bat clean           # 删除编译所产生的辅助文件
+% $ compile.bat cleanall        # 删除所有 pdf 文件和所有辅助文件
 % \end{shell}
 % \subsection{升级}
 % \label{sec:updgrade}
@@ -306,8 +307,8 @@
 % 按照优先级推荐提问的位置如下：
 %
 % \begin{itemize}
-% \item Github Issues: \href{http://github.com/YangLaTeX/hitszthesis/issues}{http://github.com/YangLaTeX/hitszthesis/issues}
 % \item QQ group: 1039392552
+% \item Github Issues: \href{http://github.com/YangLaTeX/hitszthesis/issues}{http://github.com/YangLaTeX/hitszthesis/issues}
 % \item Email: \href{mailto:yanglatex2e@gmail.com}{yanglatex2e@gmail.com}, \href{mailto:yangjingxuan@stu.hit.edu.cn}{yangjingxuan@stu.hit.edu.cn}
 % \end{itemize}
 %
