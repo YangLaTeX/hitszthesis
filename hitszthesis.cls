@@ -23,7 +23,7 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hitszthesis}
-[2020/02/23 v2.1 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
+[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
  (HITSZ)]
 \RequirePackage{ifxetex}
 \ifxetex\else
@@ -47,7 +47,51 @@
 \ProcessKeyvalOptions*\relax
 \LoadClass[12pt,a4paper,openany,oneside]{book}
 \RequirePackage{etex}
-\RequirePackage[UTF8,space=auto,scheme=plain]{ctex}
+\RequirePackage[UTF8,scheme=chinese,zihao=-4,heading=true]{ctex}
+\ctexset{%
+  space = auto,
+  chapter={
+    afterindent=true,
+    number=\arabic{chapter},
+    beforeskip={28.34658bp},%一个空行 1.57481 × 18
+    afterskip={24.74658bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
+    aftername=\enspace,
+    format={\centering\heiti\xiaoer[1.57481]},%\center 会影响之后全局
+    nameformat=\relax,
+    numberformat=\relax,
+    fixskip=true, % 添加这一行去除默认间距
+    %hang=true,
+  },
+  section={
+    afterindent=true,
+    beforeskip={12bp},%上下空0.5行
+    afterskip={13.5bp},
+    format={\heiti\fontsize{15bp}{21bp}\selectfont},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  subsection={
+    afterindent=true,
+    beforeskip={10bp},
+    afterskip={11bp},
+    format={\heiti\fontsize{14bp}{18bp}\selectfont},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  subsubsection={
+    afterindent=true,
+    beforeskip={9bp},
+    afterskip={9bp},
+    format={\heiti\normalsize},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  paragraph/afterindent=true,
+  subparagraph/afterindent=true
+}
 \RequirePackage{amsmath}
 \RequirePackage[T1]{fontenc}
 \RequirePackage{newtxtext}
@@ -62,7 +106,6 @@
 \RequirePackage[scaled=0.92]{helvet}
 \RequirePackage{type1cm}
 \RequirePackage{lipsum}
-\RequirePackage{mathdesign}
 \setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
 \newcommand*{\kai}{\CJKfamily{kai}}
 \setCJKfamilyfont{song}[AutoFakeBold]{SimSun}
@@ -91,7 +134,7 @@
 \RequirePackage{calc}
 \RequirePackage{tikz}
 \RequirePackage{bm}
-\RequirePackage{cases}
+\RequirePackage{subeqnarray}
 \RequirePackage{siunitx}
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
@@ -175,11 +218,6 @@
 \newcommand{\keywordsname}{关键词}
 \newcommand{\keywordsenname}{Keywords}
 \renewcommand{\contentsname}{目\quad 录}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\partname}{部分}
-\renewcommand{\bibname}{参考文献}
-\renewcommand{\appendixname}{附录~\thechapter}
 \renewcommand{\indexname}{索\quad 引}
 \newcommand{\notename}{笔记}
 \renewcommand*{\proofname}{证明}
@@ -254,20 +292,6 @@ pdfborder={0 0 0},
 \RequirePackage[pagestyles]{titlesec}
 \RequirePackage{apptools}
 \setcounter{secnumdepth}{3}
-\renewcommand{\chaptername}{第 \thechapter\;章}
-\titleformat{\chapter}[hang]{\centering\heiti}
-{\filcenter\xiaoer\enspace\heiti{%
-\IfAppendix{\appendixname}{\chaptername}\enspace}}{1pt}{\xiaoer}
-\titleformat{\section}[hang]{\heiti}
-{\xiaosan\heiti{\thesection}\enspace}{1pt}{\xiaosan\heiti\filright}
-\titleformat{\subsection}[hang]{\heiti}
-{\sihao\heiti\thesubsection\enspace}{1pt}{\sihao\heiti\filright}
-\titleformat{\subsubsection}[hang]{\heiti}
-{\xiaosi\heiti\thesubsubsection\enspace}{1pt}{\xiaosi\heiti\filright}
-\titlespacing{\chapter}{0pt}{0bp}{14.4bp}
-\titlespacing{\section}{0pt}{7.5bp}{7.5bp}
-\titlespacing{\subsection}{0pt}{7bp}{7bp}
-\titlespacing{\subsubsection}{0pt}{6bp}{6bp}
 \RequirePackage[font=small,labelsep=quad]{caption}
 \captionsetup[table]{skip=3pt}
 \captionsetup[figure]{skip=10pt}
@@ -386,7 +410,7 @@ pdfborder={0 0 0},
     \end{center}
     % 日期
     \vspace{2.6cm}
-    {\xiaosi[0]\song\textbf{2020年7月}}
+    {\xiaosi[0]\song\textbf{2020年6月}}
   \end{center}
   %%----------------------------
 %% 第二页
@@ -505,6 +529,7 @@ pdfborder={0 0 0},
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
             \advance\leftmargin\labelsep
+            \addtolength{\itemsep}{-1.5ex}
             \@openbib@code
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
@@ -518,7 +543,6 @@ pdfborder={0 0 0},
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
 \RequirePackage{fancyhdr}
-\RequirePackage{lastpage}
 \pagestyle{fancy}
 \lhead{}
 \chead{\wuhao 哈尔滨工业大学（深圳）本科毕业设计（论文）}
@@ -533,12 +557,12 @@ pdfborder={0 0 0},
 {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi%
 \makeheadrule}}
 \titlecontents{chapter}[0pt]{\vspace{1mm}\heiti}
-{第\thecontentslabel\,\,章\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
 \titlecontents{section}[25pt]{\songti}
-{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
 \titlecontents{subsection}[47pt]{\songti}
-{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
-\RequirePackage[title,titletoc]{appendix}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
+\g@addto@macro\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 \BeforeBeginEnvironment{tabular}{\wuhao}
 \AfterEndEnvironment{table}{\vspace{-1cm}}
 \newcounter{rowno}
@@ -641,6 +665,10 @@ text centered, draw=black]
   \noindent\hfill\rotatebox[origin=lt]{-90}{%
    \makebox[\textheight]{本科毕业设计（论文）\hfill  \hitsztitle \hfill \hitszauthor}
   }
+}
+\pdfstringdefDisableCommands{%
+  \def\quad{}%
+  \def\hskip#1{}%
 }
 \AtEndOfClass{\sloppy}
 \endinput

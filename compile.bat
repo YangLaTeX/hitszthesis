@@ -12,7 +12,7 @@ if %flag%x == x (
 
 if %flag%x == thesisx (
 	call :cleanall
-	call :thesis	
+	call :thesis
 	if ERRORLEVEL 1 (
 		echo Error! Please check the 'main.log' for more details...
 		pause
@@ -72,7 +72,7 @@ goto :EOF
 
 :thesis
 	echo Compile...
-	latexmk -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode main >nul 2>nul
+	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode main >nul 2>nul
 goto :EOF
 
 :cls
@@ -82,7 +82,7 @@ goto :EOF
 
 :spine
 	echo Compile spine.tex file...
-	latexmk -xelatex -quiet -file-line-error -halt-on-error -interaction=nonstopmode spine >nul 2>nul
+	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode spine >nul 2>nul
 goto :EOF
 
 :all

@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/02/23 v2.1 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
+\ProvidesFile{hitszthesis.dtx}[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -265,7 +265,6 @@
 % 进一步还可以修改 \file{latexmkrc} 进行定制。
 %
 % \changes{v2.1}{2020/02/23}{Add \file{compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
-% \subsubsection{compile.bat}
 % \label{sec:bat}
 % 针对windows系统，本模板提供了 \file{compile.bat} 脚本文件，
 % 可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
@@ -596,7 +595,7 @@
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
-%<cls>[2020/02/23 v2.1 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
+%<cls>[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
 %<cls> (HITSZ)]
 %    \end{macrocode}
 %
@@ -675,9 +674,54 @@
 \RequirePackage{etex}
 %    \end{macrocode}
 %
-% 加载支持中文的 \pkg{ctex} 宏包
+% 加载支持中文的 \pkg{ctex} 宏包，并设置章节标题格式
+% \changes{v2.2}{2020/03/04}{Use \pkg{ctex} to set chinese titile and toc}
 %    \begin{macrocode}
-\RequirePackage[UTF8,space=auto,scheme=plain]{ctex}
+\RequirePackage[UTF8,scheme=chinese,zihao=-4,heading=true]{ctex}
+\ctexset{%
+  space = auto,
+  chapter={
+    afterindent=true,
+    number=\arabic{chapter},
+    beforeskip={28.34658bp},%一个空行 1.57481 × 18
+    afterskip={24.74658bp},%0.8应该不计算间距 0.8 × 18 + 0.57481×18
+    aftername=\enspace,
+    format={\centering\heiti\xiaoer[1.57481]},%\center 会影响之后全局
+    nameformat=\relax,
+    numberformat=\relax,
+    fixskip=true, % 添加这一行去除默认间距
+    %hang=true,
+  },
+  section={
+    afterindent=true,
+    beforeskip={12bp},%上下空0.5行
+    afterskip={13.5bp},
+    format={\heiti\fontsize{15bp}{21bp}\selectfont},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  subsection={
+    afterindent=true,
+    beforeskip={10bp},
+    afterskip={11bp},
+    format={\heiti\fontsize{14bp}{18bp}\selectfont},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  subsubsection={
+    afterindent=true,
+    beforeskip={9bp},
+    afterskip={9bp},
+    format={\heiti\normalsize},
+    aftername=\enspace,
+    fixskip=true,
+    break={},
+  },
+  paragraph/afterindent=true,
+  subparagraph/afterindent=true
+}
 %    \end{macrocode}
 %
 % 正文和数学字体设置
@@ -696,11 +740,6 @@
 \RequirePackage[scaled=0.92]{helvet}
 \RequirePackage{type1cm}
 \RequirePackage{lipsum}
-%    \end{macrocode}
-%
-% 使字体设置生效，排除其他干扰，不一定起作用，但为防万一需要保留
-%    \begin{macrocode}
-\RequirePackage{mathdesign}
 %    \end{macrocode}
 %
 % \begin{macro}{\kai}
@@ -837,8 +876,9 @@
 %    \end{macrocode}
 %
 % 子公式编号
+% \changes{v2.2}{2020/03/05}{Use \pkg{subeqnarray} rather than \pkg{cases} to write sub equations}
 %    \begin{macrocode}
-\RequirePackage{cases}
+\RequirePackage{subeqnarray}
 %    \end{macrocode}
 %
 % 书写单位
@@ -1111,11 +1151,6 @@
 % \begin{macro}{\keywordsname}
 % \begin{macro}{\keywordsenname}
 % \begin{macro}{\contentsname}
-% \begin{macro}{\figurename}
-% \begin{macro}{\tablename}
-% \begin{macro}{\partname}
-% \begin{macro}{\bibname}
-% \begin{macro}{\appendixname}
 % \begin{macro}{\indexname}
 % \begin{macro}{\notename}
 % \begin{macro}{\proofname}
@@ -1140,11 +1175,6 @@
 \newcommand{\keywordsname}{关键词}
 \newcommand{\keywordsenname}{Keywords}
 \renewcommand{\contentsname}{目\quad 录}
-\renewcommand{\figurename}{图}
-\renewcommand{\tablename}{表}
-\renewcommand{\partname}{部分}
-\renewcommand{\bibname}{参考文献}
-\renewcommand{\appendixname}{附录~\thechapter}
 \renewcommand{\indexname}{索\quad 引}
 \newcommand{\notename}{笔记}
 \renewcommand*{\proofname}{证明}
@@ -1162,11 +1192,6 @@
 \newcommand{\assumptionname}{假设}
 \newcommand{\conclusionname}{结论}
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-% \end{macro}
-% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -1333,49 +1358,9 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\setcounter}
-% \begin{macro}{\chaptername}
-% 更改章节编号样式
+% 更改章节编号深度
 %    \begin{macrocode}
 \setcounter{secnumdepth}{3}
-\renewcommand{\chaptername}{第 \thechapter\;章}
-%    \end{macrocode}
-% \end{macro}
-% \end{macro}
-%
-% \begin{macro}{\titleformat}
-% 设置章节标题样式
-%    \begin{macrocode}
-\titleformat{\chapter}[hang]{\centering\heiti}
-{\filcenter\xiaoer\enspace\heiti{%
-\IfAppendix{\appendixname}{\chaptername}\enspace}}{1pt}{\xiaoer}
-%    \end{macrocode}
-%
-% 设置节标题样式
-%    \begin{macrocode}
-\titleformat{\section}[hang]{\heiti}
-{\xiaosan\heiti{\thesection}\enspace}{1pt}{\xiaosan\heiti\filright}
-%    \end{macrocode}
-%
-% 设置条标题样式
-%    \begin{macrocode}
-\titleformat{\subsection}[hang]{\heiti}
-{\sihao\heiti\thesubsection\enspace}{1pt}{\sihao\heiti\filright}
-%    \end{macrocode}
-%
-% 设置四级标题样式
-%    \begin{macrocode}
-\titleformat{\subsubsection}[hang]{\heiti}
-{\xiaosi\heiti\thesubsubsection\enspace}{1pt}{\xiaosi\heiti\filright}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\titlespacing}
-% 设置标题与上下文间距
-%    \begin{macrocode}
-\titlespacing{\chapter}{0pt}{0bp}{14.4bp}
-\titlespacing{\section}{0pt}{7.5bp}{7.5bp}
-\titlespacing{\subsection}{0pt}{7bp}{7bp}
-\titlespacing{\subsubsection}{0pt}{6bp}{6bp}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1647,7 +1632,7 @@
     \end{center}
     % 日期
     \vspace{2.6cm}
-    {\xiaosi[0]\song\textbf{2020年7月}}
+    {\xiaosi[0]\song\textbf{2020年6月}}
   \end{center}
   %%----------------------------
 %% 第二页
@@ -1815,6 +1800,7 @@
            {\settowidth\labelwidth{\@biblabel{#1}}%
             \leftmargin\labelwidth
             \advance\leftmargin\labelsep
+            \addtolength{\itemsep}{-1.5ex}
             \@openbib@code
             \usecounter{enumiv}%
             \let\p@enumiv\@empty
@@ -1835,7 +1821,6 @@
 % 定义页眉页脚
 %    \begin{macrocode}
 \RequirePackage{fancyhdr}
-\RequirePackage{lastpage}
 \pagestyle{fancy}
 %    \end{macrocode}
 %
@@ -1880,26 +1865,27 @@
 % 1级目录格式
 %    \begin{macrocode}
 \titlecontents{chapter}[0pt]{\vspace{1mm}\heiti}
-{第\thecontentslabel\,\,章\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
 %    \end{macrocode}
 %
 % 2级目录格式
 %    \begin{macrocode}
 \titlecontents{section}[25pt]{\songti}
-{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
 %    \end{macrocode}
 %
 % 3级目录格式
 %    \begin{macrocode}
 \titlecontents{subsection}[47pt]{\songti}
-{\thecontentslabel\hskip.5em}{}{\titlerule*[0.5pc]{.}\contentspage}
+{\thecontentslabel\hskip.5em}{}{\titlerule*[4pt]{.}\contentspage}
+%    \end{macrocode}
+%
+% 附录章节，节标题不计入目录中
+% \changes{v2.2}{2020/03/04}{Omit sections of appendix in toc}
+%    \begin{macrocode}
+\g@addto@macro\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{0}}}
 %    \end{macrocode}
 % \end{macro}
-%
-% 附录环境设置，暂时无用
-%    \begin{macrocode}
-\RequirePackage[title,titletoc]{appendix}
-%    \end{macrocode}
 %
 % \begin{environment}{tabular}
 % 修改表格字号，注意 |tabular| 要放在 |table| 环境里
@@ -2290,6 +2276,15 @@ text centered, draw=black]
 %
 % \subsection{其它}
 % \label{sec:other}
+%
+% \changes{v2.2}{2020/03/02}{Deal with warnings about PDF string}
+% 处理生成的PDF中某些\LaTeX{}命令无法识别的问题
+%    \begin{macrocode}
+\pdfstringdefDisableCommands{%
+  \def\quad{}%
+  \def\hskip#1{}%
+}
+%    \end{macrocode}
 %
 % 在模板文档结束时即装入配置文件，这样用户就能在导言区进行相应的修改。
 %    \begin{macrocode}

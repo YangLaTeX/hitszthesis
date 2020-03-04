@@ -1,4 +1,4 @@
-# Makefile for HITSZThesis
+# Makefile for hitszthesis
 
 PACKAGE = hitszthesis
 THESIS  = main
@@ -62,7 +62,7 @@ test:
 
 wordcount : $(THESIS).tex
 	@texcount $< -inc -chinese
-	
+
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS) $(SPINE)
 	-@$(RM) *~ main-survey.*
