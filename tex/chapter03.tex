@@ -34,23 +34,6 @@
 \right.
 \end{equation}
 
-如果需要对公式的子公式进行编号，则使用\lstinline{subnumcases}环境：
-\begin{lstlisting}
-\begin{subnumcases}{\label{w} w\equiv}
-	0 & $c = d = 0$\label{wzero}\\
-	\sqrt{|c|}\,\sqrt{\frac{1 + \sqrt{1+(d/c)^2}}{2}} & $|c| \geq |d|$ \\
-	\sqrt{|d|}\,\sqrt{\frac{|c/d| + \sqrt{1+(c/d)^2}}{2}} & $|c| < |d|$
-\end{subnumcases}
-\end{lstlisting}
-上述代码输出如下：
-\begin{subnumcases}{\label{w} w\equiv}
-0 & $c = d = 0$\label{wzero}\\
-\sqrt{|c|}\,\sqrt{\frac{1 + \sqrt{1+(d/c)^2}}{2}} & $|c| \geq |d|$ \\
-\sqrt{|d|}\,\sqrt{\frac{|c/d| + \sqrt{1+(c/d)^2}}{2}} & $|c| < |d|$
-\end{subnumcases}
-
-\equref{w}中，\lstinline{label:w}为整个公式的编号，\lstinline{label:wzero}为子公式的编号。
-
 % 条标题
 \subsection{一类连续复值 Hopf\/ield 神经网络}
 
@@ -317,3 +300,28 @@ L=\frac{1}{N}\left(\Big|\theta'-\theta_0\Big|+\sum\limits_i^n\lambda\omega_i^2\r
 \begin{proof}
 以下是一段无意义文字：\lipsum[5]
 \end{proof}
+
+如果需要对公式的子公式进行编号，则使用\lstinline{subeqnarray}环境：
+\begin{lstlisting}
+\begin{subeqnarray}
+\label{eqw}
+\slabel{eq0}
+x & = & a \times b \\
+\slabel{eq1}
+& = & z + t\\
+\slabel{eq2}
+& = & z + t
+\end{subeqnarray}
+\end{lstlisting}
+上述代码输出如下：
+\begin{subeqnarray}
+\label{eqw}
+\slabel{eq0}
+x & = & a \times b \\
+\slabel{eq1}
+& = & z + t\\
+\slabel{eq2}
+& = & z + t
+\end{subeqnarray}
+
+\equref{eqw}中，\lstinline{eqw}为整个公式的标签，\lstinline{slabel}为子公式的标签。
