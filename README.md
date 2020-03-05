@@ -52,14 +52,16 @@ Please follow the procedure below:
 To use Makefile, you should have GNU `make` tool installed.
 
 ```bash
-make thesis    # generate thesis main.pdf;
-make spine     # generate book spine for printing spine.pdf;
-make doc       # generate template documentation hitszthesis.pdf;
-make all       # generate thesis and spine, same as `make thesis && make spine`;
-make wordcount # count word in thesis main.pdf
-make clean     # delete all examples' files (excluding main.pdf);
-make cleanall  # delete all examples' files and all pdf file;
-make distclean # delete all examples' and templates' files and PDFs.
+make cls        # generate class hitszthesis.cls
+make doc        # generate template documentation hitszthesis.pdf;
+make thesis     # generate thesis main.pdf;
+make spine      # generate book spine for printing spine.pdf;
+make all        # generate thesis and spine, same as `make thesis && make spine`;
+make wordcount  # count word in thesis main.pdf
+make clean      # delete all examples' files (excluding main.pdf);
+make cleanall   # delete all examples' files and all pdf file;
+make dev        # make doc all clean
+make pub        # make doc all cleanall
 ```
 
 # compile.bat Usage
