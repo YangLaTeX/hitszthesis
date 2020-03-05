@@ -22,7 +22,9 @@ thesis: $(THESIS).pdf
 
 all: thesis spine
 
-all-dev: doc all
+dev: doc all clean
+
+pub: doc all cleanall
 
 cls: $(CLSFILE)
 
@@ -65,13 +67,11 @@ wordcount : $(THESIS).tex
 
 clean:
 	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS) $(SPINE)
-	-@$(RM) *~ main-survey.*
 
 cleanall: clean
-	-@$(RM) $(PACKAGE).pdf $(THESIS).pdf $(SPINE).pdf
+	-@$(RM) $(CLSFILE)
 
 distclean: cleanall
-	-@$(RM) $(CLSFILE)
 	-@$(RM) -r dist
 
 check: FORCE_MAKE

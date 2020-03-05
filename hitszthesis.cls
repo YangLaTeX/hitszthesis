@@ -23,11 +23,11 @@
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{hitszthesis}
-[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
+[2020/03/05 v2.3 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
  (HITSZ)]
 \RequirePackage{ifxetex}
 \ifxetex\else
-  \ClassError{hitszthesis}{Please use XeLaTeX to compile the file}{}
+  \ClassError{hitszthesis}{Please use XeLaTeX to compile this file}{}
   \end{document}
 \fi
 \RequirePackage{kvoptions}
@@ -41,8 +41,11 @@
 \DeclareVoidOption{onerow}{\ykv{covertitle = onerow}}
 \DeclareVoidOption{tworow}{\ykv{covertitle = tworow}}
 \DeclareStringOption[newtxmath]{mathfont}
-\DeclareVoidOption{newtxmath}{\ykv{mathfont = newtxmath}}
+\DeclareVoidOption{XITS}{\ykv{mathfont = XITS}}
 \DeclareVoidOption{mtpro2}{\ykv{mathfont = mtpro2}}
+\DeclareVoidOption{mtpro2lite}{\ykv{mathfont = mtpro2lite}}
+\DeclareVoidOption{newtxmath}{\ykv{mathfont = newtxmath}}
+\DeclareBoolOption[false]{boldcaption}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{book}}
 \ProcessKeyvalOptions*\relax
 \LoadClass[12pt,a4paper,openany,oneside]{book}
@@ -93,17 +96,49 @@
   subparagraph/afterindent=true
 }
 \RequirePackage{amsmath}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{newtxtext}
-\ifdefstring{\hitsz@mathfont}{mtpro2}{
-\RequirePackage[mtphrb,mtpcal,zswash,uprightGreek]{mtpro2}
+\ifdefstring{\hitsz@mathfont}{XITS}{
+  \setmainfont{Times New Roman}
+  \setsansfont{Arial}
+  \setmonofont[Scale=MatchLowercase]{Consolas}
+  \RequirePackage{unicode-math}
+  \unimathsetup{
+    math-style = ISO,
+    bold-style = ISO,
+    nabla      = upright,
+    partial    = upright,
+  }
+  \IfFontExistsTF{XITSMath-Regular.otf}{
+    \setmathfont[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 8,
+    ]{XITSMath-Regular}
+    \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
+  }{
+    \setmathfont[
+      Extension    = .otf,
+      BoldFont     = *bold,
+      StylisticSet = 8,
+    ]{xits-math}
+    \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
+  }
+  \AtBeginDocument{\renewcommand{\mathbf}{\mathbfup}
+  \newcommand\square{\mdlgwhtsquare}
+  }
 }{\relax}
-\ifdefstring{\hitsz@mathfont}{newtxmath}{
-\RequirePackage{newtxmath}
+\ifdefstring{\hitsz@mathfont}{mtpro2}{%
+  \RequirePackage{newtxtext}  % newtxtext宏包必须加在数学字体宏包之前
+  \RequirePackage[mtphrb,mtpcal,zswash,uprightGreek]{mtpro2}
+}{\relax}
+\ifdefstring{\hitsz@mathfont}{mtpro2lite}{%
+  \RequirePackage{newtxtext}
+  \RequirePackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+}{\relax}
+\ifdefstring{\hitsz@mathfont}{newtxmath}{%
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
 \let\openbox\relax
 }{\relax}
-\renewcommand{\rmdefault}{ptm}
-\RequirePackage[scaled=0.92]{helvet}
 \RequirePackage{type1cm}
 \RequirePackage{lipsum}
 \setCJKfamilyfont{kai}[AutoFakeBold]{simkai.ttf}
@@ -139,7 +174,6 @@
 \RequirePackage{pdfpages}
 \includepdfset{fitpaper=true}
 \RequirePackage{listings}
-\renewcommand{\ttdefault}{cmtt}
 \lstdefinestyle{ystyle}{
   basicstyle=%
     \ttfamily
@@ -268,7 +302,7 @@ top=41mm,
 bottom=30mm,
 headheight = 2.17cm,
 headsep = 1mm,
-footskip = 0cm,
+footskip = 5mm,
 }
 \RequirePackage{hyperref}
 \hypersetup{
@@ -293,6 +327,9 @@ pdfborder={0 0 0},
 \RequirePackage{apptools}
 \setcounter{secnumdepth}{3}
 \RequirePackage[font=small,labelsep=quad]{caption}
+\ifhitsz@boldcaption
+  \renewcommand\captionfont{\small\song\bfseries}
+\fi
 \captionsetup[table]{skip=3pt}
 \captionsetup[figure]{skip=10pt}
 \newcommand\figref[1]{图\ref{#1}}
@@ -344,7 +381,7 @@ pdfborder={0 0 0},
     \itshape}{\par}
 \newenvironment{proof}{
   \par\noindent\textbf{\proofname\;}
-}{\hfill$\Box$\quad\par}
+}{\hfill$\square$\quad\par}
 \newenvironment{solution}{\medskip\par\noindent\textbf{\solutionname} \itshape}{\par}
 \newenvironment{remark}{\noindent\textbf{\remarkname}}{\par}
 \newenvironment{assumption}{\par\noindent\textbf{\assumptionname}}{\par}
@@ -638,10 +675,10 @@ text centered, draw=black]
 \newcommand\mcc{\mathbb{C}}
 \newcommand\mrr{\mathbb{R}}
 \newcommand\mzz{\mathbb{Z}}
-\newcommand\vx{\bf{x}}
-\newcommand\vX{\bf{X}}
-\newcommand\vy{\bf{y}}
-\newcommand\vY{\bf{Y}}
+\newcommand\vx{\mathbf{x}}
+\newcommand\vX{\mathbf{X}}
+\newcommand\vy{\mathbf{y}}
+\newcommand\vY{\mathbf{Y}}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\arccot}{arccot}
 \DeclareMathOperator{\arccosh}{arccosh}

@@ -3,10 +3,10 @@
 % !TEX program  = XeLaTeX
 %%=============================================
 % 模板名称：HITSZThesis
-% 模板版本：V2.2
+% 模板版本：V2.3
 % 模板作者：杨敬轩（Jingxuan Yang）
 % 联系作者：yangjingxuan@stu.hit.edu.cn & yanglatex2e@gmail.com
-% 模板交流：QQ群：1039392552，加群请备注LaTeX、HITSZThesis相关说明
+% 模板交流：QQ群：1039392552，加群请备注LaTeX、hitszthesis相关说明
 % 模板适用：哈尔滨工业大学（深圳）本科毕业设计（论文）
 % 模板编译：XeLaTeX，编译两次，两次，两次！！！
 %          GNU make 工具：make thesis
@@ -23,18 +23,19 @@
 \documentclass{hitszthesis}
 
 % 模板提供以下选项
-% 1. 封面标题单行或多行显示：
+% 1. covertitle，封面标题单行或多行显示：
 %%  onerow（默认，单行），tworow（两行）
-% 2. 封面第二页下划线内容居中或居左显示：
+% 2. infoalign，封面第二页下划线内容居中或居左显示：
 %%  infocenter（默认，居中），infoleft（居左）
-% 3. 正文数学字体选项：
-%%  newtxmath（默认），mtpro2
-%%  注意mtpro2为非免费字体，需购买授权
-%%  https://www.pctex.com/mtpro2.html
+% 3. mathfont，正文数学字体选项：
+%%  newtxmath（默认），XITS（可选），mtpro2lite（lite版，免费），
+%%  mtpro2（完全版，需购买授权）
+%%  mtpro2字体官网：https://www.pctex.com/mtpro2.html
+% 4. boldcaption，图表题注是否加粗布尔选项，默认为false（否）
 
-% 示例：两行，居左，mtpro2字体，将<\documentclass{hitszthesis}>注释，
-% 且将下面语句取消注释
-%\documentclass[tworow, infoleft, mtpro2]{hitszthesis}
+% 示例：两行，居左，mtpro2字体，图表题注加粗，
+% 将<\documentclass{hitszthesis}>注释，且将下面语句取消注释
+%\documentclass[tworow, infoleft, mtpro2, boldcaption=true]{hitszthesis}
 
 % 自定义设置与额外加载的宏包请写在 \file{hitszthesis.sty} 里
 % 预设该文件为空

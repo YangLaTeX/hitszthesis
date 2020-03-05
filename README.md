@@ -10,7 +10,7 @@
 
 # Introduction to hitszthesis
 
-HITSZThesis is a **bachelor dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ). Current version is 2.2, updated on 2020/03/05.
+HITSZThesis is a **bachelor dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ). Current version is 2.3, updated on 2020/03/05.
 
 # Documentation
 
@@ -49,32 +49,32 @@ Please follow the procedure below:
 
 # Makefile Usage
 
-```shell
-make [{all|thesis|spine|doc|clean|cleanall|distclean}]
+To use Makefile, you should have GNU `make` tool installed.
+
+```bash
+make thesis    # generate thesis main.pdf;
+make spine     # generate book spine for printing spine.pdf;
+make doc       # generate template documentation hitszthesis.pdf;
+make all       # generate thesis and spine, same as `make thesis && make spine`;
+make wordcount # count word in thesis main.pdf
+make clean     # delete all examples' files (excluding main.pdf);
+make cleanall  # delete all examples' files and all pdf file;
+make distclean # delete all examples' and templates' files and PDFs.
 ```
-
-## Targets
-
-* `make thesis`    generate thesis main.pdf;
-* `make spine`     generate book spine for printing spine.pdf;
-* `make doc`       generate template documentation hitszthesis.pdf;
-* `make all`       generate thesis and spine, same as `make thesis && make spine`;
-* `make wordcount` count word in thesis main.pdf
-* `make clean`     delete all examples' files (excluding main.pdf);
-* `make cleanall`  delete all examples' files and all pdf file;
-* `make distclean` delete all examples' and templates' files and PDFs.
 
 # compile.bat Usage
 
+compile.bat is designed for windows platform.
+
 ```bash
-compile.bat cls             # generate class hitszthesis.cls
-compile.bat doc             # generate template documentation hitszthesis.pdf
-compile.bat thesis          # generate thesis main.pdf
-compile.bat spine           # generate book spine for printing spine.pdf
-compile.bat all             # generate thesis and spine, same as `make thesis && make spine`
-compile.bat wordcount       # count word in thesis main.pdf
-compile.bat clean           # delete all examples' files (excluding main.pdf)
-compile.bat cleanall        # delete all examples' files and all pdf file
+compile.bat cls         # generate class hitszthesis.cls
+compile.bat doc         # generate template documentation hitszthesis.pdf
+compile.bat thesis      # generate thesis main.pdf
+compile.bat spine       # generate book spine for printing spine.pdf
+compile.bat all         # generate thesis and spine, same as `make thesis && make spine`
+compile.bat wordcount   # count word in thesis main.pdf
+compile.bat clean       # delete all examples' files (excluding main.pdf)
+compile.bat cleanall    # delete all examples' files and all pdf file
 ```
 
 # License

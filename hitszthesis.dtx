@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
+\ProvidesFile{hitszthesis.dtx}[2020/03/05 v2.3 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen (HITSZ) ]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -264,8 +264,9 @@
 % 改 \file{Makefile} 开头的参数或通过命令行传递参数（请参看 \file{README.md}），
 % 进一步还可以修改 \file{latexmkrc} 进行定制。
 %
-% \changes{v2.1}{2020/02/23}{Add \file{compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
+% \subsubsection{compile.bat}
 % \label{sec:bat}
+% \changes{v2.1}{2020/02/23}{Add \file{compile.bat}, add wordcount function, regulate writing style of \file{main.tex} to use \file{input}}
 % 针对windows系统，本模板提供了 \file{compile.bat} 脚本文件，
 % 可以双击直接编译，也可以在命令提示符窗口中使用脚本提供的额外功能：
 % \begin{shell}
@@ -326,8 +327,8 @@
 % \label{sec:option}
 %
 % \DescribeOption{covertitle}
-%   选择论文类型，当前支持：\option{onerow}，\option{tworow}，其中
-%   \option{onerow}为默认选项。
+%   选择论文封面第一页标题行数，当前支持：\option{onerow}，
+% \option{tworow}，其中\option{onerow}为默认选项。
 % \begin{latex}
 % % 封面标题两行
 % \documentclass[covertitle=tworow]{hitszthesis}
@@ -341,10 +342,21 @@
 % \end{latex}
 %
 % \DescribeOption{mathfont}
-% 论文使用的数学字体。可选：\option{newtxmath}，\option{mtpro2}，其中\option{newtxmath}为默认选项。推荐使用\option{mtpro2}字体，但是此字体需要额外下载安装。
+% 论文使用的数学字体。可选：\option{newtxmath}，\option{SITX}，\option{mtpro2}，\option{mtpro2lite}，其中\option{newtxmath}为默认选项，\option{mtpro2lite}字体可以\href{https://www.pctex.com/mtpro2.html}{免费使用}，但是\option{mtpro2}完全版需要\href{https://www.pctex.com/mtpro2.html}{购买授权}，\option{SITX}字体为可选备用选项。
 % \begin{latex}
 % % 论文采用mtpro2数学字体
 % \documentclass[mathfont=mtpro2]{hitszthesis}
+% % 论文采用mtpro2 lite数学字体
+% \documentclass[mathfont=mtpro2lite]{hitszthesis}
+% % 论文采用SITX数学字体
+% \documentclass[mathfont=SITX]{hitszthesis}
+% \end{latex}
+%
+% \DescribeOption{boldcaption}
+% 论文中图表的题注是否加粗选项，这是一个布尔选项，默认为否。
+% \begin{latex}
+% % 论文题注加粗
+% \documentclass[boldcaption=true]{hitszthesis}
 % \end{latex}
 %
 % \subsection{引用方式}
@@ -595,7 +607,7 @@
 %    \begin{macrocode}
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
-%<cls>[2020/03/05 v2.2 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
+%<cls>[2020/03/05 v2.3 A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen
 %<cls> (HITSZ)]
 %    \end{macrocode}
 %
@@ -603,7 +615,7 @@
 %    \begin{macrocode}
 \RequirePackage{ifxetex}
 \ifxetex\else
-  \ClassError{hitszthesis}{Please use XeLaTeX to compile the file}{}
+  \ClassError{hitszthesis}{Please use XeLaTeX to compile this file}{}
   \end{document}
 \fi
 %    \end{macrocode}
@@ -646,14 +658,25 @@
 \DeclareVoidOption{tworow}{\ykv{covertitle = tworow}}
 %    \end{macrocode}
 %
-% 数学字体选择
+% 数学字体选择，添加XITS数学字体
+%（https://github.com/alif-type/xits），该字体来源于
+% Scientific and Technical Information Exchange（XTIS）字体
+% \changes{v2.3}{2020/03/05}{Add math font option XITS}
 %    \begin{macrocode}
 \DeclareStringOption[newtxmath]{mathfont}
-\DeclareVoidOption{newtxmath}{\ykv{mathfont = newtxmath}}
+\DeclareVoidOption{XITS}{\ykv{mathfont = XITS}}
 \DeclareVoidOption{mtpro2}{\ykv{mathfont = mtpro2}}
+\DeclareVoidOption{mtpro2lite}{\ykv{mathfont = mtpro2lite}}
+\DeclareVoidOption{newtxmath}{\ykv{mathfont = newtxmath}}
 %    \end{macrocode}
 %
-% 默认选项
+% 题注是否加粗选项，默认不加粗
+% \changes{v2.3}{2020/03/05}{Add boldcaption option to control the caption font}
+%    \begin{macrocode}
+\DeclareBoolOption[false]{boldcaption}
+%    \end{macrocode}
+%
+% 将其他选项传递给|book|文档类
 %    \begin{macrocode}
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{book}}
 %    \end{macrocode}
@@ -727,17 +750,49 @@
 % 正文和数学字体设置
 %    \begin{macrocode}
 \RequirePackage{amsmath}
-\RequirePackage[T1]{fontenc}
-\RequirePackage{newtxtext}
-\ifdefstring{\hitsz@mathfont}{mtpro2}{
-\RequirePackage[mtphrb,mtpcal,zswash,uprightGreek]{mtpro2}
+\ifdefstring{\hitsz@mathfont}{XITS}{
+  \setmainfont{Times New Roman}
+  \setsansfont{Arial}
+  \setmonofont[Scale=MatchLowercase]{Consolas}
+  \RequirePackage{unicode-math}
+  \unimathsetup{
+    math-style = ISO,
+    bold-style = ISO,
+    nabla      = upright,
+    partial    = upright,
+  }
+  \IfFontExistsTF{XITSMath-Regular.otf}{
+    \setmathfont[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 8,
+    ]{XITSMath-Regular}
+    \setmathfont[range={cal,bfcal},StylisticSet=1]{XITSMath-Regular.otf}
+  }{
+    \setmathfont[
+      Extension    = .otf,
+      BoldFont     = *bold,
+      StylisticSet = 8,
+    ]{xits-math}
+    \setmathfont[range={cal,bfcal},StylisticSet=1]{xits-math.otf}
+  }
+  \AtBeginDocument{\renewcommand{\mathbf}{\mathbfup}
+  \newcommand\square{\mdlgwhtsquare}
+  }
 }{\relax}
-\ifdefstring{\hitsz@mathfont}{newtxmath}{
-\RequirePackage{newtxmath}
+\ifdefstring{\hitsz@mathfont}{mtpro2}{%
+  \RequirePackage{newtxtext}  % newtxtext宏包必须加在数学字体宏包之前
+  \RequirePackage[mtphrb,mtpcal,zswash,uprightGreek]{mtpro2}
+}{\relax}
+\ifdefstring{\hitsz@mathfont}{mtpro2lite}{%
+  \RequirePackage{newtxtext}
+  \RequirePackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+}{\relax}
+\ifdefstring{\hitsz@mathfont}{newtxmath}{%
+  \RequirePackage{newtxtext}
+  \RequirePackage{newtxmath}
 \let\openbox\relax
 }{\relax}
-\renewcommand{\rmdefault}{ptm}
-\RequirePackage[scaled=0.92]{helvet}
 \RequirePackage{type1cm}
 \RequirePackage{lipsum}
 %    \end{macrocode}
@@ -892,13 +947,10 @@
 \includepdfset{fitpaper=true}
 %    \end{macrocode}
 %
-% \begin{macro}{\ttdefault}
 % 排版代码
 %    \begin{macrocode}
 \RequirePackage{listings}
-\renewcommand{\ttdefault}{cmtt}
 %    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{\lstdefinestyle}
 % 定义 |ystyle| 样式
@@ -1156,17 +1208,6 @@
 % \begin{macro}{\proofname}
 % \begin{macro}{\problemname}
 % \begin{macro}{\definitionname}
-% \begin{macro}{\theoremname}
-% \begin{macro}{\axiomname}
-% \begin{macro}{\postulatename}
-% \begin{macro}{\lemmaname}
-% \begin{macro}{\propositionname}
-% \begin{macro}{\corollaryname}
-% \begin{macro}{\examplename}
-% \begin{macro}{\exercisename}
-% \begin{macro}{\remarkname}
-% \begin{macro}{\assumptionname}
-% \begin{macro}{\conclusionname}
 % 中文标题名称设置
 %    \begin{macrocode}
 \renewcommand\listfigurename{插图目录}
@@ -1180,17 +1221,6 @@
 \renewcommand*{\proofname}{证明}
 \newcommand{\problemname}{问题}
 \newcommand{\definitionname}{定义}
-\newcommand{\theoremname}{定理}
-\newcommand{\axiomname}{公理}
-\newcommand{\postulatename}{公设}
-\newcommand{\lemmaname}{引理}
-\newcommand{\propositionname}{命题}
-\newcommand{\corollaryname}{推论}
-\newcommand{\examplename}{例}
-\newcommand{\exercisename}{练习}
-\newcommand{\remarkname}{注}
-\newcommand{\assumptionname}{假设}
-\newcommand{\conclusionname}{结论}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -1203,6 +1233,32 @@
 % \end{macro}
 % \end{macro}
 % \end{macro}
+%
+% \begin{macro}{\theoremname}
+% \begin{macro}{\axiomname}
+% \begin{macro}{\postulatename}
+% \begin{macro}{\lemmaname}
+% \begin{macro}{\propositionname}
+% \begin{macro}{\corollaryname}
+% \begin{macro}{\examplename}
+% \begin{macro}{\exercisename}
+% \begin{macro}{\remarkname}
+% \begin{macro}{\assumptionname}
+% \begin{macro}{\conclusionname}
+% 继续设置
+%    \begin{macrocode}
+\newcommand{\theoremname}{定理}
+\newcommand{\axiomname}{公理}
+\newcommand{\postulatename}{公设}
+\newcommand{\lemmaname}{引理}
+\newcommand{\propositionname}{命题}
+\newcommand{\corollaryname}{推论}
+\newcommand{\examplename}{例}
+\newcommand{\exercisename}{练习}
+\newcommand{\remarkname}{注}
+\newcommand{\assumptionname}{假设}
+\newcommand{\conclusionname}{结论}
+%    \end{macrocode}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -1319,7 +1375,7 @@
 	bottom=30mm,
 	headheight = 2.17cm,
 	headsep = 1mm,
-	footskip = 0cm,
+	footskip = 5mm,
 }
 %    \end{macrocode}
 % \end{macro}
@@ -1368,6 +1424,9 @@
 % 图表标题设置，字号为small，分割符为空格
 %    \begin{macrocode}
 \RequirePackage[font=small,labelsep=quad]{caption} 
+\ifhitsz@boldcaption
+  \renewcommand\captionfont{\small\song\bfseries}
+\fi
 %    \end{macrocode}
 %
 % 标题与图表的间距为3pt
@@ -1528,7 +1587,7 @@
 %    \begin{macrocode}
 \newenvironment{proof}{
   \par\noindent\textbf{\proofname\;}
-}{\hfill$\Box$\quad\par}
+}{\hfill$\square$\quad\par}
 %    \end{macrocode}
 % \end{environment}
 %
@@ -2202,10 +2261,10 @@ text centered, draw=black]
 % \begin{macro}{\vY}
 % 向量
 %    \begin{macrocode}
-\newcommand\vx{\bf{x}}
-\newcommand\vX{\bf{X}}
-\newcommand\vy{\bf{y}}
-\newcommand\vY{\bf{Y}}
+\newcommand\vx{\mathbf{x}}
+\newcommand\vX{\mathbf{X}}
+\newcommand\vy{\mathbf{y}}
+\newcommand\vY{\mathbf{Y}}
 %    \end{macrocode}
 % \end{macro}
 % \end{macro}
@@ -2404,7 +2463,7 @@ text centered, draw=black]
 \DeclareDocumentCommand{\file}{s m}{%
   \texttt{#2}\IfBooleanF#1{\hitsz@special@index{file}{#2}}}
 \newcommand{\myentry}[1]{%
-  \marginpar{\raggedleft\color{purple}\bfseries\strut #1}}
+  \marginpar{\raggedleft\color{purple}\bfseries\small\strut #1}}
 \newcommand{\note}[2][Note]{{%
   \color{magenta}{\bfseries #1}\emph{#2}}}
 
