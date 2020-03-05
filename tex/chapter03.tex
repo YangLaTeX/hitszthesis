@@ -90,7 +90,10 @@ y_l(k) = \csign_K\left(\sum\limits_{j=1}^n w_{lj}\cdot x_j(k)\right)
 异步方式：网络中的神经元状态等概率地依\equref{eqiter}进行更新，一次只更新一个神经元状态；
 
 同步方式：网络的每次迭代中，所有神经元状态同时被更新，即依照下式更新：\begin{equation}
-{\mathbf{ X}}(k+1)=\mathbf{ Y}(k)=\csign[\mathbf{ W }\cdot\mathbf{ X }(k)]               
+% 若使用XITS字体：
+% <\mathbfup> 与 <\mathbf> 的效果相同，都是直立加粗
+% 斜体加粗使用 <\mathbfit>
+{\mathbf{ X}}(k+1)=\mathbf{ Y}(k)=\csign[\mathbf{ W }\cdot\mathbf{ X }(k)]
 \end{equation}
 其中$\mathbf{ X}(k)$为神经元状态$x(k)$组成的列向量，$\mathbf{ W}=(w_{kj})$为整个网络的连接权矩阵。
 
