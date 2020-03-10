@@ -2491,6 +2491,14 @@ delim_1 "\\hspace*{\\fill}"
 本人郑重声明：在哈尔滨工业大学攻读学士学位期间，所提交的毕业设计（论文）《\hitsz@ctitle》，是本人在导师指导下独立进行研究工作所取得的成果。对本文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明，其它未注明部分不包含他人已发表或撰写过的研究成果，不存在购买、由他人代写、剽窃和伪造数据等作假行为。
 
 本人愿为此声明承担法律责任。}
+\newcommand{\hitsz@authorizationtext@bachelor@shenzhen}{%
+本人郑重声明：在哈尔滨工业大学（深圳）攻读学士学位期间，所提交的毕业设计（论文）《\hitsz@ctitle》，是本人在导师指导下独立进行研究工作所取得的成果。对本文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明，其它未注明部分不包含他人已发表或撰写过的研究成果，不存在购买、由他人代写、剽窃和伪造数据等作假行为。
+
+本人愿为此声明承担法律责任。}
+\newcommand{\hitsz@authorizationtext@bachelor@weihai}{%
+本人郑重声明：在哈尔滨工业大学（威海）攻读学士学位期间，所提交的毕业设计（论文）《\hitsz@ctitle》，是本人在导师指导下独立进行研究工作所取得的成果。对本文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明，其它未注明部分不包含他人已发表或撰写过的研究成果，不存在购买、由他人代写、剽窃和伪造数据等作假行为。
+
+本人愿为此声明承担法律责任。}
 \newcommand{\hitsz@declarename}{学位论文原创性声明}
 \newcommand{\hitsz@declaretext}{%
 本人郑重声明：此处所提交的学位论文《\hitsz@ctitle》，是本人在导师指导下，在哈尔滨工业大学攻读学位期间独立进行研究工作所取得的成果，且学位论文中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本学位论文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。}
@@ -3077,7 +3085,15 @@ delim_1 "\\hspace*{\\fill}"
   \ifhitsz@openright\cleardoublepage\else\clearpage\fi
   \chapter*{\ifhitsz@harbin\relax\else\sanhao\fi\hitsz@declarename@bachelor}
   \addcontentsline{toc}{chapter}{\hitsz@authorization@bachelor@toc}
-  \hitsz@authorizationtext@bachelor
+  \ifhitsz@shenzhen%
+    \hitsz@authorizationtext@bachelor@shenzhen
+  \else%
+    \ifhitsz@weihai
+      \hitsz@authorizationtext@bachelor@weihai
+    \else
+      \hitsz@authorizationtext@bachelor
+    \fi
+  \fi
 \vspace{2\baselineskip}
 \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
 }

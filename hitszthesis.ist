@@ -1,0 +1,32 @@
+%%
+%% This is file `hitszthesis.ist',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% hitszthesis.dtx  (with options: `ist')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2019-2020 by Jingxuan Yang <yanglatex2e@gmail.com>
+%% 
+%% This file may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3a
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in:
+%% 
+%% http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3a or later is part of all distributions of LaTeX
+%% version 2004/10/01 or later.
+%% 
+%% This is the configuration file of the hitszthesis package with LaTeX2e.
+%% 
+headings_flag 1
+heading_prefix "\{\\vskip -\\baselineskip\\centering\\normalsize\\textbf\{"
+heading_suffix "\}\\par\}\\nopagebreak\\wuhao\n"
+delim_0 "\\hspace*{\\fill}"
+delim_1 "\\hspace*{\\fill}"
+\endinput
+%%
+%% End of file `hitszthesis.ist'.
