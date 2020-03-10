@@ -1,86 +1,115 @@
 # Makefile for hitszthesis
 
-PACKAGE = hitszthesis
-THESIS  = main
-SPINE   = spine
+# Compiling method: latexmk/xelatex/pdflatex
+METHOD = xelatex
+# Set opts for latexmk if you use it
+LATEXMKOPTS = -xelatex
+# Basename of thesis
+THESISMAIN = main
 
-SOURCES = $(PACKAGE).ins $(PACKAGE).dtx
-CLSFILE = dtx-style.sty $(PACKAGE).cls
-
-LATEXMK = latexmk
+PACKAGE=hitszthesis
+SOURCES=$(PACKAGE).ins $(PACKAGE).dtx
+THESISCONTENTS=$(THESISMAIN).tex front/*.tex body/*.tex back/*.tex $(FIGURES) *.bst
+# NOTE: update this to reflect your local file types.
+FIGURES=$(wildcard figures/*.eps figures/*.pdf)
+BIBFILE=*.bib
+CLSFILES=dtx-style.sty $(PACKAGE).cls $(PACKAGE).ist h$(PACKAGE).cfg
 
 # make deletion work on Windows
 ifdef SystemRoot
 	RM = del /Q
+	OPEN = start
 else
 	RM = rm -f
+	OPEN = open
 endif
 
-.PHONY: all all-dev wordcount clean distclean dist thesis viewthesis spine viewspine doc viewdoc cls check save savepdf test FORCE_MAKE
+.PHONY: all clean distclean dist thesis wordcount viewthesis doc dev pub viewdoc cls check FORCE_MAKE
 
-thesis: $(THESIS).pdf
+all: doc thesis
 
-all: thesis spine
+cls: $(CLSFILES)
 
-dev: doc all clean
+$(CLSFILES): $(SOURCES)
+	latex $(PACKAGE).ins
 
-pub: doc all cleanall
-
-cls: $(CLSFILE)
-
-$(CLSFILE): $(SOURCES)
-	xetex $(PACKAGE).ins
+viewdoc: doc
+	$(OPEN) $(PACKAGE).pdf
 
 doc: $(PACKAGE).pdf
 
-spine: $(SPINE).pdf
-
-$(PACKAGE).pdf: cls FORCE_MAKE
-	$(LATEXMK) $(PACKAGE).dtx
-
-$(THESIS).pdf: cls FORCE_MAKE
-	$(LATEXMK) $(THESIS)
-
-$(SPINE).pdf: cls FORCE_MAKE
-	$(LATEXMK) $(SPINE)
-
-viewdoc: doc
-	$(LATEXMK) -pv $(PACKAGE).dtx
-
-viewthesis: thesis
-	$(LATEXMK) -pv $(THESIS)
-
-viewspine: spine
-	$(LATEXMK) -pv $(SPINE)
-
-save:
-	bash testfiles/save.sh
-
-savepdf:
-	bash testfiles/save-pdf.sh
-
-test:
-	l3build check
-
-wordcount : $(THESIS).tex
+wordcount : $(THESISMAIN).tex
 	@texcount $< -inc -chinese
 
+viewthesis: thesis
+	$(OPEN) $(THESISMAIN).pdf
+
+thesis: $(THESISMAIN).pdf
+
+ifeq ($(METHOD),latexmk)
+
+$(PACKAGE).pdf: $(CLSFILES) FORCE_MAKE
+	$(METHOD) $(LATEXMKOPTS) $(PACKAGE).dtx
+
+$(THESISMAIN).pdf: $(CLSFILES) FORCE_MAKE
+	$(METHOD) $(LATEXMKOPTS) $(THESISMAIN)
+
+else ifeq ($(METHOD),xelatex)
+
+$(PACKAGE).pdf: $(CLSFILES)
+	$(METHOD) $(PACKAGE).dtx
+	makeindex -s gind.ist -o $(PACKAGE).ind $(PACKAGE).idx
+	makeindex -s gglo.ist -o $(PACKAGE).gls $(PACKAGE).glo
+	$(METHOD) $(PACKAGE).dtx
+	$(METHOD) $(PACKAGE).dtx
+
+$(THESISMAIN).idx: $(THESISMAIN).bbl
+	$(METHOD) $(THESISMAIN)
+	$(METHOD) $(THESISMAIN)
+
+
+$(THESISMAIN)_china.idx : $(CLSFILES) $(THESISMAIN).bbl $(THESISMAIN).idx
+	splitindex $(THESISMAIN) -- -s $(PACKAGE).ist  # 自动生成索引
+
+$(THESISMAIN)_english.ind $(THESISMAIN)_china.ind $(THESISMAIN)_english.idx : $(THESISMAIN)_china.idx
+
+$(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN)_china.ind $(THESISMAIN)_china.idx $(THESISMAIN)_english.ind $(THESISMAIN)_english.idx $(THESISMAIN).bbl
+	$(METHOD) $(THESISMAIN)
+	splitindex $(THESISMAIN) -- -s $(PACKAGE).ist  # 自动生成索引
+	$(METHOD) $(THESISMAIN)
+
+$(THESISMAIN).bbl: $(BIBFILE)
+	$(METHOD) $(THESISMAIN)
+	-bibtex $(THESISMAIN)
+	$(RM) $(THESISMAIN).pdf
+
+else
+$(error Unknown METHOD: $(METHOD))
+
+endif
+
+dev: doc thesis clean
+
+pub: doc thesis cleanall
+
 clean:
-	$(LATEXMK) -c $(PACKAGE).dtx $(THESIS) $(SPINE)
+	latexmk -c $(PACKAGE).dtx
+	latexmk -c $(THESISMAIN)
+	-@$(RM) *~ *.idx *.ind *.ilg *.thm *.toe *.bbl
 
 cleanall: clean
-	-@$(RM) $(CLSFILE)
+	-@$(RM) $(PACKAGE).pdf $(THESISMAIN).pdf
 
 distclean: cleanall
+	-@$(RM) $(CLSFILES)
 	-@$(RM) -r dist
 
 check: FORCE_MAKE
-ifeq ($(version),)
-	@echo "Error: version missing: \"make [check|dist] version=X.Y\""; exit 1
-else
-	@[[ $(shell grep -E -c '$(version) A Bachelor Thesis Template for Harbin Institute of Technology, ShenZhen|\\def\\version\{$(version)\}' hitszthesis.dtx) -eq 3 ]] || (echo "update version in hitszthesis.dtx before release"; exit 1)
-	@[[ $(shell grep -E -c '"version": "$(version)"' package.json) -eq 1 ]] || (echo "update version in package.json before release"; exit 1)
-endif
+	ag 'Dissertation Template for Harbin Institute of Technology, ShenZhen|\\def\\version|"version":' hitszthesis.dtx package.json
 
-dist: check all-dev
-	npm run build -- --version=$(version)
+dist: all
+	@if [ -z "$(version)" ]; then \
+		echo "Usage: make dist version=[x.y.z | ctan]"; \
+	else \
+		npm run build -- --version=$(version); \
+	fi

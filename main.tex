@@ -2,110 +2,177 @@
 % !Mode:: "TeX:UTF-8"
 % !TEX program  = XeLaTeX
 %%=============================================
-% 模板名称：HITSZThesis
-% 模板版本：V2.3
+% 模板名称：hitszthesis
+% 模板版本：V3.0
 % 模板作者：杨敬轩（Jingxuan Yang）
 % 联系作者：yangjingxuan@stu.hit.edu.cn & yanglatex2e@gmail.com
 % 模板交流：QQ群：1039392552，加群请备注LaTeX、hitszthesis相关说明
-% 模板适用：哈尔滨工业大学（深圳）本科毕业设计（论文）
-% 模板编译：XeLaTeX，编译两次，两次，两次！！！
+% 模板适用：哈尔滨工业大学（深圳）本、硕、博学位论文
+% 模板编译：手动编译方法参看 README.md 或 hitszthesis.pdf
 %          GNU make 工具：make thesis
 %          compile.bat 批处理脚本：compile.bat thesis
 %          更多编译细节详见说明文档：hitszthesis.pdf
-% 更新时间：2020/03/05
+% 更新时间：2020/03/10
 % 模板帮助：请**务必务必务必**阅读 hitszthesis.pdf 说明文档，文档查看方法：
 %          cmd 命令行：texdoc hitszthesis
-%          推荐前往模板的GitHub仓库获取最新文件，地址：
+%          推荐前往模板的 GitHub 仓库获取最新文件，地址：
 %          https://github.com/YangLaTeX/hitszthesis
 %%=============================================
 
-% 设置文档类别为<hitszthesis>
-\documentclass{hitszthesis}
+% 设置文档类别为 <hitszthesis>
+% \documentclass[type=doctor]{hitszthesis}
+% \documentclass[type=master]{hitszthesis}
+\documentclass[type=bachelor]{hitszthesis}
 
-% 模板提供以下选项
-% 1. covertitle，封面标题单行或多行显示：
-%%  onerow（默认，单行），tworow（两行）
-% 2. infoalign，封面第二页下划线内容居中或居左显示：
-%%  infocenter（默认，居中），infoleft（居左）
-% 3. mathfont，正文数学字体选项：
-%%  newtxmath（默认），XITS（可选），mtpro2lite（lite版，免费），
-%%  mtpro2（完全版，需购买授权）
-%%  mtpro2字体官网：https://www.pctex.com/mtpro2.html
-% 4. boldcaption，图表题注是否加粗布尔选项，默认为false（否）
-
-% 示例：两行，居左，mtpro2字体，图表题注加粗，
-% 将<\documentclass{hitszthesis}>注释，且将下面语句取消注释
-%\documentclass[tworow, infoleft, mtpro2, boldcaption=true]{hitszthesis}
+% 模板提供以下选项，各个选项之间不要有空格
+% 1. type=bachelor|master|doctor
+%   含义：本科、硕士、博士学位论文，不设默认值，**必填**
+% 2. covertitletworow=true|false
+%   含义：本科封面第一页标题单行或多行显示，默认为单行显示（false）
+% 3. infoleft=true|false
+%   含义：本科封面第二页下划线内容居中或居左显示，默认为居中显示（false）
+% 4. mathfont=newtxmath|mtprotwolite|mtprotwo
+%   含义：正文数学字体选项：newtxmath（默认），mtprotwolite（lite版，免费），
+%         mtprotwo（完全版，需购买授权），
+%         mtpro2字体官网：https://www.pctex.com/mtpro2.html
+% 5. boldcaption=true|false
+%   含义：图表题注是否加粗，默认为不加粗（false）
+% 6. tocfour=true|false
+%   含义：是否添加第四级目录，只对本科文科个别要求四级目录有效，默认不添加（false）
+% 7. fulltime=true|false
+%   含义：是否全日制，非全日制如同等学力等，要在coverinformation中设置类型，
+%        默认是全日制（true）
+% 8. subtitle=true|false
+%   含义：论文题目是否含有副标题，默认没有副标题（false）
+% 9. openright=true|false
+%   含义：博士论文是否要求章节首页必须在奇数页，默认否（false）
+% 10. library=true|false
+%   含义：是否为提交到图书馆的电子版，默认否（false）
 
 % 自定义设置与额外加载的宏包请写在 \file{hitszthesis.sty} 里
-% 预设该文件为空
 \usepackage{hitszthesis}
 
-% 填写封面信息
-\input{tex/information}
+% 图片存放路径，在这些文件夹里的图片可以直接使用图片文件名调用
+\graphicspath{{figures/}{pictures/}}
 
 %%=============================================
-% 开始写文章
+% 开始写论文
 % ！！注意本文仅作为排版格式示例，并不作为毕业论文规范
 \begin{document}
 
-% 若题目过长，则需使用以下命令调整封面第二页下划线长度
-%\infowidth = 8cm
-
-% 生成封面两页
-\maketitle
+% 若题目过长，则需使用以下命令调整本科封面第二页下划线长度
+%\infowidth = 9cm
 
 % 开始写前言部分
 \frontmatter
 
-% 中文摘要
-\input{tex/abstract}
+% 封面信息填写
+\input{front/coverinformation}
 
-% 英文摘要
-\input{tex/abstracten}
+% 生成封面、中英文摘要
+\makecover
 
-% 生成目录
+% 物理量名称表，若采用标准符号则不需要此表
+\input{front/denotation}
+
+% 中文目录
 \tableofcontents
+
+% 英文目录，本硕不要求
+% \tableofengcontents
 
 % 开始写正文
 \mainmatter
 
 % 第1章
-\input{tex/chapter01}
+\input{body/chapter01}
 
 % 第2章
-\input{tex/chapter02}
+\input{body/chapter02}
 
 % 第3章
-\input{tex/chapter03}
+% \input{body/chapter03}
 
 % 第4章
-%\input{tex/chapter04}
+% \input{body/chapter04}
 
 % 第5章
-%\input{tex/chapter05}
+% \input{body/chapter05}
 
 % 第6章
-%\input{tex/chapter06}
+% \input{body/chapter06}
+
+% 开始写正文之后的部分
+\backmatter
+
+%%%% \begin{本科书序} %%%% 这是一个假的环境，本科请用这里的内容
 
 % 结论
-\input{tex/conclusion}
+\input{back/conclusion}
 
 % 参考文献
-\input{tex/reference}
+\bibliographystyle{hitszthesis}
+\bibliography{reference}
 
-% 原创性声明
-\declaration
+% 授权
+\authorization
 
-% 开始写附录
-\appendix
+% 授权页为扫描的PDF文件（scan.pdf），与上面的命令互斥
+% \authorization[scan.pdf]
 
-% 附录A
-\input{tex/appendix01}
+% 致谢
+\input{back/acknowledgements}
 
-% 附录B
-\input{tex/appendix02}
+% 附录
+\begin{appendix}
+  \input{back/appendix01}
+  \input{back/appendix02}
+  \input{back/appendix03}
+\end{appendix}
+
+%%%% \end{本科书序}
+
+
+%%%% \begin{硕博书序} %%%% 这是一个假的环境，硕、博请用这里的内容
+
+% % 结论
+% \input{back/conclusion}
+
+% % 参考文献
+% \bibliographystyle{hitszthesis}
+% \bibliography{reference}
+
+% % 附录
+% \begin{appendix}
+%   \input{back/appendixA.tex}
+%   \input{back/appendixB.tex}
+% \end{appendix}
+
+% % 发表文章
+% \input{back/publications}
+
+% % 索引
+% \input{back/ceindex}
+
+% % 授权
+% \authorization
+
+% % 授权页为扫描的PDF文件（scan.pdf），与上面的命令互斥
+% % \authorization[scan.pdf]
+
+% % 致谢
+% \input{back/acknowledgements}
+
+% % 博士学位论文个人简介
+% \input{back/resume}
+
+%%%% \end{硕博书序}
+
 
 % 结束文档撰写
 \end{document}
 %%=============================================
+
+% Local Variables:
+% TeX-engine: xetex
+% End:

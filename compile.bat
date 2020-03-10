@@ -3,7 +3,6 @@ chcp 65001 >nul
 
 set THESIS=main
 set PACKAGE=hitszthesis
-set SPINE=spine
 
 set flag=%1
 if %flag%x == x (
@@ -29,12 +28,9 @@ if %flag%x == clsx (
 )
 
 if %flag%x == allx (
-	call :all
-	goto :EOF
-)
-
-if %flag%x == spinex (
-	call :all
+	echo Compile thesis and documentation...
+	call :doc
+	call :thesis
 	goto :EOF
 )
 
@@ -64,15 +60,23 @@ if %flag%x == wordcountx (
 	echo     compile.bat [option]
 	echo options:
 	echo   thesis    Compile the thesis (default)
+	echo   doc       Compile the documentation
+	echo   all       Compile the thesis and documentation
 	echo   clean     Clean all work files
-	echo   cleanall  Clean all work files and main.pdf
+	echo   cleanall  Clean all work files and pdf files
 	echo   wordcount Count words in main.pdf
 	echo   help      Print this help message
 goto :EOF
 
 :thesis
-	echo Compile...
-	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode main >nul 2>nul
+	echo Compile thesis...
+	latex %PACKAGE%.ins
+	xelatex -shell-escape %THESIS%.tex
+	bibtex %THESIS%.tex
+	xelatex -shell-escape %THESIS%.tex
+	xelatex -shell-escape %THESIS%.tex
+	splitindex %THESIS% -- -s hitszthesis.ist
+	xelatex -shell-escape %THESIS%.tex
 goto :EOF
 
 :cls
@@ -80,32 +84,26 @@ goto :EOF
 	xetex %PACKAGE%.ins
 goto :EOF
 
-:spine
-	echo Compile spine.tex file...
-	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode spine >nul 2>nul
-goto :EOF
-
-:all
-	echo Compile thesis and spine...
-	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode main >nul 2>nul
-	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode spine >nul 2>nul
-goto :EOF
-
 :doc
 	echo Compile documentation...
-	xetex %PACKAGE%.ins
-	latexmk -xelatex -file-line-error -halt-on-error -interaction=nonstopmode %PACKAGE%.dtx >nul 2>nul
+	latex %PACKAGE%.ins
+	xelatex %PACKAGE%.dtx
+	makeindex -s gind.ist -o %PACKAGE%.ind %PACKAGE%.idx
+	makeindex -s gglo.ist -o %PACKAGE%.gls %PACKAGE%.glo
+	xelatex %PACKAGE%.dtx
+	xelatex %PACKAGE%.dtx
 goto :EOF
 
 :clean
 	echo Clean auxiliary files...
-	latexmk -c -silent %PACKAGE%.dtx %THESIS% %SPINE% 2>nul
-	del tex\*.aux >nul 2>nul
+	latexmk -c %PACKAGE%.dtx
+	latexmk -c %THESIS%
+	del *.xdv *.hd *.aux front\*.aux body\*.aux back\*.aux >nul 2>nul
 goto :EOF
 
 :cleanall
 	echo Clean pdf files...
-	del /Q %PACKAGE%.pdf %THESIS%.pdf %SPINE%.pdf >nul 2>nul
+	del /Q %PACKAGE%.pdf %THESIS%.pdf >nul 2>nul
 	goto :clean
 goto :EOF
 
