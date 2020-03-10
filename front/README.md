@@ -1,1 +1,1 @@
-# This directory stores pictures used in title page
+# front part of the dissertation
