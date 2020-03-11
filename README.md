@@ -223,7 +223,7 @@ compile.bat cleanall    # 删除辅助文件，包含PDF文件
 
 ```bash
 xelatex -shell-escape main.tex
-bibtex main.tex
+bibtex main
 xelatex -shell-escape main.tex
 xelatex -shell-escape main.tex
 splitindex main -- -s hitszthesis.ist  # generate index
