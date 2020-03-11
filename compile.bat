@@ -10,13 +10,11 @@ if %flag%x == x (
 )
 
 if %flag%x == thesisx (
-	call :cleanall
 	call :thesis
 	if ERRORLEVEL 1 (
 		echo Error! Please check the 'main.log' for more details...
 		pause
 	) else (
-		call :clean
 		echo Finished!
 	)
 	goto :EOF
@@ -72,7 +70,7 @@ goto :EOF
 	echo Compile thesis...
 	latex %PACKAGE%.ins
 	xelatex -shell-escape %THESIS%.tex
-	bibtex %THESIS%.tex
+	bibtex %THESIS%
 	xelatex -shell-escape %THESIS%.tex
 	xelatex -shell-escape %THESIS%.tex
 	splitindex %THESIS% -- -s hitszthesis.ist
