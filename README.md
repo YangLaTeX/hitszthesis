@@ -14,7 +14,7 @@
 
 # Introduction to hitszthesis
 
-HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.0.2, updated on 2020/03/11. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
+HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.0.3, updated on 2020/03/12. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
 
 ```latex
   |- front
@@ -61,7 +61,7 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
 
 # hitszthesis 模板简介
 
-hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.0.2，更新于2020年3月11日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
+hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.0.3，更新于2020年3月12日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
 
 # Documentation
 
@@ -191,12 +191,12 @@ make pub        # 等同于 make all cleanall
 
 # compile.bat Usage
 
-`compile.bat` is designed for windows platform.
+`compile.bat` is designed for windows platform. Double click this file, then it will compile the thesis automatically.
 
 ```bash
 compile.bat cls         # generate class hitszthesis.cls
 compile.bat doc         # generate template documentation hitszthesis.pdf
-compile.bat thesis      # generate thesis main.pdf
+compile.bat thesis      # generate thesis main.pdf (default)
 compile.bat all         # generate thesis and documentation
 compile.bat wordcount   # count word in thesis main.pdf
 compile.bat clean       # delete all examples' files (excluding pdf files)
@@ -205,12 +205,12 @@ compile.bat cleanall    # delete all examples' files and all pdf files
 
 # 使用compile.bat
 
-`compile.bat`为windows编译脚本。
+`compile.bat`为windows编译脚本，双击即可编译论文。
 
 ```bash
 compile.bat cls         # 生成类文件 hitszthesis.cls
 compile.bat doc         # 生成说明文档 hitszthesis.pdf
-compile.bat thesis      # 生成论文 main.pdf
+compile.bat thesis      # 生成论文 main.pdf （默认）
 compile.bat all         # 生成论文与说明文档
 compile.bat wordcount   # 论文字数统计
 compile.bat clean       # 删除辅助文件，除了PDF文件

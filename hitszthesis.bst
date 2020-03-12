@@ -1,12 +1,11 @@
 %=============================================================================
 %     FileName: hitszthesis.bst
-%       Author: Chu Yanshuo
-%        Email: chu@yanshuo.name
-%     HomePage: http://yanshuo.name
+%       Author: 杨敬轩（Jingxuan Yang）
+%        Email: yanglatex2e@gmail.com
 %      Version: 0.0.1
 %     Modified: 杨敬轩（Jingxuan Yang）
-%      History: 胡海星
-%   LastChange: 2020-03-09 15:39:30
+%      History: Yanshuo Chu，胡海星
+%   LastChange: 2020-03-12 12:39:30
 %=============================================================================
                                                   %
 ENTRY                                             % class Entry {
@@ -1046,6 +1045,22 @@ FUNCTION {output.address} {                       % void Entry::output_address(i
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
+FUNCTION {output.inproaddress} {                  % void Entry::output_inproaddress(int required) {
+  'required :=                                    %   this.required = required;
+  address empty$ not {                            %   if (! empty(this.address)) {
+    cap.comma write$                              %     write(cap_comma);
+    address format.address write$                 %     write(format_address(this.address));
+  } {                                             %   } else {
+    required {                                    %     if (required == 1) {
+      "Require address: " cite$ * warning$        %       warning("Require address: " + this.cite);
+      cap.comma write$                            %       write(cap_comma);
+      cap.no.address format.address write$        %       write(format_address(cap_no_address()));
+    } 'skip$ if$                                  %     }
+  } if$                                           %   }
+}                                                 % }
+                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                  %
 FUNCTION {output.publisher} {                     % void Entry::output_publisher(int required) {
   'required :=                                    %   this.required = required;
   publisher empty$ not {                          %   if (! empty(this.publisher)) {
@@ -1745,6 +1760,33 @@ FUNCTION {inbook.impl} {                          % void Entry::inbook_impl() {
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
+FUNCTION {inproceedings.impl} {                   % void Entry::inproceedings_impl() {
+  start.bibitem                                   %   start_bibitem();
+  true output.author                              %   output_author(true);
+  true output.title                               %   output_title(true);
+  true output.mark                                %   output_mark(true);
+  false output.translator                         %   output_translator(false);
+  cap.double.slash write$                         %   write(cap_double_slash);
+  false output.editor                             %   output_editor(false);
+  true output.series.volume.booktitle             %   output_series_volume_booktitle(true);
+  false output.edition                            %   output_edition(false);
+  publisher empty$ not {                          %   if (! empty(this.publisher)) {
+    true output.inproaddress                      %     output_inproaddress(true);
+    true output.publisher                         %     output_publisher(true);
+    cap.comma write$                              %     write(cap_comma);
+  } {                                             %   } else {
+    true output.inproaddress                      %     output_inproaddress(true);
+    cap.comma write$                              %     write(cap_comma);
+  } if$                                           %   }
+  true output.year                                %   output_year(true);
+  false output.pages                              %   output_pages(false);
+  false output.citedate                           %   output_citedate(false);
+  false output.url.or.doi                         %   output_url_or_doi(false);
+  end.bibitem                                     %   end_bibitem();
+}                                                 % }
+                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                                  %
 FUNCTION {inbook} {                               % void Entry::inbook() {
   "M" set.mark                                    %   set_mark("M");
   inbook.impl                                     %   inbook_impl();
@@ -1761,7 +1803,7 @@ FUNCTION {incollection} {                         % void Entry::incollection() {
                                                   %
 FUNCTION {inproceedings} {                        % void Entry::inproceedings() {
   "C" set.mark                                    %   set_mark("C");
-  inbook.impl                                     %   inbook_impl();
+  inproceedings.impl                              %   inproceedings_impl();
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

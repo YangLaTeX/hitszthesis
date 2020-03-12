@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/03/11 3.0.2 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2020/03/12 3.0.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -932,7 +932,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2020/03/11 3.0.2 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2020/03/12 3.0.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -2516,6 +2516,7 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 %
 % 中英文封面。
+% \changes{v3.0.3}{2020/03/12}{Change titlepage description of master dissertation}
 %    \begin{macrocode}
 %<*cls>
 \newlength{\hitsz@title@width}
@@ -2774,18 +2775,37 @@ delim_1 "\\hspace*{\\fill}"
   }
   \vspace*{1em}
   \begin{center}
-    \parbox[t][1.6cm][t]{\textwidth}{\begin{center} \end{center} }
-    \parbox[t][3.5cm][t]{\textwidth}{\xiaoer[1]%
-      \begin{center}%
-        Dissertation for the {\hitsz@exueweier} Degree in \hitsz@exueke
-      \end{center}
-      \ifhitsz@fulltime
-        \relax
-      \else%
+    \ifhitsz@doctor%博士封面
+      \parbox[t][1.6cm][t]{\textwidth}{\begin{center} \end{center}}
+      \parbox[t][3.5cm][t]{\textwidth}{\xiaoer[1]%
         \begin{center}%
-          \hitsz@ebraceleft\hitsz@estudenttype\hitsz@ebraceright%
+          Dissertation for the {\hitsz@exueweier} Degree in \hitsz@exueke
         \end{center}
-      \fi}
+        \ifhitsz@fulltime
+          \relax
+        \else%
+          \begin{center}%
+            \hitsz@ebraceleft\hitsz@estudenttype\hitsz@ebraceright%
+          \end{center}
+        \fi
+      }
+    \else%硕士封面
+      \vspace*{1em}
+      \parbox[t][4.5cm][t]{\textwidth}{\xiaoer[1]%
+        \begin{center}%
+          A dissertation submitted in partial fulfillment of \\[2pt]
+          the requirements for the academic degree of \\[2pt]
+          Master of \hitsz@exueke
+        \end{center}
+        \ifhitsz@fulltime
+          \relax
+        \else%
+          \begin{center}%
+            \hitsz@ebraceleft\hitsz@estudenttype\hitsz@ebraceright%
+          \end{center}
+        \fi
+      }
+    \fi
     \parbox[t][7cm][t]{\textwidth}{%
       \begin{center}%
         \settowidth{\hitsz@etitlelength}{%
