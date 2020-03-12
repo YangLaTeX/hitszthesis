@@ -1,2 +1,152 @@
 % !TEX root = ../main.tex
 
+% 中英标题：\chapter{中文标题}[英文标题]
+\chapter{排版表格}[Typesetting tables]
+
+\section{引言}[Introduction]
+
+表应有自明性。表格不加左、右边线。表的编排建议采用国际通行的三线表。表中文字用宋
+体~5~号字。每个表格均应有表题（由表序和表名组成）。表序一般按章编排，如第~1~章第
+一个插表的序号为“表~1-1”等。表序与表名之间空一格，表名中不允许使用标点符号，表名
+后不加标点。表题置于表上，硕士学位论文只用中文，博士学位论文用中、英文两种文字居
+中排写，中文在上，要求中文用宋体~5~号字，英文用新罗马字体~5~号字。表头设计应简单
+明了，尽量不用斜线。表头中可采用化学符号或物理量符号。
+
+\section{普通表格的绘制方法}[Methods of drawing normal tables]
+
+表格应具有三线表格式，因此需要调用~booktabs~宏包，其标准格式如表~\ref{table1}~所示。
+\begin{table}[htbp]
+\bicaption[table1]{}{符合研究生院绘图规范的表格}{Table$\!$}{Table in agreement of the standard from graduate school}
+\vspace{0.5em}\centering\wuhao
+\begin{tabular}{ccccc}
+\toprule[1.5pt]
+$D$(in) & $P_u$(lbs) & $u_u$(in) & $\beta$ & $G_f$(psi.in)\\
+\midrule[1pt]
+ 5 & 269.8 & 0.000674 & 1.79 & 0.04089\\
+10 & 421.0 & 0.001035 & 3.59 & 0.04089\\
+20 & 640.2 & 0.001565 & 7.18 & 0.04089\\
+\bottomrule[1.5pt]
+\end{tabular}
+\end{table}
+全表如用同一单位，则将单位符号移至表头右上角，加圆括号。表中数据应准确无误，书写
+清楚。数字空缺的格内加横线“－”（占~2~个数字宽度）。表内文字或数字上、下或左、右
+相同时，采用通栏处理方式，不允许用“〃”、“同上”之类的写法。表内文字说明，起行空一
+格、转行顶格、句末不加标点。如某个表需要转页接排，在随后的各页上应重复表的编号。
+编号后加“（续表）”，表题可省略。续表应重复表头。
+
+\section{长表格的绘制方法}[Methods of drawing long tables]
+
+长表格是当表格在当前页排不下而需要转页接排的情况下所采用的一种表格环境。若长表格
+仍按照普通表格的绘制方法来获得，其所使用的\verb|table|浮动环境无法实现表格的换页
+接排功能，表格下方过长部分会排在表格第1页的页脚以下。为了能够实现长表格的转页接
+排功能，需要调用~longtable~宏包，由于长表格是跨页的文本内容，因此只需要单独的
+\verb|longtable|环境，所绘制的长表格的格式如表~\ref{table2}~所示。
+
+注意，长表格双语标题的格式。
+
+\vspace{-1.5bp}
+\ltfontsize{\wuhao[1.667]}
+\wuhao[1.667]\begin{longtable}{ccc}%
+\longbionenumcaption{}{{\wuhao 中国省级行政单位一览
+}\label{table2}}{Table$\!$}{}{{\wuhao Overview of the provincial administrative
+unit of China}}{-0.5em}{3.15bp}\\
+%\caption{\wuhao 中国省级行政单位一览}\\
+\toprule[1.5pt] 名称 & 简称 & 省会或首府  \\ \midrule[1pt]
+\endfirsthead
+\multicolumn{3}{r}{表~\thetable（续表）}\vspace{0.5em}\\
+\toprule[1.5pt] 名称 & 简称 & 省会或首府  \\ \midrule[1pt]
+\endhead
+\bottomrule[1.5pt]
+\endfoot
+北京市 & 京 & 北京\\
+天津市 & 津 & 天津\\
+河北省 & 冀 & 石家庄市\\
+山西省 & 晋 & 太原市\\
+内蒙古自治区 & 蒙 & 呼和浩特市\\
+辽宁省 & 辽 & 沈阳市\\
+吉林省 & 吉 & 长春市\\
+黑龙江省 & 黑 & 哈尔滨市\\
+上海市 & 沪/申 & 上海\\
+江苏省 & 苏 & 南京市\\
+浙江省 & 浙 & 杭州市\\
+安徽省 & 皖 & 合肥市\\
+福建省 & 闽 & 福州市\\
+江西省 & 赣 & 南昌市\\
+山东省 & 鲁 & 济南市\\
+河南省 & 豫 & 郑州市\\
+湖北省 & 鄂 & 武汉市\\
+湖南省 & 湘 & 长沙市\\
+广东省 & 粤 & 广州市\\
+广西壮族自治区 & 桂 & 南宁市\\
+海南省 & 琼 & 海口市\\
+重庆市 & 渝 & 重庆\\
+四川省 & 川/蜀 & 成都市\\
+贵州省 & 黔/贵 & 贵阳市\\
+云南省 & 云/滇 & 昆明市\\
+西藏自治区 & 藏 & 拉萨市\\
+陕西省 & 陕/秦 & 西安市\\
+甘肃省 & 甘/陇 & 兰州市\\
+青海省 & 青 & 西宁市\\
+宁夏回族自治区 & 宁 & 银川市\\
+新疆维吾尔自治区 & 新 & 乌鲁木齐市\\
+香港特别行政区 & 港 & 香港\\
+澳门特别行政区 & 澳 & 澳门\\
+台湾省 & 台 & 台北市\\
+\end{longtable}\normalsize
+\vspace{-1em}
+
+此长表格~\ref{table2}~第~2~页的标题“编号（续表）”和表头是通过代码自动添加上去的，无需人工添加，若表格在页面中的竖直位置发生了变化，长表格在第~2~页
+及之后各页的标题和表头位置能够始终处于各页的最顶部，也无需人工调整，\LaTeX~系统的这一优点是~word~等软件所无法比拟的。
+
+\section{列宽可调表格的绘制方法}[Methods of drawing tables with adjustable-width columns]
+论文中能用到列宽可调表格的情况共有两种，一种是当插入的表格某一单元格内容过长以至
+于一行放不下的情况，另一种是当对公式中首次出现的物理量符号进行注释的情况，这两种
+情况都需要调用~tabularx~宏包。下面将分别对这两种情况下可调表格的绘制方法进行阐述
+。
+\subsection{表格内某单元格内容过长的情况}[The condition when the contents in
+some cells of tables are too long]
+首先给出这种情况下的一个例子如表~\ref{table3}~所示。
+\begin{table}[htbp]
+  \centering
+\bicaption[table3]{}{最小的三个正整数的英文表示法}{Table$\!$}{The English construction of the smallest three positive integral numbers}\vspace{0.5em}\wuhao
+\begin{tabularx}{0.7\textwidth}{llX}
+\toprule[1.5pt]
+Value & Name & Alternate names, and names for sets of the given size\\\midrule[1pt]
+1 & One & ace, single, singleton, unary, unit, unity\\
+2 & Two & binary, brace, couple, couplet, distich, deuce, double, doubleton, duad, duality, duet, duo, dyad, pair, snake eyes, span, twain, twosome, yoke\\
+3 & Three & deuce-ace, leash, set, tercet, ternary, ternion, terzetto, threesome, tierce, trey, triad, trine, trinity, trio, triplet, troika, hat-trick\\\bottomrule[1.5pt]
+\end{tabularx}
+\end{table}
+tabularx环境共有两个必选参数：第1个参数用来确定表格的总宽度，第2个参数用来确定每
+列格式，其中标为X的项表示该列的宽度可调，其宽度值由表格总宽度确定。标为X的列一般
+选为单元格内容过长而无法置于一行的列，这样使得该列内容能够根据表格总宽度自动分行
+。若列格式中存在不止一个X项，则这些标为X的列的列宽相同，因此，一般不将内容较短的
+列设为X。标为X的列均为左对齐，因此其余列一般选为l（左对齐），这样可使得表格美观
+，但也可以选为c或r。
+
+\subsection{排版横版表格的举例}[An example of landscape table]
+
+横版表格如\tabref{table4}所示。
+
+\begin{table}[p]
+\centering
+  \begin{sideways}
+    \begin{minipage}{\textheight}
+      \bicaption[table4]{}{不在规范中规定的横版表格}{Table$\!$}{A table style which is not stated in the regulation}
+      \vspace{0.5em}\centering\wuhao
+      \begin{tabular}{ccccc}
+        \toprule[1.5pt]
+        $D$(in) & $P_u$(lbs) & $u_u$(in) & $\beta$ & $G_f$(psi.in)\\
+        \midrule[1pt]
+        5 & 269.8 & 0.000674 & 1.79 & 0.04089\\
+        10 & 421.0 & 0.001035 & 3.59 & 0.04089\\
+        20 & 640.2 & 0.001565 & 7.18 & 0.04089\\
+        \bottomrule[1.5pt]
+      \end{tabular}
+    \end{minipage}
+  \end{sideways}
+\end{table}
+
+\section{本章小结}[Brief summary]
+
+\lipsum[1]
