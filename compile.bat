@@ -52,6 +52,13 @@ if %flag%x == wordcountx (
 	goto :EOF
 )
 
+if %flag%x == devx (
+	call :doc
+	call :thesis
+	call :cleanall
+	goto :EOF
+)
+
 :help
 	echo This is the compile batch script for hitszhesis.
 	echo Usage:
@@ -97,11 +104,12 @@ goto :EOF
 	latexmk -c %PACKAGE%.dtx
 	latexmk -c %THESIS%
 	del *.xdv *.hd *.aux front\*.aux body\*.aux back\*.aux >nul 2>nul
+	del main-china.idx main-english.idx >nul 2>nul
 goto :EOF
 
 :cleanall
-	echo Clean pdf files...
-	del /Q %PACKAGE%.pdf %THESIS%.pdf >nul 2>nul
+	echo Clean class files...
+	del %PACKAGE%.cls %PACKAGE%.cfg dtx-style.sty >nul 2>nul
 	goto :clean
 goto :EOF
 

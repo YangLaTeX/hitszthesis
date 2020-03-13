@@ -14,7 +14,7 @@
 
 # Introduction to hitszthesis
 
-HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.0.3, updated on 2020/03/12. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
+HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.0.4, updated on 2020/03/13. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
 
 ```latex
   |- front
@@ -61,7 +61,7 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
 
 # hitszthesis 模板简介
 
-hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.0.3，更新于2020年3月12日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
+hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.0.4，更新于2020年3月13日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
 
 # Documentation
 
@@ -199,8 +199,8 @@ compile.bat doc         # generate template documentation hitszthesis.pdf
 compile.bat thesis      # generate thesis main.pdf (default)
 compile.bat all         # generate thesis and documentation
 compile.bat wordcount   # count word in thesis main.pdf
-compile.bat clean       # delete all examples' files (excluding pdf files)
-compile.bat cleanall    # delete all examples' files and all pdf files
+compile.bat clean       # delete all examples' files (excluding class and configuration files)
+compile.bat cleanall    # delete all examples' files, class and configuration files
 ```
 
 # 使用compile.bat
@@ -213,8 +213,8 @@ compile.bat doc         # 生成说明文档 hitszthesis.pdf
 compile.bat thesis      # 生成论文 main.pdf （默认）
 compile.bat all         # 生成论文与说明文档
 compile.bat wordcount   # 论文字数统计
-compile.bat clean       # 删除辅助文件，除了PDF文件
-compile.bat cleanall    # 删除辅助文件，包含PDF文件
+compile.bat clean       # 删除辅助文件，除了cls与cfg文件
+compile.bat cleanall    # 删除辅助文件，包含cls与cfg文件
 ```
 
 # Manually Compile（手动编译）
