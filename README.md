@@ -6,11 +6,11 @@
 # hitszthesis：哈尔滨工业大学（深圳）本硕博学位论文$\LaTeX$模板
 
 ![CTAN Version](https://img.shields.io/ctan/v/hitszthesis.svg)
-![Github Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg)
+![GitHub Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg)
 ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
 ![License](https://img.shields.io/ctan/l/hitszthesis.svg)
 
-[Github](https://github.com/YangLaTeX/hitszthesis) | [Download](https://github.com/YangLaTeX/hitszthesis/releases) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
+[GitHub](https://github.com/YangLaTeX/hitszthesis) | [Gitee](https://gitee.com/jingxuanyang/hitszthesis) | [GitLab](https://gitlab.com/jingxuanyang/hitszthesis) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
 
 # Introduction to hitszthesis
 
@@ -95,11 +95,15 @@ Typesetting examples:
 
 * Published version: [CTAN](https://www.ctan.org/pkg/hitszthesis)
 * Developer version: [GitHub](https://github.com/YangLaTeX/hitszthesis)
+* Developer version: [Gitee](https://gitee.com/jingxuanyang/hitszthesis)
+* Developer version: [GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
 
 # 下载
 
 * 发布版本：[CTAN](https://www.ctan.org/pkg/hitszthesis)
 * 开发版本：[GitHub](https://github.com/YangLaTeX/hitszthesis)
+* 开发版本：[Gitee](https://gitee.com/jingxuanyang/hitszthesis)
+* 开发版本：[GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
 
 # Updates（更新）
 
