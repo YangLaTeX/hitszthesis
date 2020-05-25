@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/03/13 3.0.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2020/05/25 3.1 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -932,7 +932,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2020/03/13 3.0.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2020/05/25 3.1 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1070,6 +1070,11 @@
 % 中文目录中Abstract是否均为大写
 %    \begin{macrocode}
 \DeclareBoolOption[true]{absupper}
+%    \end{macrocode}
+%
+% 本科附录章节编号是否为大写字母
+%    \begin{macrocode}
+\DeclareBoolOption[true]{alphappendix}
 %    \end{macrocode}
 %
 %    此处添加控制本科论文的页码横线选项
@@ -2327,17 +2332,18 @@ delim_1 "\\hspace*{\\fill}"
 \hitsz@def@term{natclassifiedindex}  %国内图书分类号
 \hitsz@def@term{intclassifiedindex}  %国际图书分类号
 
-\hitsz@def@term{ctitlecover} %中文标题封面
-\hitsz@def@term{ctitle} %中文标题
-\hitsz@def@term{csubtitle} %中文副标题
-\hitsz@def@term{cxueke} %中文学科
-\hitsz@def@term{cauthor} %中文作者
-\hitsz@def@term{csupervisor} %中文导师
-\hitsz@def@term{cassosupervisor} %中文副导师
-\hitsz@def@term{ccosupervisor}%中文联合导师
-\hitsz@def@term{caffil}%中文院系
-\hitsz@def@term{csubject}%中文专业
-\hitsz@def@term{cdate}
+\hitsz@def@term{ctitlecover} % 中文标题封面
+\hitsz@def@term{ctitle} % 中文标题
+\hitsz@def@term{csubtitle} % 中文副标题
+\hitsz@def@term{cxueke} % 中文学科
+\hitsz@def@term{cauthor} % 中文作者
+\hitsz@def@term{csupervisor} % 中文导师
+\hitsz@def@term{cassosupervisor} % 中文副导师
+\hitsz@def@term{ccosupervisor} % 中文联合导师
+\hitsz@def@term{caffil} % 中文院系
+\hitsz@def@term{csubject} % 中文专业
+\hitsz@def@term{cdate} % 封面日期指定
+\hitsz@def@term{cdatesecond} % 第二页日期指定
 
 \hitsz@def@term{cstudentid}%
 \hitsz@def@term{cstudenttype}%
@@ -2646,7 +2652,7 @@ delim_1 "\\hspace*{\\fill}"
             {\hitsz@put@title{\hitsz@bachelor@csupervisortitle}} &
               \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@csupervisor}}}\\
             {\hitsz@put@title{\hitsz@cdatetitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\CJK@todaysmall}}}
+              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cdatesecond}}}
           \end{tabular}
         \else
           \begin{tabular}{l@{\ \  }c}
@@ -2663,7 +2669,7 @@ delim_1 "\\hspace*{\\fill}"
             {\hitsz@put@title{\hitsz@bachelor@csupervisortitle}} &
               \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@csupervisor}}}\\
             {\hitsz@put@title{\hitsz@cdatetitle}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\CJK@todaysmall}}}
+              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cdatesecond}}}
           \end{tabular}
         \fi
       \renewcommand{\arraystretch}{1}
@@ -3033,19 +3039,35 @@ delim_1 "\\hspace*{\\fill}"
 % 目录中附录的章号格式。
 %    \begin{macrocode}
 \ctexset{%
-  appendix/number=\ifhitsz@bachelor\arabic{chapter}\else\Alph{chapter}\fi,
+  appendix/number=\ifhitsz@bachelor%
+                    \ifhitsz@alphappendix%
+                      \Alph{chapter}%
+                    \else%
+                      \arabic{chapter}%
+                    \fi%
+                  \else%
+                    \Alph{chapter}%
+                  \fi,%
 }
 %    \end{macrocode}
 %
 % 设置附录、结论、参考文献等格式。
+% \changes{v3.1}{2020/05/25}{Add support to Alph abstract title for bachelor thesis}
 %    \begin{macrocode}
 \let\hitsz@appendix\appendix
 \renewenvironment{appendix}{%
-  \let\title\hitsz@appendix@title
-  \hitsz@appendix
-  \ifhitsz@bachelor\renewcommand{\thechapter}{\arabic{chapter}}\fi
+  \let\title\hitsz@appendix@title%
+  \hitsz@appendix%
+  \ifhitsz@bachelor%
+    \ifhitsz@alphappendix%
+      \renewcommand{\thechapter}{\Alph{chapter}}%
+    \else%
+      \renewcommand{\thechapter}{\arabic{chapter}}%
+    \fi%
+  \fi%
   }{%
-  \let\title\@gobble}
+  \let\title\@gobble%
+}
 \let\title\@gobble
 \newcommand{\hitsz@appendix@title}[1]{%
   \begin{center}
