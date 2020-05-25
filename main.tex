@@ -3,7 +3,7 @@
 % !TEX program  = XeLaTeX
 %%=============================================
 % 模板名称：hitszthesis
-% 模板版本：V3.0.3
+% 模板版本：V3.1
 % 模板作者：杨敬轩（Jingxuan Yang）
 % 联系作者：yangjingxuan@stu.hit.edu.cn & yanglatex2e@gmail.com
 % 模板交流：QQ群：1039392552，加群请备注LaTeX、hitszthesis相关说明
@@ -12,7 +12,7 @@
 %          GNU make 工具：make thesis
 %          Windows批处理脚本：双击 compile.bat 自动编译论文
 %          更多编译细节详见说明文档：hitszthesis.pdf
-% 更新时间：2020/03/12
+% 更新时间：2020/05/25
 % 模板帮助：请**务必务必务必**阅读 hitszthesis.pdf 说明文档，文档查看方法：
 %          cmd 命令行：texdoc hitszthesis
 %          推荐前往模板的 GitHub 仓库获取最新文件，地址：
@@ -20,9 +20,9 @@
 %%=============================================
 
 % 设置文档类别为 <hitszthesis>
-\documentclass[type=doctor]{hitszthesis}
+% \documentclass[type=doctor]{hitszthesis}
 % \documentclass[type=master]{hitszthesis}
-% \documentclass[type=bachelor,infoleft=true]{hitszthesis}
+\documentclass[type=bachelor,infoleft=true]{hitszthesis}
 
 % 模板提供以下选项，各个选项之间不要有空格
 % 1. type=bachelor|master|doctor
@@ -48,6 +48,8 @@
 %   含义：博士论文是否要求章节首页必须在奇数页，默认否（false）
 % 10. library=true|false
 %   含义：是否为提交到图书馆的电子版，默认否（false）
+% 11. alphappendix=true|false
+%   含义：本科毕业设计附录章节编号是否为大写字母，默认是（true）
 
 % 自定义设置与额外加载的宏包请写在 \file{hitszthesis.sty} 里
 \usepackage{hitszthesis}
@@ -107,52 +109,12 @@
 
 %%%% \begin{本科书序} %%%% 这是一个假的环境，本科请用这里的内容
 
-% % 结论
-% \input{back/conclusion}
-
-% % 参考文献
-% \bibliographystyle{hitszthesis}
-% \bibliography{reference}
-
-% % 授权
-% \authorization
-
-% % 授权页为扫描的PDF文件（scan.pdf），与上面的命令互斥
-% % \authorization[scan.pdf]
-
-% % 致谢
-% \input{back/acknowledgements}
-
-% % 附录
-% \begin{appendix}
-%   \input{back/appendix01}
-%   \input{back/appendix02}
-%   \input{back/appendix03}
-% \end{appendix}
-
-%%%% \end{本科书序}
-
-
-%%%% \begin{硕博书序} %%%% 这是一个假的环境，硕、博请用这里的内容
-
 % 结论
 \input{back/conclusion}
 
 % 参考文献
 \bibliographystyle{hitszthesis}
 \bibliography{reference}
-
-% 附录
-\begin{appendix}
-  \input{back/appendixA.tex}
-  \input{back/appendixB.tex}
-\end{appendix}
-
-% 发表文章
-\input{back/publications}
-
-% 索引
-% \input{back/ceindex}
 
 % 授权
 \authorization
@@ -163,8 +125,48 @@
 % 致谢
 \input{back/acknowledgements}
 
-% 个人简介
-\input{back/resume}
+% 附录
+\begin{appendix}
+  \input{back/appendix01}
+  \input{back/appendix02}
+  \input{back/appendix03}
+\end{appendix}
+
+%%%% \end{本科书序}
+
+
+%%%% \begin{硕博书序} %%%% 这是一个假的环境，硕、博请用这里的内容
+
+% % 结论
+% \input{back/conclusion}
+
+% % 参考文献
+% \bibliographystyle{hitszthesis}
+% \bibliography{reference}
+
+% % 附录
+% \begin{appendix}
+%   \input{back/appendixA.tex}
+%   \input{back/appendixB.tex}
+% \end{appendix}
+
+% % 发表文章
+% \input{back/publications}
+
+% % 索引
+% % \input{back/ceindex}
+
+% % 授权
+% \authorization
+
+% % 授权页为扫描的PDF文件（scan.pdf），与上面的命令互斥
+% % \authorization[scan.pdf]
+
+% % 致谢
+% \input{back/acknowledgements}
+
+% % 个人简介
+% \input{back/resume}
 
 %%%% \end{硕博书序}
 
