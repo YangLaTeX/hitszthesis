@@ -73,14 +73,20 @@ hitszthesis.pdf文件}，本示例文档也最好能看一看。此示例文档�
 
 \subsection{右翻页}[Open right]
 
-对于双面打印的论文，强制使每章的标题页出现右手边为右翻页。
-规范中没有明确规定是否是右翻页打印。
-模板给出了右翻页选项。
-为了应对用户的个人喜好，在希望设置成右翻页的位置之前添加\cs{cleardoublepage}命令即可。
+对于双面打印的论文，强制使每章的标题页出现右手边为右翻页。规范中没有明确规定是否是右翻页打印。模板给出了右翻页选项。为了应对用户的个人喜好，在希望设置成右翻页的位置之前添加\cs{cleardoublepage}命令即可。
 
 \subsection{算法}[Algorithms]
 
-算法不在规范中要求，此处不给出示例，在hitszthesis.sty中有定义示例。
+算法不在规范中要求，在hitszthesis.sty中有相关定义，一个例子如算法\ref{alg:rerank}所示。
+\begin{algorithm}
+  \DontPrintSemicolon
+  \wuhao
+  \caption{混合重排算法}
+  \label{alg:rerank}
+  \KwData{$A$:待重排的元素集合 \newline
+  $\alpha$: 对多样性,相关性作折中的权重因子}
+  \KwResult{$A_k$: a subset of $A$ of size k}
+\end{algorithm}
 
 \subsection{脚注}[Footnotes]
 
@@ -95,23 +101,9 @@ hitszthesis.pdf文件}，本示例文档也最好能看一看。此示例文档�
 \href{https://gihitb.com/YangLaTeX/hitszthesis}{https://gihitb.com/YangLaTeX/hitszthesis}
 处下载。
 
-\lipsum[3]
-
 \subsection{术语词汇管理}[Manage glossaries]
 
 推荐使用glossaries包管理术语、缩略语，可以自动生成首次全写，非首次缩写。
-
-\subsection{\TeX\ 源码编辑器}[\TeX editor]
-
-推荐：（1）付费软件Winedt；（2）免费软件kile；（3）vim或emaces或sublime等神级编
-译器（需要配置）。
-
-\subsection{\LaTeX\ 排版重要原则}[\LaTeX\ typesetting rules]
-
-格式和内容分离是\LaTeX\ 最大优势，所有多次出现的内容、样式等等都可以定义为简单命
-令、环境。这样的好处是方便修改、管理。例如，如果想要把所有的表示向量的符号由粗体
-\cs{mathbf}变换到花体\cs{mathcal}，只需修改该格式的命令的定义部分，不需要像MS
-word那样处处修改。总而言之，使用自定义命令和环境才是正确的使用\LaTeX\ 的方式。
 
 \section{本章小结}[Brief summary]
 
