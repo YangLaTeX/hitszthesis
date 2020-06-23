@@ -8,7 +8,7 @@
 % The latest version of this license is in
 %      http://www.latex-project.org/lppl.txt
 % and version 1.3c or later is part of all distributions of LaTeX
-% version 2005/12/01 or later.
+% version 2008/05/04 or later.
 %
 % This work has the LPPL1.3c maintenance status `maintained'.
 %
@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2020/05/25 3.1 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2020/06/23 3.2 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -94,7 +94,7 @@
 %
 % \def\abstractname{\Large 摘\quad 要}
 % \begin{abstract}\normalsize\vskip0.5cm
-%   \hitszthesis 宏包旨在建立一个{\bfseries 规格严格、功夫到家}的哈尔滨工业大学（深圳）学位论文模板，目前包含本硕博毕业设计（论文）模板。模板的构建基于 \pkg{hitszthesis.dtx} 与 \pkg{hitszthesis.ins}，在使用本模板之前，请仔细阅读\file{hitszthesis.pdf}（本文件）、\file{main.tex}（撰写示例）及\file{main-bachelor.pdf}、\file{main-master.pdf} 与 \file{main-doctor.pdf}（撰写效果）。
+%   \hitszthesis 宏包旨在建立一个{\bfseries 规格严格、功夫到家}的哈尔滨工业大学（深圳）学位论文模板，目前包含本硕博毕业设计（论文）模板。模板的构建基于 \pkg{hitszthesis.dtx} 与 \pkg{hitszthesis.ins}，在使用本模板之前，请仔细阅读\file{hitszthesis.pdf}（本文件）、\file{main.tex}（撰写示例）及\file{hitszthesis-bachelor.pdf}、\file{hitszthesis-master.pdf} 与 \file{hitszthesis-doctor.pdf}（撰写效果）。
 % \end{abstract}
 %
 % \vskip1.5cm
@@ -857,9 +857,9 @@
 % \DescribeEnv{itemize}
 % \DescribeEnv{enumerate}
 % \DescribeEnv{description}
-% 为了适合中文习惯，模板将这三个常用的列表环境用 \pkg{enumitem} 进行了纵向间距压
+% 为了适合中文习惯，模板将这三个常用的列表环境用 \env{enumitem} 进行了纵向间距压
 % 缩。一方面清除了多余空间，另一方面用户可以自己指定列表环境的样式（如标签符号，
-% 缩进等）。细节请参看 \pkg{enumitem} 文档，此处不再赘述。
+% 缩进等）。细节请参看 \env{enumitem} 文档，此处不再赘述。
 % \subsection{后文}
 %
 % \subsubsection{结论}
@@ -869,7 +869,7 @@
 % \lstinputlisting[style=lstStyleLaTeX]{back/conclusion.tex}
 %
 % \subsubsection{参考文献}
-% 在后文中的参考文献是自动生成的，不需要用户干预，具体命令在\file{main.tex} 中有
+% 在后文中的参考文献是自动生成的，不需要用户干预，具体命令在 \file{main.tex} 中有
 % 示例。
 %
 % \subsubsection{附录}
@@ -881,6 +881,11 @@
 % \input{back/appA.tex}
 % \end{appendix}
 % \end{latex}
+%
+% 若需要附录从1开始编页码，在第一篇附录的 \cs{chapter} 后面
+% 写上 \cs{SetPageNumberingFromOne} 命令即可。
+% 若要求附录部分不含页码，则在 \env{appendix} 环境之前
+% 写上 \cs{SetAppendixWithOnlyHeadings}命令。
 %
 % \subsubsection{所发表文章}
 % \DescribeEnv{publication}
@@ -932,7 +937,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2020/05/25 3.1 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2020/06/23 3.2 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1482,9 +1487,7 @@ delim_1 "\\hspace*{\\fill}"
 %    \begin{macrocode}
 %<*cls>
 \renewcommand\normalsize{%
-  \@setfontsize\normalsize{12bp}{ \ifhitsz@glue 20.50398bp \@plus 2.83465bp \@minus 0bp
-                                  \else 19.27374bp
-                                  \fi}%
+  \@setfontsize\normalsize{12bp}{19.27374bp \@plus 2bp \@minus 2bp}%
   \abovedisplayskip=8pt
   \abovedisplayshortskip=8pt
   \belowdisplayskip=\abovedisplayskip
@@ -1591,14 +1594,13 @@ delim_1 "\\hspace*{\\fill}"
 % \label{sec:headerfooter}
 %
 % \begin{macro}{\hitsz@empty}
-% \begin{macro}{\hitsz@plain}
+% \begin{macro}{\hitsz@onlyheadings}
 % \begin{macro}{\hitsz@headings}
 % 定义三种页眉页脚格式：
 % \begin{itemize}
 % \item \texttt{hitsz@empty}：页眉页脚都没有
-% \item \texttt{hitsz@plain}：只显示页脚的页码。\cs{chapter} 自动调用
-% \cs{thispagestyle\{hitsz@plain\}}。
-% \item \texttt{hitsz@headings}：页眉页脚同时显示
+% \item \texttt{hitsz@onlyheadings}：只显示页眉。
+% \item \texttt{hitsz@headings}：页眉页脚同时显示。
 % \end{itemize}
 %    \begin{macrocode}
 %<*cls>
@@ -1609,9 +1611,15 @@ delim_1 "\\hspace*{\\fill}"
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
 }
+\fancypagestyle{hitsz@onlyheadings}{%
+  \fancyhf{}
+  \fancyhead[C]{\songti\xiaowu[0]%
+    \hitsz@cschoolname\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname}%
+}
 %    \end{macrocode}
 %
 %    此处根据本科生模板的多种版本，提供选项自定义页码、页眉样式。
+% \changes{v3.2}{2020/06/23}{Omit '深圳' in second titlepage, heading and authorization title}
 %    \begin{macrocode}
 \fancypagestyle{hitsz@headings}{%
   \fancyhf{}
@@ -1651,7 +1659,7 @@ delim_1 "\\hspace*{\\fill}"
     \fi
     \ifhitsz@shenzhen
       \fancyhead[C]{\songti\xiaowu[0]%
-        \hitsz@cschoolname\hitsz@shenzhencampus\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname}%
+        \hitsz@cschoolname\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname}%
     \fi
     \ifhitsz@weihai
       \fancyhead[C]{\songti\xiaowu[0]%
@@ -2486,7 +2494,7 @@ delim_1 "\\hspace*{\\fill}"
   哈尔滨工业大学本科毕业设计（论文）原创性声明
 \else%
   \ifhitsz@shenzhen%
-    哈尔滨工业大学（深圳）本科毕业设计（论文）原创性声明
+    哈尔滨工业大学本科毕业设计（论文）原创性声明
   \else%
     \ifhitsz@weihai%
       哈尔滨工业大学（威海）本科毕业设计（论文）原创性声明
@@ -2617,17 +2625,16 @@ delim_1 "\\hspace*{\\fill}"
 \newcommand{\hitsz@second@titlepage@bachelor}{
   \vspace*{0.8cm}
   \ifhitsz@harbin%
-  \centering{\includegraphics[width=6.2cm]{hitlogo}}
+    \centering{\includegraphics[width=6.2cm]{hitlogo}}
   \else%
-  \ifhitsz@shenzhen%
-  \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{%
-    \kaishu\yihao\hitsz@shenzhencampus}}
-  \else%
-  \ifhitsz@weihai%
-  \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{%
-    \kaishu\yihao\hitsz@weihaicampus}}
-  \fi%
-  \fi%
+    \ifhitsz@shenzhen%
+      \centering{\includegraphics[width=6.2cm]{hitlogo}}
+    \else%
+      \ifhitsz@weihai%
+        \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{%
+        \kaishu\yihao\hitsz@weihaicampus}}
+      \fi%
+    \fi%
   \fi%
   \vspace{1.3cm}
   \begin{center}
@@ -3029,7 +3036,7 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 %
 % 此处临时更改一下对齐方式。\CTeX\ 似乎无法应对双语目录。
-% 删除增加\cs{hangindent}的方法，其原因是\cs{numberline}多出一个空格
+% 删除增加 \cs{hangindent} 的方法，其原因是 \cs{numberline} 多出一个空格
 %    \begin{macrocode}
   \@starttoc{toe}%
   \if@restonecol\twocolumn\fi}
@@ -3053,6 +3060,8 @@ delim_1 "\\hspace*{\\fill}"
 %
 % 设置附录、结论、参考文献等格式。
 % \changes{v3.1}{2020/05/25}{Add support to Alph abstract title for bachelor thesis}
+% \changes{v3.2}{2020/06/23}{Add \env{algorithmen} environment for original english paper}
+% \changes{v3.2}{2020/06/23}{Add \cs{appendixcaption} command for captions in original english paper}
 %    \begin{macrocode}
 \let\hitsz@appendix\appendix
 \renewenvironment{appendix}{%
@@ -3067,6 +3076,29 @@ delim_1 "\\hspace*{\\fill}"
   \fi%
   }{%
   \let\title\@gobble%
+}
+% 支持附录算法英文标题
+\newenvironment{algorithmen}[1][htb]{
+  \renewcommand{\algorithmcfname}{Algorithm}%
+  \begin{algorithm}[#1]%
+}{%
+  \end{algorithm}
+}
+% 支持附录图表编号
+\newcommand{\appendixcaption}[1]{\centering\wuhao#1}
+%    \end{macrocode}
+%
+% 附录页码重新编号
+% \changes{v3.2}{2020/06/23}{Add \cs{SetPageNumberingFromOne} command to set page numberging from 1}
+% \changes{v3.2}{2020/06/23}{Add \cs{SetAppendixWithOnlyHeadings} command to set appendix with only headings, i.e., without page number in bottom center}
+%    \begin{macrocode}
+\newcommand{\SetPageNumberingFromOne}{\setcounter{page}{1}}
+\newcommand{\SetAppendixWithOnlyHeadings}{
+  \ctexset{
+    chapter/pagestyle = {hitsz@onlyheadings},
+  }
+  \thispagestyle{hitsz@headings}
+  \pagestyle{hitsz@onlyheadings}
 }
 \let\title\@gobble
 \newcommand{\hitsz@appendix@title}[1]{%
@@ -3144,19 +3176,19 @@ delim_1 "\\hspace*{\\fill}"
 }
 \def\hitsz@authorization@bachelor{%
   \ifhitsz@openright\cleardoublepage\else\clearpage\fi
-  \chapter*{\ifhitsz@harbin\relax\else\sanhao\fi\hitsz@declarename@bachelor}
+  \chapter*{\ifhitsz@weihai\sanhao\fi\hitsz@declarename@bachelor}
   \addcontentsline{toc}{chapter}{\hitsz@authorization@bachelor@toc}
   \ifhitsz@shenzhen%
     \hitsz@authorizationtext@bachelor@shenzhen
   \else%
-    \ifhitsz@weihai
+    \ifhitsz@weihai%
       \hitsz@authorizationtext@bachelor@weihai
-    \else
+    \else%
       \hitsz@authorizationtext@bachelor
-    \fi
-  \fi
-\vspace{2\baselineskip}
-\par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
+    \fi%
+  \fi%
+  \vspace{2\baselineskip}
+  \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
 }
 
 \NewDocumentCommand{\authorization}{o}{%
