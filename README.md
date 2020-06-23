@@ -3,7 +3,7 @@
 
 # hitszthesis: Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)
 
-# hitszthesis：哈尔滨工业大学（深圳）本硕博学位论文$\LaTeX$模板
+# hitszthesis：哈尔滨工业大学（深圳）本硕博学位论文LaTeX模板
 
 ![CTAN Version](https://img.shields.io/ctan/v/hitszthesis.svg)
 ![GitHub Version](https://img.shields.io/github/release/YangLaTeX/hitszthesis.svg)
