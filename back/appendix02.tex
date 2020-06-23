@@ -94,11 +94,11 @@ that the feasible set $S$ is bounded. This fact is the basis of the {\em simplex
   algorithm} which was developed by Dantzig as a very efficient method for
 solving linear programming.
 \begin{table}[ht]
-\centering
   \centering
-  \caption*{Table~1\hskip1em This is an example for manually numbered table, which
+  \appendixcaption{Table~1\hskip1em This is an example for manually numbered table, which
     would not appear in the list of tables}
   \label{tab:badtabular2}
+  \wuhao
   \begin{tabular}[c]{|m{1.5cm}|c|c|c|c|c|c|}\hline
     \multicolumn{2}{|c|}{Network Topology} & \# of nodes &
     \multicolumn{3}{c|}{\# of clients} & Server \\\hline
@@ -109,7 +109,7 @@ solving linear programming.
     \multirow{2}{1.2in}{Max. Connectivity}\\\cline{1-3}
     \multicolumn{2}{|c|}{Inet-2.1} & 6000 & & & &\\\hline
     & \multicolumn{2}{c|}{ABCDEF} &\multicolumn{4}{c|}{} \\\hline
-\end{tabular}
+  \end{tabular}
 \end{table}
 
 Roughly speaking, the simplex algorithm examines only the extreme points of the
@@ -118,6 +118,15 @@ selects an extreme point as the initial point. The successive extreme point is
 selected so as to improve the objective function value. The procedure is
 repeated until no improvement in objective function value can be made. The last
 extreme point is the optimal solution.
+
+% 附录算法请用这个新环境 <algorithmen>
+\begin{algorithmen}
+  \wuhao
+  \DontPrintSemicolon
+  \KwData{$G=(X,U)$ such that $G^{tc}$ is an order.}
+  \KwResult{$G’=(X,V)$ with $V\subseteq U$ such that $G’^{tc}$ is an interval order.}
+  \caption{\textsc{Fast}SLAM}
+\end{algorithmen}
 
 \subsection{Nonlinear Programming}
 
