@@ -4,6 +4,8 @@
 METHOD = xelatex
 # Set opts for latexmk if you use it
 LATEXMKOPTS = -xelatex
+# Set opts for xelatex if you use it
+XELATEXOPTS = -shell-escape
 # Basename of thesis
 THESISMAIN = main
 
@@ -48,24 +50,28 @@ thesis: $(THESISMAIN).pdf
 
 ifeq ($(METHOD),latexmk)
 
+LATEXCMD := $(METHOD) $(LATEXMKOPTS)
+
 $(PACKAGE).pdf: $(CLSFILES) FORCE_MAKE
-	$(METHOD) $(LATEXMKOPTS) $(PACKAGE).dtx
+	$(LATEXCMD) $(LATEXMKOPTS) $(PACKAGE).dtx
 
 $(THESISMAIN).pdf: $(CLSFILES) FORCE_MAKE
-	$(METHOD) $(LATEXMKOPTS) $(THESISMAIN)
+	$(LATEXCMD) $(LATEXMKOPTS) $(THESISMAIN)
 
 else ifeq ($(METHOD),xelatex)
 
+LATEXCMD := $(METHOD) $(XELATEXOPTS)
+
 $(PACKAGE).pdf: $(CLSFILES)
-	$(METHOD) $(PACKAGE).dtx
+	$(LATEXCMD) $(PACKAGE).dtx
 	makeindex -s gind.ist -o $(PACKAGE).ind $(PACKAGE).idx
 	makeindex -s gglo.ist -o $(PACKAGE).gls $(PACKAGE).glo
-	$(METHOD) $(PACKAGE).dtx
-	$(METHOD) $(PACKAGE).dtx
+	$(LATEXCMD) $(PACKAGE).dtx
+	$(LATEXCMD) $(PACKAGE).dtx
 
 $(THESISMAIN).idx: $(THESISMAIN).bbl
-	$(METHOD) $(THESISMAIN)
-	$(METHOD) $(THESISMAIN)
+	$(LATEXCMD) $(THESISMAIN)
+	$(LATEXCMD) $(THESISMAIN)
 
 
 $(THESISMAIN)_china.idx : $(CLSFILES) $(THESISMAIN).bbl $(THESISMAIN).idx
@@ -74,12 +80,12 @@ $(THESISMAIN)_china.idx : $(CLSFILES) $(THESISMAIN).bbl $(THESISMAIN).idx
 $(THESISMAIN)_english.ind $(THESISMAIN)_china.ind $(THESISMAIN)_english.idx : $(THESISMAIN)_china.idx
 
 $(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN)_china.ind $(THESISMAIN)_china.idx $(THESISMAIN)_english.ind $(THESISMAIN)_english.idx $(THESISMAIN).bbl
-	$(METHOD) $(THESISMAIN)
+	$(LATEXCMD) $(THESISMAIN)
 	splitindex $(THESISMAIN) -- -s $(PACKAGE).ist
-	$(METHOD) $(THESISMAIN)
+	$(LATEXCMD) $(THESISMAIN)
 
 $(THESISMAIN).bbl: $(BIBFILE)
-	$(METHOD) $(THESISMAIN)
+	$(LATEXCMD) $(THESISMAIN)
 	-bibtex $(THESISMAIN)
 	$(RM) $(THESISMAIN).pdf
 
