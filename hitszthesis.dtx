@@ -1296,7 +1296,9 @@
 %    \end{macrocode}
 %
 % 参考文献引用宏包。
+% \changes{v3.2.1}{2021/11/15}{add package \pkg{gbt7714}}
 %    \begin{macrocode}
+\RequirePackage{gbt7714}
 \RequirePackage[sort&compress]{natbib}
 %    \end{macrocode}
 %
@@ -2331,7 +2333,7 @@ delim_1 "\\hspace*{\\fill}"
 % \label{sec:cov}
 %
 % 封面信息。
-% \changes{v3.2.1}{2021/11/15}{add key `cmastertype'}
+% \changes{v3.2.1}{2021/11/15}{add key `cpostgraduatetype'}
 %    \begin{macrocode}
 \def\hitsz@def@term#1{%
   \define@key{hitsz}{#1}{\csname #1\endcsname{##1}}
@@ -2347,7 +2349,7 @@ delim_1 "\\hspace*{\\fill}"
 \hitsz@def@term{ctitle} % 中文标题
 \hitsz@def@term{csubtitle} % 中文副标题
 \hitsz@def@term{cxueke} % 中文学科
-\hitsz@def@term{cmastertype} % 中文硕士学位类型：学术，专业
+\hitsz@def@term{cpostgraduatetype} % 中文学位类型：学术，专业
 \hitsz@def@term{cauthor} % 中文作者
 \hitsz@def@term{csupervisor} % 中文导师
 \hitsz@def@term{cassosupervisor} % 中文副导师
@@ -2701,10 +2703,8 @@ delim_1 "\\hspace*{\\fill}"
  \vspace*{1.2cm}
 \begin{center}
   \begin{center}\xiaoyi[1]\songti\textbf{\hitsz@cxuewei\hitsz@cthesisname}\end{center}
-    \ifhitsz@master
-      \vspace{1cm}
-      \begin{center}\xiaoer[1]\songti\textbf{（\hitsz@cmastertype\hitsz@cthesisname）}\end{center}
-    \fi
+    \vspace{1cm}
+    \begin{center}\xiaoer[1]\songti\textbf{（\hitsz@cpostgraduatetype\hitsz@cthesisname）}\end{center}
     \ifhitsz@fulltime\vspace{1cm}\else%
       \begin{center}
         \xiaoyi[1]\songti
