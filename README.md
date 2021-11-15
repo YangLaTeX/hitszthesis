@@ -36,7 +36,7 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
     |- appendixB.tex
     |- ceindex.tex
     |- conclusion.tex
-    |- publication.tex
+    |- publications.tex
     |- resume.tex
   |- figures
     |- bthesistitle.eps
@@ -44,15 +44,15 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
     |- hitlogo.eps
   |- compile.bat
   |- ctex-fontset-siyuan.def
+  |- hitszthesis-bachelor.pdf
+  |- hitszthesis-doctor.pdf
+  |- hitszthesis-master.pdf
   |- hitszthesis.bst
   |- hitszthesis.dtx
   |- hitszthesis.ins
   |- hitszthesis.pdf
   |- hitszthesis.sty
   |- latexmkrc
-  |- main-bachelor.pdf
-  |- main-doctor.pdf
-  |- main-master.pdf
   |- main.tex
   |- Makefile
   |- README.md
@@ -149,7 +149,7 @@ Please follow the procedure below:
 
 * QQ group: 1039392552
 * [GitHub Issues](https://github.com/YangLaTeX/hitszthesis/issues)
-* [Educational Email](mailto:yangjingxuan@stu.hit.edu.cn)
+* [Educational Email](mailto:yangjx20@mails.tsinghua.edu.cn)
 * [Gmail](mailto:yanglatex2e@gmail.com)
 
 # 模板问题反馈
@@ -158,7 +158,7 @@ Please follow the procedure below:
 
 * QQ group: 1039392552
 * [GitHub 问题反馈](https://github.com/YangLaTeX/hitszthesis/issues)
-* [教育邮箱](mailto:yangjingxuan@stu.hit.edu.cn)
+* [教育邮箱](mailto:yangjx20@mails.tsinghua.edu.cn)
 * [Gmail 邮箱](mailto:yanglatex2e@gmail.com)
 
 # Makefile Usage
