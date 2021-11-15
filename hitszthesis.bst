@@ -2,10 +2,10 @@
 %     FileName: hitszthesis.bst
 %       Author: 杨敬轩（Jingxuan Yang）
 %        Email: yanglatex2e@gmail.com
-%      Version: 0.0.1
+%      Version: 0.0.2
 %     Modified: 杨敬轩（Jingxuan Yang）
 %      History: Yanshuo Chu，胡海星
-%   LastChange: 2020-03-12 12:39:30
+%   LastChange: 2021-11-15 17:42:30
 %=============================================================================
                                                   %
 ENTRY                                             % class Entry {
@@ -82,12 +82,12 @@ FUNCTION {cap.edition.en} 		{"~ed"}
 FUNCTION {cap.edition.zh} 		{"版"}
 FUNCTION {cap.anonymous.en} 	{"Anon"}
 FUNCTION {cap.anonymous.zh} 	{"佚名"}
-FUNCTION {cap.no.address.en} 	{"[S.l.]"}
-FUNCTION {cap.no.address.zh} 	{"[出版地不详]"}
-FUNCTION {cap.no.publisher.en} 	{"[s.n.]"}
-FUNCTION {cap.no.publisher.zh} 	{"[出版者不详]"}
-FUNCTION {cap.et.al.en} 		{", et~al"}
-FUNCTION {cap.et.al.zh} 		{", 等"}
+FUNCTION {cap.no.address.en} 	{"［S.l.］"}
+FUNCTION {cap.no.address.zh} 	{"［出版地不详］"}
+FUNCTION {cap.no.publisher.en} 	{"［s.n.］"}
+FUNCTION {cap.no.publisher.zh} 	{"［出版者不详］"}
+FUNCTION {cap.et.al.en} 		{"，et~al"}
+FUNCTION {cap.et.al.zh} 		{"，等"}
 FUNCTION {cap.translate.en} 	{"~trans"}
 FUNCTION {cap.translate.zh} 	{"译"}
 FUNCTION {cap.doi.url} 			{"http://dx.doi.org/"}
@@ -98,8 +98,8 @@ FUNCTION {cap.th.en} 			{"th"}
 
 FUNCTION {cap.space}      {" "}
 FUNCTION {cap.period} 		{"\@. "}
-FUNCTION {cap.comma} 			{"\@, "}
-FUNCTION {cap.colon} 			{"\thinspace{}\textnormal{: }"}
+FUNCTION {cap.comma} 			{"\@，"}
+FUNCTION {cap.colon} 			{"\thinspace{}\textnormal{：}"}
 FUNCTION {cap.double.slash} 	{" //\thinspace{}"}
 FUNCTION {cap.dash} 			{"\textnormal{-}"}
 
@@ -332,13 +332,13 @@ FUNCTION {add.brace} {                            % String Entry::add_brace(Stri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {add.bracket} {                          % String Entry::bracket(String str) {
-  "(" swap$ * ")" *                               %   return "(" + str + ")";
+  "（" swap$ * "）\!\!" *                               %   return "（" + str + "）\!\!";
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {add.squarebracket} {                    % String Entry::add_squarebracket(String str) {
-  "[" swap$ * "]" *                               %   return "[" + str + "]";
+  "［" swap$ * "］" *                               %   return "［" + str + "］";
 }                                                 % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -602,9 +602,9 @@ FUNCTION {format.names} {                         % String Entry::format_names(S
     remove.dots 'jrname :=                        %     jrname = remove_dots(tmp);
     namelist nameindex "{f}" format.name$         %     tmp = format_name(namelist, nameindex, "{f}");
     remove.dots                                   %     tmp = remove_dots(tmp);
-    'firstname :=                                 %     firstname = change_case(tmp, "u");
+    "u" change.case$ 'firstname :=                %     firstname = change_case(tmp, "u");
     namelist nameindex "{ll}" format.name$        %     tmp = format_name(namelist, nameindex, "{ll}");
-    'lastname :=                                  %     lastname = change_case(tmp, "u");
+    "u" change.case$ 'lastname :=                 %     lastname = change_case(tmp, "u");
     jrname empty$ not {                           %     if (! empty(jrname)) {
       jrname * " " *                              %       result = result + jrname + " "
     } 'skip$ if$                                  %     }
@@ -697,7 +697,7 @@ FUNCTION {format.booktitle} {                     % String Emtry::format_booktit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
                                                   %
 FUNCTION {format.mark} {                          % String Emtry::format_mark(String mark) {
-  "[" swap$ * "]" *                               %   mark = "[" + mark + "]";
+  "\,［" swap$ * "］" *                               %   mark = " ［" + mark + "］";
   "mark" format.bibinfo                           %   return format_bibinfo(mark, "mark");
 }                                                 % }
                                                   %
