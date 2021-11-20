@@ -5,7 +5,7 @@
 %      Version: 0.0.2
 %     Modified: 杨敬轩（Jingxuan Yang）
 %      History: Yanshuo Chu，胡海星
-%   LastChange: 2021-11-15 17:42:30
+%   LastChange: 2021-11-20 16:21:30
 %=============================================================================
                                                   %
 ENTRY                                             % class Entry {
@@ -1975,4 +1975,4 @@ EXECUTE {end.bib}                                 %   end_bib();
                                                   % }
                                                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% End of file `GBT7714-2005.bst'
+%% End of file `hitszthesis.bst'
