@@ -1222,8 +1222,24 @@
 %    \end{macrocode}
 %
 % \pkg{newtx} 设置 Times New Roman，Helvetica。
+% \changes{v3.2.3}{2022/05/01}{fix \pkg{newtxtext} bug}
 %    \begin{macrocode}
-\RequirePackage[defaultsups]{newtxtext}
+% \RequirePackage[defaultsups]{newtxtext}
+\setmainfont{texgyretermes}[
+  UprightFont = *-regular ,
+  BoldFont = *-bold ,
+  ItalicFont = *-italic ,
+  BoldItalicFont = *-bolditalic ,
+  Extension = .otf ,
+  Scale = 1.0]
+
+\setsansfont{texgyreheros}[
+  UprightFont = *-regular ,
+  BoldFont = *-bold ,
+  ItalicFont = *-italic ,
+  BoldItalicFont = *-bolditalic ,
+  Extension = .otf ,
+  Scale = 0.9]
 %    \end{macrocode}
 %
 % 添加数学字体开关
