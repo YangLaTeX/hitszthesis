@@ -14,7 +14,7 @@
 
 # Introduction to hitszthesis
 
-HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.2.2, updated on 2021/11/16. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
+HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Technology, ShenZhen** (HITSZ), including bachelor, master and doctor dissertations. Current version is 3.2.3, updated on 2022/05/05. Note that 3.x version is not compatible with 2.x version. Please join QQ group: 1039392552 to report issues.
 
 ```latex
   |- front
@@ -61,7 +61,7 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
 
 # hitszthesis 模板简介
 
-hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.2.2，更新于2021年11月16日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
+hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.2.3，更新于2025年05月05日。注意3.x版本不兼容2.x版本。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
 
 # Documentation
 
