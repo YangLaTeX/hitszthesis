@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2022/05/05 3.2.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -25,6 +25,25 @@
 \RecordChanges
 
 \begin{document}
+ % 解决 unicode-math 宏包与 ltxdoc 不兼容的问题
+ % https://tex.stackexchange.com/questions/644510/vertical-bar-in-docstrip-file-changes-to-j-with-unicode-math/644551#644551
+\ExplSyntaxOn
+
+\cs_set_protected:Npn \definepatchvertmathcode:n #1 {
+    \cs_set_protected:Npn \patchvertmathcode {
+        \mathcode `\| = #1
+    }
+}
+\cs_generate_variant:Nn \definepatchvertmathcode:n {x}
+\definepatchvertmathcode:x {\int_eval:n{
+        \mathcode`\| - (\mathcode`\| - "800) / "1000 * "1000 + "2000
+}}
+
+\ExplSyntaxOff
+
+\makeatletter
+\apptocmd{\mod@math@codes}{\patchvertmathcode}{}{}
+\makeatother
   \DocInput{\jobname.dtx}
 \end{document}
 %</driver>
@@ -937,7 +956,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2022/05/05 3.2.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1245,7 +1264,25 @@
 % 添加数学字体开关
 %    \begin{macrocode}
 \ifhitsz@newtxmath
-  \RequirePackage{newtxmath}
+%    \end{macrocode}
+%
+% 修复只加载 \pkg{newtxmath} 宏包时 operator 及 \cs{mathrm} 等命令的显示错误，
+% 见 \href{https://github.com/ElegantLaTeX/ElegantBook/issues/196}{Github 上的讨论}。
+% \changes{v3.2.4}{2022/5/18}{修复只加载 \pkg{newtxmath} 宏包时 operator 及 \cs{mathrm} 等命令的显示错误。}
+%    \begin{macrocode}
+  \let\hitsz@encodingdefault\encodingdefault
+  \let\hitsz@rmdefault\rmdefault
+  \let\hitsz@sfdefault\sfdefault
+  \let\hitsz@ttdefault\ttdefault
+  \def\encodingdefault{T1}
+  \renewcommand{\rmdefault}{ntxtlf}
+  \renewcommand{\sfdefault}{qhv}
+  \renewcommand{\ttdefault}{ntxtt}
+  \usepackage{newtxmath}
+  \let\encodingdefault\hitsz@encodingdefault
+  \let\rmdefault\hitsz@rmdefault
+  \let\sfdefault\hitsz@sfdefault
+  \let\ttdefault\hitsz@ttdefault
 \else
   \ifhitsz@mtprotwolite
     \let\Bbbk\relax
@@ -3334,9 +3371,26 @@ delim_1 "\\hspace*{\\fill}"
 %<*dtx-style>
 \ProvidesPackage{dtx-style}
 \RequirePackage{hypdoc}
-\RequirePackage[UTF8,scheme=chinese,fontset=windowsnew]{ctex}
-\RequirePackage{newpxtext}
-\RequirePackage{newpxmath}
+\RequirePackage[UTF8,scheme=chinese,fontset=windows]{ctex}
+ %\RequirePackage{newpxtext}
+ % 使用 otf 字体来规避 newpxtext 宏包的 bug. 
+ \setmainfont{TeXGyrePagellaX}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+  ItalicFont  = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+\setsansfont{IBMPlexSansCondensed}[%
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]
+\setmonofont{CMU Typewriter Text}
+\RequirePackage{unicode-math}
+\setmathfont{texgyrepagella-math.otf}
 \RequirePackage[
   top=2.5cm, bottom=2.5cm,
   left=4cm, right=2cm,
@@ -3451,8 +3505,6 @@ delim_1 "\\hspace*{\\fill}"
 %<cfg|dtx-style>\def\UGR{\href{http://due.hitsz.edu.cn/info/1343/3864.htm}
 %<cfg|dtx-style>{《\hitsz 本科生毕业论文撰写规范》}}
 %<cfg>\def\hitsz@inline@sep{，}
-%    \end{macrocode}
-%    \begin{macrocode}
 %<*dtx-style>
   \NewDocumentEnvironment{hitszrgu}{o o}
   { \IfNoValueTF{#1}{\PGR,\UGR}{#1}\IfNoValueF{#2}{#2中}%

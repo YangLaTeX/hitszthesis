@@ -25,9 +25,26 @@
 %% 
 \ProvidesPackage{dtx-style}
 \RequirePackage{hypdoc}
-\RequirePackage[UTF8,scheme=chinese,fontset=windowsnew]{ctex}
-\RequirePackage{newpxtext}
-\RequirePackage{newpxmath}
+\RequirePackage[UTF8,scheme=chinese,fontset=windows]{ctex}
+ %\RequirePackage{newpxtext}
+ % 使用 otf 字体来规避 newpxtext 宏包的 bug.
+ \setmainfont{TeXGyrePagellaX}[
+  Extension   = .otf,
+  UprightFont = *-Regular,
+  BoldFont    = *-Bold,
+  ItalicFont  = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+]
+\setsansfont{IBMPlexSansCondensed}[%
+  Extension      = .otf,
+  UprightFont    = *-Regular,
+  BoldFont       = *-Bold,
+  ItalicFont     = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]
+\setmonofont{CMU Typewriter Text}
+\RequirePackage{unicode-math}
+\setmathfont{texgyrepagella-math.otf}
 \RequirePackage[
   top=2.5cm, bottom=2.5cm,
   left=4cm, right=2cm,
@@ -136,7 +153,7 @@
 \def\hitsz{哈尔滨工业大学（深圳）}
 \def\PGR{\href{http://hitgs.hit.edu.cn/aa/fd/c3425a109309/page.htm}
 {《\hitsz 研究生学位论文撰写规范》}}
-\def\UGR{\href{http://www.hitsz.edu.cn/UserFiles/editor/file/20190923/1569224708968004622.doc}
+\def\UGR{\href{http://due.hitsz.edu.cn/info/1343/3864.htm}
 {《\hitsz 本科生毕业论文撰写规范》}}
   \NewDocumentEnvironment{hitszrgu}{o o}
   { \IfNoValueTF{#1}{\PGR,\UGR}{#1}\IfNoValueF{#2}{#2中}%
