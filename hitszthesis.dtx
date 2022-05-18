@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2022/05/05 3.2.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -937,7 +937,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2022/05/05 3.2.3 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1245,7 +1245,25 @@
 % 添加数学字体开关
 %    \begin{macrocode}
 \ifhitsz@newtxmath
-  \RequirePackage{newtxmath}
+%    \end{macrocode}
+%
+% 修复只加载 \pkg{newtxmath} 宏包时 operator 及 \cs{mathrm} 等命令的显示错误，
+% 见 \href{https://github.com/ElegantLaTeX/ElegantBook/issues/196}{Github 上的讨论}。
+% \changes{v3.2.4}{2022/5/18}{修复只加载 \pkg{newtxmath} 宏包时 operator 及 \cs{mathrm} 等命令的显示错误。}
+%    \begin{macrocode}
+  \let\hitsz@encodingdefault\encodingdefault
+  \let\hitsz@rmdefault\rmdefault
+  \let\hitsz@sfdefault\sfdefault
+  \let\hitsz@ttdefault\ttdefault
+  \def\encodingdefault{T1}
+  \renewcommand{\rmdefault}{ntxtlf}
+  \renewcommand{\sfdefault}{qhv}
+  \renewcommand{\ttdefault}{ntxtt}
+  \usepackage{newtxmath}
+  \let\encodingdefault\hitsz@encodingdefault
+  \let\rmdefault\hitsz@rmdefault
+  \let\sfdefault\hitsz@sfdefault
+  \let\ttdefault\hitsz@ttdefault
 \else
   \ifhitsz@mtprotwolite
     \let\Bbbk\relax
