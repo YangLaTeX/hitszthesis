@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2022/05/20 3.2.5 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -179,7 +179,9 @@
 % \subsection{模板的组成}
 % 下表列出了 \hitszthesis\ 的主要文件及其功能介绍：
 %
-% \begin{longtable}{l|p{8cm}}
+% \changes{v3.2.5}{2022/05/20}{omit vertical rules}
+%
+% \begin{longtable}{lp{8cm}}
 % \toprule
 % {\heiti 文件（夹）} & {\heiti 功能描述}\\\midrule
 % \endfirsthead
@@ -2680,7 +2682,8 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 %
 % 此处本科生扉页使用了华文新魏字体，为方便使用此处用矢量化图片作为输入。
-% \changes{v3.2.3}{2025/05/05}{根据2022年2月模板更新扉页标题和表格}
+% \changes{v3.2.3}{2022/05/05}{根据2022年2月模板更新扉页标题和表格}
+% \changes{v3.2.5}{2022/05/20}{fix \option{infocenter} option}
 %    \begin{macrocode}
 \newdimen\infowidth
 \infowidth = 7cm
@@ -2731,13 +2734,13 @@ delim_1 "\\hspace*{\\fill}"
                 &  \underline{\makebox[\infowidth]{\xiaoer\songti\textbf{\hitsz@ctitletwo}}}\\
                 & \\
             {\hitsz@put@title{\hitsz@bachelor@cstudenttitle}}  &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cauthor}}}\\
+              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cauthor}}}\\
             {\hitsz@put@title{\hitsz@bachelor@cstudentidtitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cstudentid}}}\\
+              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cstudentid}}}\\
             {\hitsz@put@title{\hitsz@bachelor@caffiltitlesz}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@caffil}}}\\
+              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@caffil}}}\\
             {\hitsz@put@title{\hitsz@bachelor@cmajortitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@csubject}}}\\
+              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@csubject}}}\\
             {\hitsz@put@title{\hitsz@bachelor@csupervisortitle}} &
               \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@csupervisor}}}\\
             {\hitsz@put@title{\hitsz@cdatetitle}} &
