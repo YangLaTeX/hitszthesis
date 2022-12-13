@@ -59,6 +59,11 @@ if %flag%x == devx (
 	goto :EOF
 )
 
+if %flag%x == debugx (
+	call :debug
+	goto :EOF
+)
+
 :help
 	echo This is the compile batch script for hitszhesis.
 	echo Usage:
@@ -81,6 +86,12 @@ goto :EOF
 	xelatex -shell-escape %THESIS%.tex
 	xelatex -shell-escape %THESIS%.tex
 	splitindex %THESIS% -- -s hitszthesis.ist
+	xelatex -shell-escape %THESIS%.tex
+goto :EOF
+
+:debug
+	echo Compile thesis...
+	latex %PACKAGE%.ins
 	xelatex -shell-escape %THESIS%.tex
 goto :EOF
 

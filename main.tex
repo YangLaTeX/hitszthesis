@@ -3,7 +3,7 @@
 % !TEX program  = XeLaTeX
 %%=============================================
 % 模板名称：hitszthesis
-% 模板版本：V3.2.5
+% 模板版本：V3.2.6
 % 模板作者：杨敬轩（Jingxuan Yang）
 % 联系作者：yangjx20@mails.tsinghua.edu.cn & yanglatex2e@gmail.com
 % 模板交流：QQ群：1039392552，加群请备注LaTeX、hitszthesis相关说明
@@ -12,7 +12,7 @@
 %          GNU make 工具：make thesis
 %          Windows 批处理脚本：双击 compile.bat 自动编译论文
 %          更多编译细节详见说明文档：hitszthesis.pdf
-% 更新时间：2022/05/20
+% 更新时间：2022/12/13
 % 模板帮助：请**务必务必务必**阅读 hitszthesis.pdf 说明文档，文档查看方法：
 %          cmd 命令行：texdoc hitszthesis
 %          推荐前往模板的 GitHub 仓库获取最新文件，地址：
@@ -50,6 +50,10 @@
 %   含义：是否为提交到图书馆的电子版，默认否（false）
 % 11. alphappendix=true|false
 %   含义：本科毕业设计附录章节编号是否为大写字母，默认是（true）
+% 12. bsfrontpagenumberline=true|false
+%   含义：本科毕业设计前言部分页码是否添加短横线，默认是（true）
+% 13. bsmainpagenumberline=true|false
+%   含义：本科毕业设计正文部分页码是否添加短横线，默认是（true）
 
 % 自定义设置与额外加载的宏包请写在 \file{hitszthesis.sty} 里
 \usepackage{hitszthesis}
@@ -61,9 +65,6 @@
 % 开始写论文
 % ！！注意本文仅作为排版格式示例，并不作为毕业论文规范
 \begin{document}
-
-% 若题目过长，则需使用以下命令调整本科封面第二页下划线长度
-%\infowidth = 9cm
 
 % 开始写前言部分
 \frontmatter
@@ -115,6 +116,9 @@
 % 参考文献
 \bibliographystyle{hitszthesis}
 \bibliography{reference}
+
+% 发表文章
+\input{back/publications}
 
 % 授权
 \authorization

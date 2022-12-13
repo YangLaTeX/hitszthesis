@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hitszthesis.dtx}[2022/05/20 3.2.5 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+\ProvidesFile{hitszthesis.dtx}[2022/12/13 3.2.6 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -561,13 +561,13 @@
 % }
 % \end{latex}
 %
-% \myentry{联合导师}
+% \myentry{合作导师}
 % \DescribeMacro{ccosupervisor}
 % \DescribeMacro{ecosupervisor}
-% 硕士生联合指导教师，博士生联合导师。
+% 专硕合作导师。
 % \begin{latex}
 % \hitszsetup{
-%   ccosupervisor={联合导师~教授},
+%   ccosupervisor={合作导师~教授},
 %   ecosupervisor={3rd Boss}
 % }
 % \end{latex}
@@ -958,7 +958,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hitszthesis}
 %<cfg>\ProvidesFile{hitszthesis.cfg}
-%<cls|cfg>[2022/05/18 3.2.4 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
+%<cls|cfg>[2022/12/13 3.2.6 Dissertation Template for Harbin Institute of Technology, ShenZhen (HITSZ)]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1678,6 +1678,8 @@ delim_1 "\\hspace*{\\fill}"
 %
 %    此处根据本科生模板的多种版本，提供选项自定义页码、页眉样式。
 % \changes{v3.2}{2020/06/23}{Omit '深圳' in second titlepage, heading and authorization title}
+% \changes{v3.2.6}{2022/12/13}{Omit degree in headings}
+% \changes{v3.2.6}{2022/12/13}{Set master's headings in frontmatter with chapter name}
 %    \begin{macrocode}
 \fancypagestyle{hitsz@headings}{%
   \fancyhf{}
@@ -1701,8 +1703,12 @@ delim_1 "\\hspace*{\\fill}"
           \hitsz@cschoolname\hitsz@cdegree\hitsz@cthesisname}
       \fi
       \ifhitsz@shenzhen
-        \fancyhead[C]{\songti\xiaowu[0]%
-          \hitsz@cschoolname\hitsz@cdegree\hitsz@cthesisname}
+        \if@mainmatter%
+          \fancyhead[C]{\songti\xiaowu[0]%
+            \hitsz@cschoolname\hitsz@cxuewei\hitsz@cthesisname}
+        \else%
+          \fancyhead[C]{\songti\xiaowu[0]\leftmark}
+        \fi
       \fi
       \ifhitsz@weihai
         \fancyhead[C]{\songti\xiaowu[0]%
@@ -1717,7 +1723,7 @@ delim_1 "\\hspace*{\\fill}"
     \fi
     \ifhitsz@shenzhen
       \fancyhead[C]{\songti\xiaowu[0]%
-        \hitsz@cschoolname\hitsz@shenzhencampus\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname}%
+        \hitsz@cschoolname\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname}%
     \fi
     \ifhitsz@weihai
       \fancyhead[C]{\songti\xiaowu[0]%
@@ -2031,7 +2037,7 @@ delim_1 "\\hspace*{\\fill}"
 \begin{list}{［\arabic{pubctr}］} %%标签格式
     {
      \usecounter{pubctr}
-     \setlength{\leftmargin}{2.2em}     % 左边界 \leftmargin =\itemindent + \labelwidth + \labelsep
+     \setlength{\leftmargin}{2.5em}     % 左边界 \leftmargin =\itemindent + \labelwidth + \labelsep
      \setlength{\itemindent}{0em}     % 标号缩进量
      \setlength{\labelsep}{0.5em}       % 标号和列表项之间的距离,默认0.5em
      \setlength{\rightmargin}{0em}    % 右边界
@@ -2247,8 +2253,11 @@ delim_1 "\\hspace*{\\fill}"
         \texorpdfstring{\ifhitsz@arialtitle\sffamily\heiti%
                         \else\heiti
                         \fi
-                        \ifhitsz@absupper\MakeUppercase{#2}%
-                        \else#2
+                        \ifhitsz@bachelor#2
+                        \else
+                          \ifhitsz@absupper\MakeUppercase{#2}%
+                          \else#2
+                          \fi
                         \fi}{#2}}}
       {\addcontentsline{toc}{chapter}{%
       \texorpdfstring{\ifhitsz@arialtitle\sffamily\heiti\else\heiti\fi #2}{#2}}}
@@ -2408,7 +2417,7 @@ delim_1 "\\hspace*{\\fill}"
 \hitsz@def@term{cauthor} % 中文作者
 \hitsz@def@term{csupervisor} % 中文导师
 \hitsz@def@term{cassosupervisor} % 中文副导师
-\hitsz@def@term{ccosupervisor} % 中文联合导师
+\hitsz@def@term{ccosupervisor} % 中文合作导师
 \hitsz@def@term{caffil} % 中文院系
 \hitsz@def@term{csubject} % 中文专业
 \hitsz@def@term{cdate} % 封面日期指定
@@ -2426,7 +2435,7 @@ delim_1 "\\hspace*{\\fill}"
 \hitsz@def@term{eauthor} %英文作者
 \hitsz@def@term{esupervisor} %英文导师
 \hitsz@def@term{eassosupervisor} %英文副导师
-\hitsz@def@term{ecosupervisor} %英文联合导师
+\hitsz@def@term{ecosupervisor} %英文合作导师
 \hitsz@def@term{eaffil}
 \hitsz@def@term{esubject}
 \hitsz@def@term{edate}
@@ -2475,9 +2484,10 @@ delim_1 "\\hspace*{\\fill}"
 \fi
 \ifhitsz@bachelor
 \gdef\hitsz@cxuewei{学士}
+\def\hitsz@cauthortitle{本科生}
 \fi
-\def\hitsz@bachelor@cxuewei{本科生}
-\def\hitsz@bachelor@cthesisname{毕业设计（论文）}
+\def\hitsz@bachelor@cxuewei{本科}
+\def\hitsz@bachelor@cthesisname{毕业论文（设计）}
 \def\hitsz@bachelor@caffiltitle{院（系）}
 %</cfg>
 %    \end{macrocode}
@@ -2492,6 +2502,7 @@ delim_1 "\\hspace*{\\fill}"
 \def\hitsz@bachelor@csupervisortitle{指导教师}
 \def\hitsz@bachelor@cthesistitle{题目}
 \def\hitsz@bachelor@cstudenttitle{姓名}
+\def\hitsz@bachelor@cschooltitle{学校}
 \def\hitsz@cthesisname{学位论文}
 \def\hitsz@cschoolname{哈尔滨工业大学}
 %</cfg>
@@ -2501,6 +2512,8 @@ delim_1 "\\hspace*{\\fill}"
 % \changes{v3.2.1}{2021/11/14}{Change 'Defence' to 'Defense'}
 % \changes{v3.2.1}{2021/11/14}{Change '发表的论文及其他成果' to '取得创新性成果'}
 % \changes{v3.2.3}{2022/05/05}{更新本科生原创性声明标题和内容}
+% \changes{v3.2.6}{2022/12/13}{Change '联合导师' to '合作导师'}
+% \changes{v3.2.6}{2022/12/13}{Change 'Co Supervisor' to 'Co-Supervisor off Campus'}
 %    \begin{macrocode}
 %<*cfg>
 \def\hitsz@shenzhencampus{深圳校区}
@@ -2512,12 +2525,12 @@ delim_1 "\\hspace*{\\fill}"
 \def\hitsz@cdegreetitle{申请学位}
 \def\hitsz@csupervisortitle{导师}
 \def\hitsz@cassosupervisortitle{副导师}
-\def\hitsz@ccosupervisortitle{联合导师}
+\def\hitsz@ccosupervisortitle{合作导师}
 \def\hitsz@title@csep{：}
 \def\hitsz@eauthortitle{Candidate}
 \def\hitsz@esupervisortitle{Supervisor}
 \def\hitsz@eassosupervisortitle{Associate Supervisor}
-\def\hitsz@ecosupervisortitle{Co Supervisor}
+\def\hitsz@ecosupervisortitle{Co-Supervisor off Campus}
 \def\hitsz@edegreetitle{Academic Degree Applied for}
 \def\hitsz@esubjecttitle{Specialty}
 \def\hitsz@eaffiltitle{Affiliation}
@@ -2538,6 +2551,9 @@ delim_1 "\\hspace*{\\fill}"
 \def\hitsz@resume@ctitle{个人简历}
 \def\hitsz@resume@etitle{Resume}
 \def\hitsz@authorization@ctitle{哈尔滨工业大学学位论文原创性声明和使用权限}
+\def\hitsz@authorization@ctitle@novelty{原创性声明}
+\def\hitsz@authorization@ctitle@authority{使用权限}
+\def\hitsz@authorization@ctitle@second{原创性声明和使用权限}
 \def\hitsz@authorization@etitle{Statement of copyright and Letter of authorization}
 \newcommand{\hitsz@authorsig}{作者签名：}
 \newcommand{\hitsz@teachersig}{导师签名：}
@@ -2558,7 +2574,7 @@ delim_1 "\\hspace*{\\fill}"
   哈尔滨工业大学本科毕业设计（论文）原创性声明
 \else%
   \ifhitsz@shenzhen%
-    哈尔滨工业大学深圳校区本科生毕业设计（论文）原创性声明
+    哈尔滨工业大学本科毕业论文（设计）原创性声明和使用权限
   \else%
     \ifhitsz@weihai%
       哈尔滨工业大学（威海）本科毕业设计（论文）原创性声明
@@ -2571,9 +2587,13 @@ delim_1 "\\hspace*{\\fill}"
 
 本人愿为此声明承担法律责任。}
 \newcommand{\hitsz@authorizationtext@bachelor@shenzhen}{%
-本人郑重声明：在哈尔滨工业大学深圳校区攻读学士学位期间，所提交的毕业设计（论文）《\hitsz@ctitle》，是本人在导师指导下独立进行研究工作所取得的成果。对本文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明，其它未注明部分不包含他人已发表或撰写过的研究成果，不存在购买、由他人代写、剽窃和伪造数据等作假行为。
+本科毕业论文（设计）是本科生在哈尔滨工业大学攻读学士学位期间完成的成果，知识产权归属哈尔滨工业大学。本科毕业论文（设计）的使用权限如下：
 
-本人愿为此声明承担法律责任。}
+（1）学校可以采用影印、缩印或其他复制手段保存本科生上交的毕业论文（设计），并向有关部门报送本科毕业论文（设计）；（2）根据需要，学校可以将本科毕业论文（设计）部分或全部内容编入有关数据库进行检索和提供相应阅览服务；（3）本科生毕业后发表与此毕业论文（设计）研究成果相关的学术论文和其他成果时，应征得导师同意，且第一署名单位为哈尔滨工业大学。
+
+保密论文在保密期内遵守有关保密规定，解密后适用于此使用权限规定。
+
+本人知悉本科毕业论文（设计）的使用权限，并将遵守有关规定。}
 \newcommand{\hitsz@authorizationtext@bachelor@weihai}{%
 本人郑重声明：在哈尔滨工业大学（威海）攻读学士学位期间，所提交的毕业设计（论文）《\hitsz@ctitle》，是本人在导师指导下独立进行研究工作所取得的成果。对本文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明，其它未注明部分不包含他人已发表或撰写过的研究成果，不存在购买、由他人代写、剽窃和伪造数据等作假行为。
 
@@ -2581,8 +2601,10 @@ delim_1 "\\hspace*{\\fill}"
 \newcommand{\hitsz@declarename}{学位论文原创性声明}
 \newcommand{\hitsz@declaretext}{%
 本人郑重声明：此处所提交的学位论文《\hitsz@ctitle》，是本人在导师指导下，在哈尔滨工业大学攻读学位期间独立进行研究工作所取得的成果，且学位论文中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本学位论文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。}
+\newcommand{\hitsz@declaretext@bachelor@shenzhen}{%
+本人郑重声明：此处所提交的本科毕业论文（设计）《\hitsz@ctitle》，是本人在导师指导下，在哈尔滨工业大学攻读学士学位期间独立进行研究工作所取得的成果，且毕业论文（设计）中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本毕业论文（设计）的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。}
 \newcommand{\hitsz@datefill}{\hspace{2.5em}年\hspace{1.5em}月\hspace{1.5em}日}
-\newcommand{\hitsz@publication@ctitle}{攻读\hitsz@cxuewei 学位期间取得创新性成果}
+\newcommand{\hitsz@publication@ctitle}{攻读{\hitsz@cxuewei}学位期间取得创新性成果}
 \newcommand{\hitsz@publication@etitle}{Papers published in the period of Ph.D. education}
 \def\hitsz@index@etitle{Index}
 \def\hitsz@dummyrow{哈深hitszthesis}
@@ -2596,6 +2618,7 @@ delim_1 "\\hspace*{\\fill}"
 % 中英文封面。
 % \changes{v3.0.3}{2020/03/12}{Change titlepage description of master dissertation}
 % \changes{v3.0.4}{2020/03/13}{Change second bachelor titilepage from heiti to songti}
+% \changes{v3.2.6}{2022/12/13}{根据2022年11月模板更新本科毕业论文封面和扉页}
 %    \begin{macrocode}
 %<*cls>
 \newlength{\hitsz@title@width}
@@ -2608,194 +2631,137 @@ delim_1 "\\hspace*{\\fill}"
   \ifhitsz@bachelor\hitsz@second@titlepage@bachelor\else\hitsz@second@titlepage@other\fi}
 
 \newcommand{\hitsz@first@titlepage@bachelor}{
-\ifthenelse%
-{\equal{\hitsz@fontset}{siyuan}}%
-{\xiaosi[1]\vspace*{0.65em}}%
-{\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hitsz@dummyrow}}}%
+  \ifthenelse%
+  {\equal{\hitsz@fontset}{siyuan}}%
+  {\xiaosi[1]\vspace*{0.65em}}%
+  {\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hitsz@dummyrow}}}%
+  \vspace*{1.2cm}
   \begin{center}
-    \ifhitsz@covertitletworow
-      \vspace*{0.7cm}
-      \parbox[t][1.4cm][t]{\textwidth}{%
-        \begin{center}
-          \erhao[0]\heiti\hitsz@ctitleone
-        \end{center}
-      }\par
-      \parbox[t][3cm][t]{\textwidth}{%
-        \begin{center}
-          \erhao[0]\heiti\hitsz@ctitletwo
-        \end{center}
-      }\par
-    \else
-      \vspace*{1.2cm}
-      \parbox[t][3.4cm][t]{\textwidth}{%
-        \begin{center}
-          \erhao[0]\heiti\hitsz@ctitlecover
-        \end{center}
-      }
-    \fi
-    % 姓名
-    \parbox[t][9cm][t]{\textwidth}{%
-      \begin{center}
-        \xiaoer[0]\songti\textbf{\hitsz@cauthor}
-      \end{center}
-    }
-  \begin{center}
-    \setlength{\hitsz@title@width}{4em}
-    \heiti\xiaosi
-%    \end{macrocode}
-%
-% 此处深圳校区竟然是左对齐。另外，院系名称也有点不一样。
-%    \begin{macrocode}
-    \ifhitsz@shenzhen%
-      \begin{tabular}{@{}r@{}@{}l@{\qquad}}%
-    \else%
-      \begin{tabular}{rc}%
-    \fi%
-        {\hitsz@put@title{%
-          \ifhitsz@harbin%
-            \hitsz@bachelor@caffiltitle%
-          \else%
-            \ifhitsz@shenzhen%
-              \hitsz@bachelor@caffiltitlesz%
-            \else%
-              \ifhitsz@weihai%
-                \hitsz@bachelor@caffiltitlewh%
-              \fi%
-            \fi%
-          \fi%
-        }\hitsz@title@csep} & \hitsz@caffil\\[14pt]
-	{\hitsz@put@title{\hitsz@bachelor@cstudentidtitle}\hitsz@title@csep} & \hitsz@cstudentid
-    \end{tabular}
-    \ifhitsz@shenzhen%
-      \begin{tabular}{@{}r@{}@{}l@{}}%
-    \else%
-      \begin{tabular}{rc}%
-    \fi%
-	{\hitsz@put@title{\hitsz@bachelor@cmajortitle}\hitsz@title@csep} & \hitsz@csubject\\[14pt]
-	{\hitsz@put@title{\hitsz@bachelor@csupervisortitle}\hitsz@title@csep} &  \hitsz@csupervisor
-      \end{tabular}
+    \begin{center}
+      \xiaoyi[1]\songti\textbf{\hitsz@bachelor@cxuewei
+      \hitsz@bachelor@cthesisname}
     \end{center}
-    \vspace{2.6cm}
-    {\xiaosi[0]\songti\textbf{\hitsz@cdate}}
+    \vspace{1.5cm}
+    \parbox[t][8cm][t]{\textwidth}{%
+      \begin{center}
+        \erhao\heiti\hitsz@ctitlecover
+      \end{center}
+      \ifhitsz@subtitle%
+        \begin{center}
+          \hspace{-4em}\xiaoer\heiti\pozhehao\hitsz@csubtitle
+        \end{center}
+      \fi
+      \vspace*{0.7cm}
+      \begin{center}%
+        \settowidth{\hitsz@etitlelength}{%
+          \erhao\hitsz@etitle\ifhitsz@subtitle\hitsz@title@esep\hitsz@esubtitle\fi}%
+        \ifdim\hitsz@etitlelength>450mm\xiaoer\else\erhao\fi%
+        \textbf{\MakeUppercase{\hitsz@etitle}%
+          \ifhitsz@subtitle%
+            \hitsz@title@esep\MakeUppercase{\hitsz@esubtitle}
+          \fi}
+      \end{center}}
+      \parbox[t][5cm][t]{\textwidth}{%
+        \begin{center}\xiaoer\songti\textbf{\hitsz@cauthor}\end{center}
+      }
+      \parbox[t][1.4cm][t]{\textwidth}{%
+        \begin{center}\kaishu\xiaoer\textbf{\hitsz@cschoolname}\end{center}
+      }
+      {\songti\xiaoer\textbf{\hitsz@cdate}}
   \end{center}
 }
 %    \end{macrocode}
 %
-% 此处本科生扉页使用了华文新魏字体，为方便使用此处用矢量化图片作为输入。
+% 本科生扉页。
 % \changes{v3.2.3}{2022/05/05}{根据2022年2月模板更新扉页标题和表格}
 % \changes{v3.2.5}{2022/05/20}{fix \option{infocenter} option}
+% \changes{v3.2.6}{2022/12/13}{根据2022年11月模板更新扉页标题}
 %    \begin{macrocode}
-\newdimen\infowidth
-\infowidth = 7cm
 \newcommand{\hitsz@second@titlepage@bachelor}{
-  \vspace*{0.8cm}
-  \ifhitsz@harbin%
-    \centering{\includegraphics[width=6.2cm]{hitlogo}}
-  \else%
-    \ifhitsz@shenzhen%
-    \vspace*{1cm}
-      \centering{\includegraphics[scale=1]{bthesistitle}}
-    \else%
-      \ifhitsz@weihai%
-        \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{%
-        \kaishu\yihao\hitsz@weihaicampus}}
-      \fi%
-    \fi%
-  \fi%
-  \vspace*{0cm}
   \begin{center}
-    \parbox[t][14.7cm][b]{\textwidth}
-    {\heiti\xiaosan
-      \begin{center} \renewcommand{\arraystretch}{2} \heiti
-        \setlength{\hitsz@title@width}{5.5em}
-        \ifhitsz@infoleft
-          \begin{tabular}{l@{\ \  }l}
-            {\xiaoer  \hitsz@put@title{\hitsz@bachelor@cthesistitle}} &
-             \underline{\makebox[\infowidth][l]{\hspace*{1em}\xiaoer\songti\textbf{\hitsz@ctitleone}}}\\
-              &  \underline{\makebox[\infowidth][l]{\hspace*{1em}\xiaoer\songti\textbf{\hitsz@ctitletwo}}}\\
-              & \\
-            {\hitsz@put@title{\hitsz@bachelor@cstudenttitle}}  &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cauthor}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@cstudentidtitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cstudentid}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@caffiltitlesz}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@caffil}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@cmajortitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@csubject}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@csupervisortitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@csupervisor}}}\\
-            {\hitsz@put@title{\hitsz@cdatetitle}} &
-              \underline{\makebox[\infowidth][l]{\hspace*{1em}\songti\textbf{\hitsz@cdatesecond}}}
-          \end{tabular}
-        \else
-          \begin{tabular}{l@{\ \  }c}
-            {\xiaoer  \hitsz@put@title{\hitsz@bachelor@cthesistitle}} &
-              \underline{\makebox[\infowidth]{\xiaoer\songti\textbf{\hitsz@ctitleone}}}\\
-                &  \underline{\makebox[\infowidth]{\xiaoer\songti\textbf{\hitsz@ctitletwo}}}\\
-                & \\
-            {\hitsz@put@title{\hitsz@bachelor@cstudenttitle}}  &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cauthor}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@cstudentidtitle}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cstudentid}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@caffiltitlesz}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@caffil}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@cmajortitle}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@csubject}}}\\
-            {\hitsz@put@title{\hitsz@bachelor@csupervisortitle}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@csupervisor}}}\\
-            {\hitsz@put@title{\hitsz@cdatetitle}} &
-              \underline{\makebox[\infowidth]{\songti\textbf{\hitsz@cdatesecond}}}
-          \end{tabular}
-        \fi
-      \renewcommand{\arraystretch}{1}
+    {\hfill{\hitsz@secretlevel}：{\hitsz@statesecrets}}
+    \parbox[t][3.2cm][t]{\textwidth}{\begin{center} \end{center} }
+      \parbox[t][2.4cm][t]{\textwidth}{\xiaoer[1]
+    \begin{center}\songti\bfseries\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname\end{center}
+        \ifhitsz@fulltime\relax
+        \else%
+          \begin{center}
+            \songti\textbf{\hitsz@cbraceleft\hitsz@cstudenttype\hitsz@cbraceright}
+          \end{center}
+        \fi}
+    \parbox[t][5cm][t]{\textwidth}{\erhao
+    \begin{center}\heiti\hitsz@ctitlecover\end{center}
+    \ifhitsz@subtitle%
+      \begin{center}
+        \hspace{-4em}\xiaoer\heiti\pozhehao\hitsz@csubtitle
       \end{center}
-    }
-    \vfill
+    \fi}
+      \parbox[t][9.8cm][b]{\textwidth}
+      {\sihao
+        \setlength{\hitsz@title@width}{6em}
+        \begin{center} \renewcommand{\arraystretch}{1.62} \songti
+    \begin{tabular}{l@{\hitsz@title@csep}l}
+      {\heiti \hitsz@put@title{\hitsz@cauthortitle}}	&	\hitsz@cauthor\\
+      {\heiti \hitsz@put@title{\hitsz@bachelor@cstudentidtitle}}	&	\hitsz@cstudentid\\
+      {\heiti \hitsz@put@title{\hitsz@bachelor@csupervisortitle}}	&	\hitsz@csupervisor\\
+      {\heiti \hitsz@put@title{\hitsz@bachelor@cmajortitle}}	&	\hitsz@csubject\\
+      {\heiti \hitsz@put@title{\hitsz@bachelor@caffiltitlesz}}		&	\hitsz@caffil\\
+      {\heiti \hitsz@put@title{\hitsz@cdatetitle}}		&	\hitsz@cdate\\
+      {\heiti \hitsz@put@title{\hitsz@bachelor@cschooltitle}}	&	\hitsz@cschoolname
+    \end{tabular} \renewcommand{\arraystretch}{1}
+      \end{center} }
   \end{center}
 }
 
 \newlength{\hitsz@etitlelength}%
 \newcommand{\hitsz@first@titlepage@other}{
   % 封面一
-\ifthenelse%
-{\equal{\hitsz@fontset}{siyuan}}%
-{\xiaosi[1]\vspace*{0.65em}}%
-{\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hitsz@dummyrow}}}%
- \vspace*{1.2cm}
-\begin{center}
-  \begin{center}\xiaoyi[1]\songti\textbf{\hitsz@cxuewei\hitsz@cthesisname}\end{center}
+  \ifthenelse%
+  {\equal{\hitsz@fontset}{siyuan}}%
+  {\xiaosi[1]\vspace*{0.65em}}%
+  {\xiaosi[1]\textcolor[rgb]{1,1,1}{\songti{\hitsz@dummyrow}}}%
+  \vspace*{1.2cm}
+  \begin{center}
+    \begin{center}
+      \xiaoyi[1]\songti\textbf{\hitsz@cxuewei\hitsz@cthesisname}
+    \end{center}
     \vspace{1cm}
-    \begin{center}\xiaoer[1]\songti\textbf{（\hitsz@cpostgraduatetype\hitsz@cthesisname）}\end{center}
+    \begin{center}
+      \xiaoer[1]\songti\textbf{（\hitsz@cpostgraduatetype\hitsz@cthesisname）}
+    \end{center}
     \ifhitsz@fulltime\vspace{1cm}\else%
       \begin{center}
         \xiaoyi[1]\songti
         \textbf{\hitsz@cbraceleft\hitsz@cstudenttype\hitsz@cbraceright}
       \end{center}
     \fi%
-    \parbox[t][7.3cm][t]{\textwidth}{%
-  \begin{center}\erhao\heiti\hitsz@ctitlecover\end{center}
-  \ifhitsz@subtitle%
-    \begin{center}
-      \hspace{-4em}\xiaoer\heiti\pozhehao\hitsz@csubtitle
-    \end{center}
-  \fi
-  \begin{center}%
-    \settowidth{\hitsz@etitlelength}{%
-      \erhao\hitsz@etitle\ifhitsz@subtitle\hitsz@title@esep\hitsz@esubtitle\fi}%
-    \ifdim\hitsz@etitlelength>450mm\xiaoer\else\erhao\fi%
-    \textbf{\MakeUppercase{\hitsz@etitle}%
-    \ifhitsz@subtitle%
-      \hitsz@title@esep\MakeUppercase{\hitsz@esubtitle}
-    \fi}\end{center}}
-
-    \parbox[t][5.4cm][t]{\textwidth}{%
-      \begin{center}\xiaoer\songti\textbf{\hitsz@cauthor}\end{center}
-    }
-    \parbox[t][1.4cm][t]{\textwidth}{%
-      \begin{center}\kaishu\xiaoer\textbf{\hitsz@cschoolname}\end{center}
-    }
-    {\songti\xiaoer\textbf{\hitsz@cdate}}
-\end{center}
+    \parbox[t][7.7cm][t]{\textwidth}{%
+      \begin{center}
+        \erhao\heiti\hitsz@ctitlecover
+      \end{center}
+      \ifhitsz@subtitle%
+        \begin{center}
+          \hspace{-4em}\xiaoer\heiti\pozhehao\hitsz@csubtitle
+        \end{center}
+      \fi
+      \vspace*{0.7cm}
+      \begin{center}%
+        \settowidth{\hitsz@etitlelength}{%
+          \erhao\hitsz@etitle\ifhitsz@subtitle\hitsz@title@esep\hitsz@esubtitle\fi}%
+        \ifdim\hitsz@etitlelength>450mm\xiaoer\else\erhao\fi%
+        \textbf{\MakeUppercase{\hitsz@etitle}%
+          \ifhitsz@subtitle%
+            \hitsz@title@esep\MakeUppercase{\hitsz@esubtitle}
+          \fi}
+      \end{center}}
+      \parbox[t][5cm][t]{\textwidth}{%
+        \begin{center}\xiaoer\songti\textbf{\hitsz@cauthor}\end{center}
+      }
+      \parbox[t][1.4cm][t]{\textwidth}{%
+        \begin{center}\kaishu\xiaoer\textbf{\hitsz@cschoolname}\end{center}
+      }
+      {\songti\xiaoer\textbf{\hitsz@cdate}}
+  \end{center}
 }
 
 % 内封，扉页，封面二
@@ -2813,7 +2779,7 @@ delim_1 "\\hspace*{\\fill}"
     \end{tabular}}
   \parbox[t][3.2cm][t]{\textwidth}{\begin{center} \end{center} }
     \parbox[t][2.4cm][t]{\textwidth}{\xiaoer[1]
-  \begin{center}\songti\bfseries\hitsz@cdegree\hitsz@cthesisname\end{center}
+  \begin{center}\songti\bfseries\hitsz@cxuewei\hitsz@cthesisname\end{center}
       \ifhitsz@fulltime\relax
       \else%
         \begin{center}
@@ -2878,11 +2844,12 @@ delim_1 "\\hspace*{\\fill}"
       }
     \else%硕士封面
       \vspace*{1em}
-      \parbox[t][4.5cm][t]{\textwidth}{\xiaoer[1]%
+      \parbox[t][3.7cm][t]{\textwidth}{\xiaoer[1]%
         \begin{center}%
-          A dissertation submitted in partial fulfillment of \\[2pt]
-          the requirements for the academic degree of \\[2pt]
-          Master of \hitsz@exueke
+          % A dissertation submitted in partial fulfillment of \\[2pt]
+          % the requirements for the academic degree of \\[2pt]
+          % Master of \hitsz@exueke
+          Dissertation for the {\hitsz@exuewei} Degree
         \end{center}
         \ifhitsz@fulltime
           \relax
@@ -3223,7 +3190,10 @@ delim_1 "\\hspace*{\\fill}"
   labelindent=4em,
   font=\wuhao\rm,
 }
-
+%    \end{macrocode}
+% 原创性声明和使用权限。
+% \changes{v3.2.6}{2022/12/13}{根据2022年11月模板更新本科毕业论文原创性声明和使用权限}
+%    \begin{macrocode}
 \def\hitsz@authorization@other{%
   \ifhitsz@openright\cleardoublepage\else\clearpage\fi
   \hitsz@appendix@chapter*{\hitsz@authorization@ctitle}[\hitsz@authorization@etitle]
@@ -3232,27 +3202,29 @@ delim_1 "\\hspace*{\\fill}"
   \par\hitsz@declaretext
   \vspace{\baselineskip}
   \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
-  \vspace{2\baselineskip}
+  \vspace{3\baselineskip}
   \begin{center}\xiaosan\heiti\hitsz@authorizationtitle\end{center}
   \par\hitsz@authorizationtext
   \vspace{2\baselineskip}
   \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
-  \vspace{2\baselineskip}
+  \vspace{1\baselineskip}
   \par\hspace{6em}\hitsz@teachersig\hfill\hitsz@frontdate\hitsz@datefill
 }
 \def\hitsz@authorization@bachelor@toc{%
-  \ifhitsz@shenzhen%
-    原创性声明
-  \else%
-    \hitsz@declarename@bachelor
-  \fi
+  \hitsz@declarename@bachelor
 }
 \def\hitsz@authorization@bachelor{%
   \ifhitsz@openright\cleardoublepage\else\clearpage\fi
-  \chapter*{\ifhitsz@shenzhen\xsanhao\fi\hitsz@declarename@bachelor}
+  \chapter*{%
+    \hitsz@cschoolname\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname\\
+    \hitsz@authorization@ctitle@second
+  }
   \addcontentsline{toc}{chapter}{\hitsz@authorization@bachelor@toc}
   \ifhitsz@shenzhen%
-    \hitsz@authorizationtext@bachelor@shenzhen
+    \begin{center}
+      \xiaosan\heiti\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname\hitsz@authorization@ctitle@novelty
+    \end{center}
+    \par\hitsz@declaretext@bachelor@shenzhen
   \else%
     \ifhitsz@weihai%
       \hitsz@authorizationtext@bachelor@weihai
@@ -3260,8 +3232,17 @@ delim_1 "\\hspace*{\\fill}"
       \hitsz@authorizationtext@bachelor
     \fi%
   \fi%
+  \vspace{1\baselineskip}
+  \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
+  \vspace{2\baselineskip}
+  \begin{center}
+    \xiaosan\heiti\hitsz@bachelor@cxuewei\hitsz@bachelor@cthesisname\hitsz@authorization@ctitle@authority
+  \end{center}
+  \par\hitsz@authorizationtext@bachelor@shenzhen
   \vspace{2\baselineskip}
   \par\hspace{6em}\hitsz@authorsig\hfill\hitsz@frontdate\hitsz@datefill
+  \vspace{1\baselineskip}
+  \par\hspace{6em}\hitsz@teachersig\hfill\hitsz@frontdate\hitsz@datefill
 }
 
 \NewDocumentCommand{\authorization}{o}{%
@@ -3287,6 +3268,7 @@ delim_1 "\\hspace*{\\fill}"
 \newcommand\bibstyle@numerical{\bibpunct{[}{]}{,}{s}{,}{\textsuperscript{,}}}
 \newcommand\bibstyle@authoryear{\bibpunct{(}{)}{;}{a}{,}{,}}
 %    \end{macrocode}
+% 参考文献列表设置
 % \changes{v3.2.1}{2021/11/15}{Redefine `biblabel' with full-width square brackets}
 %    \begin{macrocode}
 \newcommand\bibstyle@inline{\bibpunct{[}{]}{,}{n}{,}{\hitsz@inline@sep}}
@@ -3303,7 +3285,7 @@ delim_1 "\\hspace*{\\fill}"
   {\renewcommand{\makelabel}[1]{##1\hfill}
     \settowidth{\labelwidth}{\@biblabel{#1}}
     \addtolength{\labelwidth}{0.5em}
-    \setlength{\labelsep}{0.5em}
+    \setlength{\labelsep}{0.2em}
     \setlength{\itemindent}{0pt}
     \setlength{\leftmargin}{\labelsep+\labelwidth}
     \addtolength{\itemsep}{-0.8em}
@@ -3503,9 +3485,9 @@ delim_1 "\\hspace*{\\fill}"
 %<cfg|dtx-style>\newcommand{\pozhehao}{——}
 %<cfg|dtx-style>\def\hitszthesis{\textsc{Hitsz}\-\textsc{Thesis}}
 %<cfg|dtx-style>\def\hitsz{哈尔滨工业大学（深圳）}
-%<cfg|dtx-style>\def\PGR{\href{http://hitgs.hit.edu.cn/aa/fd/c3425a109309/page.htm}
+%<cfg|dtx-style>\def\PGR{\href{http://due.hitsz.edu.cn/info/1243/1776.htm}
 %<cfg|dtx-style>{《\hitsz 研究生学位论文撰写规范》}}
-%<cfg|dtx-style>\def\UGR{\href{http://due.hitsz.edu.cn/info/1343/3864.htm}
+%<cfg|dtx-style>\def\UGR{\href{http://due.hitsz.edu.cn/info/1343/4730.htm}
 %<cfg|dtx-style>{《\hitsz 本科生毕业论文撰写规范》}}
 %<cfg>\def\hitsz@inline@sep{，}
 %<*dtx-style>
