@@ -10,7 +10,7 @@
 ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
 ![License](https://img.shields.io/ctan/l/hitszthesis.svg)
 
-[GitHub](https://github.com/YangLaTeX/hitszthesis) | [Gitee](https://gitee.com/jingxuanyang/hitszthesis) | [GitLab](https://gitlab.com/jingxuanyang/hitszthesis) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
+[GitHub](https://github.com/YangLaTeX/hitszthesis) | [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis-template/dcvngxmqpbcb) | [Gitee](https://gitee.com/jingxuanyang/hitszthesis) | [GitLab](https://gitlab.com/jingxuanyang/hitszthesis) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
 
 # Introduction to hitszthesis
 
