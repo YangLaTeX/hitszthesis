@@ -97,7 +97,7 @@ Typesetting examples:
 * Developer version: [GitHub](https://github.com/YangLaTeX/hitszthesis)
 * Developer version: [Gitee](https://gitee.com/jingxuanyang/hitszthesis)
 * Developer version: [GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
-* Overleaf: [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
+* [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
 
 # 下载
 
@@ -105,7 +105,7 @@ Typesetting examples:
 * 开发版本：[GitHub](https://github.com/YangLaTeX/hitszthesis)
 * 开发版本：[Gitee](https://gitee.com/jingxuanyang/hitszthesis)
 * 开发版本：[GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
-* Overleaf: [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
+* [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
 
 # Updates（更新）
 
