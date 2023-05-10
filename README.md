@@ -10,7 +10,7 @@
 ![Repo Size](https://img.shields.io/github/repo-size/YangLaTeX/hitszthesis.svg)
 ![License](https://img.shields.io/ctan/l/hitszthesis.svg)
 
-[GitHub](https://github.com/YangLaTeX/hitszthesis) | [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis-template/dcvngxmqpbcb) | [Gitee](https://gitee.com/jingxuanyang/hitszthesis) | [GitLab](https://gitlab.com/jingxuanyang/hitszthesis) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
+[GitHub](https://github.com/YangLaTeX/hitszthesis) | [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc) | [Gitee](https://gitee.com/jingxuanyang/hitszthesis) | [GitLab](https://gitlab.com/jingxuanyang/hitszthesis) | [Wiki](https://github.com/YangLaTeX/hitszthesis/wiki) | [CTAN](https://www.ctan.org/pkg/hitszthesis)
 
 # Introduction to hitszthesis
 
@@ -61,7 +61,7 @@ HITSZThesis is a **dissertation** LaTeX template for **Harbin Institute of Techn
 
 # hitszthesis 模板简介
 
-hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.2.8，更新于2023年5月9日。请加入QQ群：1039392552反馈模板使用过程中遇到的问题。
+hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，当前版本为3.2.8，更新于2023年5月9日。请加入 QQ 群：1039392552 反馈模板使用过程中遇到的问题。
 
 # Documentation
 
@@ -73,9 +73,9 @@ Download and unzip the template. Specific usage documentation and examples can b
 
 Typesetting examples:
 
-* bachelor dissertation (main-bachelor.pdf)
-* master dissertation (main-master.pdf)
-* doctor dissertation (main-doctor.pdf)
+* bachelor dissertation (hitszthesis-bachelor.pdf)
+* master dissertation (hitszthesis-master.pdf)
+* doctor dissertation (hitszthesis-doctor.pdf)
 
 # 说明文档
 
@@ -87,9 +87,9 @@ Typesetting examples:
 
 示例文档：
 
-* 本科学位论文（main-bachelor.pdf）
-* 硕士学位论文（main-master.pdf）
-* 博士学位论文（main-doctor.pdf）
+* 本科学位论文（hitszthesis-bachelor.pdf）
+* 硕士学位论文（hitszthesis-master.pdf）
+* 博士学位论文（hitszthesis-doctor.pdf）
 
 # Downloads
 
@@ -97,6 +97,7 @@ Typesetting examples:
 * Developer version: [GitHub](https://github.com/YangLaTeX/hitszthesis)
 * Developer version: [Gitee](https://gitee.com/jingxuanyang/hitszthesis)
 * Developer version: [GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
+* Overleaf: [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
 
 # 下载
 
@@ -104,6 +105,7 @@ Typesetting examples:
 * 开发版本：[GitHub](https://github.com/YangLaTeX/hitszthesis)
 * 开发版本：[Gitee](https://gitee.com/jingxuanyang/hitszthesis)
 * 开发版本：[GitLab](https://gitlab.com/jingxuanyang/hitszthesis)
+* Overleaf: [Overleaf](https://www.overleaf.com/latex/templates/hitszthesis/hckkkdvywfbc)
 
 # Updates（更新）
 
@@ -117,7 +119,7 @@ tlmgr update hitszthesis
 
 ## 自动更新
 
-从[CTAN](https://www.ctan.org/pkg/hitszthesis)更新，命令行运行：
+从 [CTAN](https://www.ctan.org/pkg/hitszthesis) 更新，命令行运行：
 
 ```bash
 tlmgr update hitszthesis
@@ -135,13 +137,13 @@ You'll get `hitszthesis.cls`, `hitszthesis.cfg` and `hitszthesis.ist` along with
 
 ## 手动更新
 
-从[GitHub](https://github.com/YangLaTeX/hitszthesis)下载模板，解压后打开命令行，运行：
+从 [GitHub](https://github.com/YangLaTeX/hitszthesis) 下载模板，解压后打开命令行，运行：
 
 ```shell
 latex hitszthesis.ins
 ```
 
-得到`hitszthesis.cls`，`hitszthesis.cfg` 与 `hitszthesis.ist`，而后打开 `main.tex` 即可开始撰写论文。
+得到 `hitszthesis.cls`，`hitszthesis.cfg` 与 `hitszthesis.ist`，而后打开 `main.tex` 即可开始撰写论文。
 
 # Reporting Issues
 
@@ -177,9 +179,9 @@ make dev        # make all clean
 make pub        # make all cleanall
 ```
 
-# 使用Makefile
+# 使用 Makefile
 
-使用Makefile之前请确保已安装GNU `make`工具。
+使用 Makefile 之前请确保已安装 GNU `make` 工具。
 
 ```bash
 make cls        # 生成类文件 hitszthesis.cls
@@ -195,7 +197,7 @@ make pub        # 等同于 make all cleanall
 
 # compile.bat Usage
 
-`compile.bat` is designed for windows platform. Double click this file, then it will compile the thesis automatically.
+`compile.bat` is designed for Windows platform. Double click this file, then it will compile the thesis automatically.
 
 ```bash
 compile.bat cls         # generate class hitszthesis.cls
@@ -209,7 +211,7 @@ compile.bat cleanall    # delete all examples' files, class and configuration fi
 
 # 使用compile.bat
 
-`compile.bat`为windows编译脚本，双击即可编译论文。
+`compile.bat` 为 Windows 编译脚本，双击即可编译论文。
 
 ```bash
 compile.bat cls         # 生成类文件 hitszthesis.cls
@@ -250,7 +252,7 @@ This material is subject to the [LATEX Project Public License 1.3c](https://ctan
 
 # 协议
 
-本模板的发布遵照[LATEX Project Public License 1.3c](https://ctan.org/license/lppl1.3)协议或其后版本。
+本模板的发布遵照 [LATEX Project Public License 1.3c](https://ctan.org/license/lppl1.3) 协议或其后版本。
 
 # Acknowledgements（致谢）
 
