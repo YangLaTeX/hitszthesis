@@ -209,7 +209,7 @@ compile.bat clean       # delete all examples' files (excluding class and config
 compile.bat cleanall    # delete all examples' files, class and configuration files
 ```
 
-# 使用compile.bat
+# 使用 compile.bat
 
 `compile.bat` 为 Windows 编译脚本，双击即可编译论文。
 
