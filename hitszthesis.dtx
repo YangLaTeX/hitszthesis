@@ -2246,7 +2246,6 @@ delim_1 "\\hspace*{\\fill}"
   \IfBooleanT{#1}%
   {
     \phantomsection
-    \markboth{#2}{#2}
 		    \ifthenelse%
       {\equal{#2}{\eabstractcname}}%
       {\addcontentsline{toc}{chapter}{%
@@ -2263,6 +2262,7 @@ delim_1 "\\hspace*{\\fill}"
       \texorpdfstring{\ifhitsz@arialtitle\sffamily\heiti\else\heiti\fi #2}{#2}}}
     \IfValueT{#3}{\addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries #3}{#3}}}
     \hitsz@chapter*{#2}
+    \markboth{#2}{#2}
   }
 }
 % 该附录命令适用于发表文章，简历等
