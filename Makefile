@@ -101,7 +101,7 @@ pub: doc thesis cleanall
 clean:
 	latexmk -c $(PACKAGE).dtx
 	latexmk -c $(THESISMAIN)
-	-@$(RM) *~ *.idx *.ind *.ilg *.thm *.toe *.bbl
+	-@$(RM) *~ *.idx *.ind *.ilg *.thm *.toe *.bbl *.hd
 
 cleanall: clean
 	-@$(RM) $(PACKAGE).pdf $(THESISMAIN).pdf
