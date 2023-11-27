@@ -82,7 +82,6 @@ Typesetting examples:
 下载并解压本模板，文件夹中包含以下说明文档：
 
 * 模板开发文档（hitszthesis.pdf，中文版）
-* 模板撰写示例（main.pdf，中文版）
 * 模板简介（README.md，中英双语）
 
 示例文档：
