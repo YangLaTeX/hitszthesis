@@ -68,7 +68,6 @@ hitszthesis 是哈尔滨工业大学（深圳）本硕博学位论文模板，�
 Download and unzip the template. Specific usage documentation and examples can be found in the files below:
 
 * Template usage (hitszthesis.pdf, in Chinese)
-* Template example (main.pdf, in Chinese)
 * Brief Introduction (README.md, both in Chinese and English)
 
 Typesetting examples:
