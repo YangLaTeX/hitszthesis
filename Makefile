@@ -33,7 +33,7 @@ all: doc thesis
 cls: $(CLSFILES)
 
 $(CLSFILES): $(SOURCES)
-	latex $(PACKAGE).ins
+	xelatex $(PACKAGE).ins
 
 viewdoc: doc
 	$(OPEN) $(PACKAGE).pdf
