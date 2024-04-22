@@ -128,7 +128,7 @@ tlmgr update hitszthesis
 Download the package from [GitHub](https://github.com/YangLaTeX/hitszthesis) to the root directory of your thesis, then execute the command (Windows users `Shift + right click` white area in the file window and click "Open command line window here" from the popup menu):
 
 ```shell
-latex hitszthesis.ins
+xelatex hitszthesis.ins
 ```
 
 You'll get `hitszthesis.cls`, `hitszthesis.cfg` and `hitszthesis.ist` along with other template files.
@@ -138,7 +138,7 @@ You'll get `hitszthesis.cls`, `hitszthesis.cfg` and `hitszthesis.ist` along with
 从 [GitHub](https://github.com/YangLaTeX/hitszthesis) 下载模板，解压后打开命令行，运行：
 
 ```shell
-latex hitszthesis.ins
+xelatex hitszthesis.ins
 ```
 
 得到 `hitszthesis.cls`，`hitszthesis.cfg` 与 `hitszthesis.ist`，而后打开 `main.tex` 即可开始撰写论文。

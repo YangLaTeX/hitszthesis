@@ -33,7 +33,7 @@ all: doc thesis
 cls: $(CLSFILES)
 
 $(CLSFILES): $(SOURCES)
-	latex $(PACKAGE).ins
+	xelatex $(PACKAGE).ins
 
 viewdoc: doc
 	$(OPEN) $(PACKAGE).pdf
@@ -84,7 +84,7 @@ $(THESISMAIN).pdf: $(CLSFILES) $(THESISCONTENTS) $(THESISMAIN)_china.ind $(THESI
 	splitindex $(THESISMAIN) -- -s $(PACKAGE).ist
 	$(LATEXCMD) $(THESISMAIN)
 
-$(THESISMAIN).bbl: $(BIBFILE)
+$(THESISMAIN).bbl: $(BIBFILE) $(THESISCONTENTS)
 	$(LATEXCMD) $(THESISMAIN)
 	-bibtex $(THESISMAIN)
 	$(RM) $(THESISMAIN).pdf
